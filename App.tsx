@@ -205,7 +205,10 @@ const AppLayout = ({ children }: { children?: React.ReactNode }) => {
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto relative pt-16 md:pt-0 z-10 scroll-smooth flex flex-col">
+      <main 
+        className="flex-1 overflow-y-auto relative pt-16 md:pt-0 z-10 scroll-smooth flex flex-col"
+        onClick={() => { if (!isCollapsed) setIsCollapsed(true); }}
+      >
          <AnimatePresence mode="wait">
             <motion.div
                key={location.pathname}
