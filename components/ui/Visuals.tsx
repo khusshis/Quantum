@@ -24,65 +24,36 @@ export const MouseSpotlight = () => {
     );
 };
 
-// --- Animated Background ---
+// --- Animated Background (Subtle Dashboard Theme) ---
 export const AuroraBackground = () => (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#F8FAFC]">
-        {/* Ambient Background Gradient - Light Mode */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(37,99,235,0.05),transparent_60%)]" />
+        {/* Subtle Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA0MCAwIEwgMCAwIDAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgwLCAwLCAwLCAwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40 mix-blend-multiply" />
         
+        {/* Ambient Glowing Orbs - Very Soft */}
         <motion.div 
             animate={{ 
-                x: [-100, 100, -100], 
-                y: [-50, 50, -50],
-                opacity: [0.3, 0.5, 0.3]
+                x: [-20, 20, -20], 
+                y: [-10, 10, -10],
+                opacity: [0.03, 0.06, 0.03],
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vh] rounded-full bg-blue-200/40 blur-[120px] mix-blend-multiply"
+            className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full bg-blue-600 blur-[120px]"
         />
         <motion.div 
             animate={{ 
-                x: [100, -100, 100], 
-                y: [50, -50, 50],
-                opacity: [0.2, 0.4, 0.2]
+                x: [20, -20, 20], 
+                y: [10, -10, 10],
+                opacity: [0.02, 0.05, 0.02],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vh] rounded-full bg-indigo-200/40 blur-[120px] mix-blend-multiply"
+            className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px] rounded-full bg-indigo-500 blur-[120px]"
         />
-        {/* Subtle noise texture */}
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.2]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F8FAFC]/50 to-[#F8FAFC]"></div>
+
+        {/* Soft Vignette Mask */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F8FAFC]/50 to-[#F8FAFC]" />
     </div>
 );
-
-// --- Career Icons Background ---
-export const CareerBackground = () => {
-    const icons = [
-        { Icon: Briefcase, top: '10%', left: '5%' },
-        { Icon: TrendingUp, top: '20%', right: '10%' },
-        { Icon: Target, bottom: '15%', left: '10%' },
-        { Icon: Award, bottom: '30%', right: '5%' },
-        { Icon: Search, top: '40%', left: '50%' },
-        { Icon: Globe, top: '15%', right: '30%' },
-        { Icon: Zap, bottom: '10%', right: '40%' },
-        { Icon: Laptop, top: '60%', left: '20%' },
-        { Icon: FileText, bottom: '50%', left: '80%' },
-        { Icon: Coffee, top: '80%', left: '5%' },
-    ];
-
-    return (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-            {icons.map((item, index) => (
-                <div
-                    key={index}
-                    className="absolute text-slate-300/40"
-                    style={{ top: item.top, left: item.left, right: item.right, bottom: item.bottom }}
-                >
-                    <item.Icon size={48} strokeWidth={1.5} />
-                </div>
-            ))}
-        </div>
-    );
-};
 
 // --- Premium Glass Card ---
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User as UserIcon, Loader2, Sparkles, Mic, Volume2, StopCircle } from 'lucide-react';
 import { AgentType, ChatMessage } from '../types';
-import { generateAgentResponse } from '../services/geminiService';
+import { generateAgentResponse } from '../services/groqService';
 import { useAuth } from '../App';
 import { useVoiceAssistant } from '../hooks/useVoiceAssistant';
 import { GlassCard } from './ui/Visuals';

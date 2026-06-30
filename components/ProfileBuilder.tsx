@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { Save, UserCircle, UploadCloud, FileText, CheckCircle, X, User, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { parseResumeWithGemini } from '../services/geminiService';
+import { parseResumeWithGroq } from '../services/groqService';
 
 // Fix for framer-motion type issues
 const MotionForm = motion.form as any;
@@ -36,7 +36,7 @@ const ProfileBuilder = () => {
                   const base64String = (reader.result as string).split(',')[1];
                   const mimeType = file.type;
                   
-                  const extractedData = await parseResumeWithGemini(base64String, mimeType);
+                  const extractedData = await parseResumeWithGroq(base64String, mimeType);
                   
                   if (extractedData) {
                       setFormData(prev => ({

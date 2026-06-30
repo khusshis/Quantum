@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, ShieldCheck, AlertTriangle, Search, Check, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { analyzeCourseWithGemini } from '../services/geminiService';
+import { analyzeCourseWithGroq } from '../services/groqService';
 import { CourseRecommendation } from '../types';
 
 // Fix for framer-motion type issues
@@ -44,7 +44,7 @@ const Courses = () => {
     setResult(null);
     
     // Real-time AI Analysis
-    const data = await analyzeCourseWithGemini(url);
+    const data = await analyzeCourseWithGroq(url);
     
     setResult(data);
     setAnalyzing(false);

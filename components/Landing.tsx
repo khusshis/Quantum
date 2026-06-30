@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Menu, X, Rocket, Shield, Globe, Activity, Brain, Target, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { AuroraBackground, NeonButton, GlassCard, CareerBackground } from './ui/Visuals';
+import { AuroraBackground, NeonButton, GlassCard } from './ui/Visuals';
 import { AuthModal } from './AuthModal';
 
 // Fix for framer-motion type issues
@@ -17,7 +17,6 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 relative overflow-hidden font-sans selection:bg-blue-200">
       <AuroraBackground />
-      <CareerBackground />
 
       <AuthModal 
         isOpen={showAuthModal} 

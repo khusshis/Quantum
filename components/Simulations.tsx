@@ -181,40 +181,47 @@ const Simulations = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
                 onClick={() => setSelectedSim(sim)}
-                className={`glass-card-3d p-7 rounded-[2rem] group cursor-pointer relative overflow-hidden ${activatedPlan === sim.id ? 'border-indigo-500 ring-2 ring-indigo-200' : ''}`}
+                className={`glass-card-3d p-6 md:p-8 rounded-[2rem] group cursor-pointer relative overflow-hidden ${activatedPlan === sim.id ? 'border-indigo-500 ring-2 ring-indigo-200' : 'border border-white/60 hover:border-indigo-200/50'}`}
              >
-                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <TrendingUp size={100} />
-                </div>
+                {/* Premium Abstract Background replacing generic icon */}
+                <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl group-hover:bg-indigo-400/30 transition-colors duration-500" />
+                <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-blue-400/20 to-emerald-400/10 rounded-full blur-3xl group-hover:bg-blue-400/30 transition-colors duration-500" />
 
-                <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="flex justify-between items-start mb-5 relative z-10">
                    {sim.matchScore > 80 ? (
-                        <span className="px-3 py-1 rounded-full bg-emerald-100/50 text-emerald-700 text-xs font-bold uppercase tracking-wider border border-emerald-200 shadow-sm">Recommended</span>
+                        <span className="px-3 py-1 rounded-full bg-emerald-50/80 backdrop-blur-sm text-emerald-700 text-xs font-bold uppercase tracking-wider border border-emerald-200/50 shadow-sm flex items-center gap-1">
+                            <Sparkles size={12} /> Recommended
+                        </span>
                    ) : (
-                        <span className="px-3 py-1 rounded-full bg-slate-100/50 text-slate-500 text-xs font-bold uppercase tracking-wider border border-slate-200 shadow-sm">Alternative</span>
+                        <span className="px-3 py-1 rounded-full bg-slate-50/80 backdrop-blur-sm text-slate-500 text-xs font-bold uppercase tracking-wider border border-slate-200/50 shadow-sm">
+                            Alternative
+                        </span>
                    )}
-                   <span className="text-slate-400 text-xs flex items-center gap-1 font-bold bg-white/50 px-2 py-1 rounded-lg">
-                       <Clock size={12} /> {sim.yearsToGoal} Years
+                   <span className="text-slate-500 text-xs flex items-center gap-1.5 font-bold bg-white/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white">
+                       <Clock size={12} className="text-slate-400" /> {sim.yearsToGoal} Yrs
                    </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors relative z-10">{sim.role}</h3>
-                <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed relative z-10">{sim.description}</p>
+                <h3 className="text-2xl font-display font-extrabold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors relative z-10 leading-tight tracking-tight">{sim.role}</h3>
+                <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed relative z-10 font-medium">{sim.description}</p>
                 
-                <div className="space-y-3 mb-6 bg-white/40 p-5 rounded-2xl border border-white/60 relative z-10 backdrop-blur-sm">
-                   <div className="flex justify-between text-sm">
-                       <span className="text-slate-500 font-medium">Salary Potential</span>
-                       <span className="text-slate-900 font-bold">₹{(sim.salaryRange[0]/100000).toFixed(0)}L - ₹{(sim.salaryRange[1]/100000).toFixed(0)}L</span>
+                <div className="space-y-3 mb-6 bg-white/60 p-5 rounded-2xl border border-white/80 relative z-10 backdrop-blur-md shadow-sm">
+                   <div className="flex justify-between items-center text-sm">
+                       <span className="text-slate-500 font-semibold text-xs uppercase tracking-wider">Salary Potential</span>
+                       <span className="text-slate-900 font-extrabold text-base bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
+                           ₹{(sim.salaryRange[0]/100000).toFixed(0)}L - ₹{(sim.salaryRange[1]/100000).toFixed(0)}L
+                       </span>
                    </div>
-                   <div className="flex justify-between text-sm">
-                       <span className="text-slate-500 font-medium">Skill Gap</span>
-                       <span className={`font-bold ${
-                           sim.skillGap === 'Low' ? 'text-emerald-600' : sim.skillGap === 'Medium' ? 'text-amber-500' : 'text-red-500'
+                   <div className="h-px w-full bg-slate-100" />
+                   <div className="flex justify-between items-center text-sm">
+                       <span className="text-slate-500 font-semibold text-xs uppercase tracking-wider">Skill Gap</span>
+                       <span className={`font-extrabold px-2 py-0.5 rounded-md text-xs uppercase tracking-wide ${
+                           sim.skillGap === 'Low' ? 'bg-emerald-50 text-emerald-600' : sim.skillGap === 'Medium' ? 'bg-amber-50 text-amber-600' : 'bg-red-50 text-red-600'
                        }`}>{sim.skillGap}</span>
                    </div>
                 </div>
 
-                <button className="w-full py-3.5 rounded-xl bg-indigo-600 text-white font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20 relative z-10 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                <button className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-xl shadow-slate-900/10 relative z-10 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 hover:bg-indigo-600 hover:shadow-indigo-500/25">
                    {activatedPlan === sim.id ? "Plan Active" : "View Detailed Roadmap"} <ArrowRight size={16} />
                 </button>
              </MotionDiv>

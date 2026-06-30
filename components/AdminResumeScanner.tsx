@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { GlassCard, NeonButton } from './ui/Visuals';
 import { Candidate, ScannerCriteria } from '../types';
-import { analyzeCandidateResume } from '../services/geminiService';
+import { analyzeCandidateResume } from '../services/groqService';
 
 // Fix for framer-motion type issues
 const MotionDiv = motion.div as any;
