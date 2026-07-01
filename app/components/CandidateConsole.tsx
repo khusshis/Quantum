@@ -620,8 +620,9 @@ export default function CandidateConsole() {
       {/* Header Panel */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-[#27272A] bg-[#0A0A0A]">
         <div>
-          <h1 className="text-xl font-medium tracking-tight flex items-center gap-2">
-            <span className="text-[#A1A1AA]">Quantum</span> / Candidate Intelligence
+          <h1 className="text-xl font-medium tracking-tight flex items-baseline gap-2">
+            <span className="text-[#EDEDED]">Quantum</span>
+            <span className="text-xs text-[#71717A] font-normal uppercase tracking-widest ml-1">Recruitment Console</span>
           </h1>
           <div className="flex items-center gap-4 mt-2 text-[11px] text-[#71717A] font-mono tracking-wider">
             <span>POOL: 100,000</span>
