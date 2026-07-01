@@ -56,16 +56,16 @@ def generate_reasoning(candidate: Candidate, features: CandidateFeatures, jd: Pa
     skills_str = f"expertise in {', '.join(skills_list)}" if skills_list else "strong technical skills"
 
     # Construct the detailed explanation as a profile summary
-    detailed = f"This candidate is a highly ranked {title} with {yoe} years of experience and {skills_str}. "
+    detailed = f"{yoe} YOE {title} with {skills_str}. "
     if len(positives) >= 2:
-        detailed += f"From a recruiter's perspective, they stand out as an excellent fit specifically because their {positives[0]} and {positives[1]} are exceptionally strong for this role."
+        detailed += f"Top candidate driven by exceptionally high {positives[0]} and {positives[1]}."
     elif positives:
-        detailed += f"They match the core requirements primarily due to a strong {positives[0]}."
+        detailed += f"Solid match due to strong {positives[0]}."
     else:
-        detailed += "They were matched based on their overall background and experience alignment."
+        detailed += "Matched based on overall profile alignment."
         
     if negatives:
-        detailed += f" However, they could improve their {negatives[0]} to be a perfect match."
+        detailed += f" (Note: Minor gap in {negatives[0]})."
         
     return {
         "preview": preview_str,
