@@ -6,8 +6,9 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
   if (!candidate) return null;
 
   // Prepare data for the breakdown
+  const features = candidate.features || {};
   const featureData = FEATURE_KEYS.map(key => {
-    let val = candidate.features[key] || 0;
+    let val = features[key] || 0;
     if (key.includes('penalty') || key.includes('disqualifier')) {
       val = val - 1.0;
     }
@@ -18,7 +19,7 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
     };
   }).sort((a, b) => b.value - a.value);
 
-  const concerns = featureData.filter(f => f.value < 0 || (f.raw === 'honeypot_suspicion_score' && candidate.features[f.raw] > 0.5));
+  const concerns = featureData.filter(f => f.value < 0 || (f.raw === 'honeypot_suspicion_score' && (features[f.raw] || 0) > 0.5));
   
   // Group features for dense display
   const primarySignals = featureData.filter(f => !concerns.includes(f) && f.value > 0.05).slice(0, 8);
@@ -34,10 +35,10 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
           <div>
             <div className="flex items-center gap-3 mb-2">
               <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46] rounded-sm">
-                RNK_{candidate.rank.toString().padStart(3, '0')}
+                RNK_{candidate.rank?.toString().padStart(3, '0') || 'N/A'}
               </span>
               <span className="font-mono text-xs font-bold text-[#10B981]">
-                {(candidate.score * 100).toFixed(2)}/100
+                {candidate.score !== undefined ? (candidate.score * 100).toFixed(2) : 'N/A'}/100
               </span>
             </div>
             <h2 className="text-sm font-medium text-white mb-1 font-mono tracking-tight flex items-center gap-2">
@@ -87,9 +88,13 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
             </div>
             <div className="p-4 text-xs leading-relaxed text-[#D4D4D8] relative">
               <AlignLeft size={14} className="absolute left-4 top-4 text-[#3F3F46]" />
-              <div className="pl-6 font-mono text-[11px] leading-relaxed">
-                {candidate.reasoning}
-              </div>
+              {candidate.reasoning ? (
+            <p className="text-xs text-[#A1A1AA] leading-relaxed font-mono pl-6">
+              {candidate.reasoning}
+            </p>
+          ) : (
+            <p className="text-xs text-[#71717A] italic pl-6">No reasoning generated for this candidate (Raw Data).</p>
+          )}
             </div>
           </div>
         </section>

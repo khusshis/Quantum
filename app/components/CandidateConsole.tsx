@@ -309,8 +309,8 @@ export default function CandidateConsole() {
         // Handle nested features
         if (sortConfig.key.startsWith('features.')) {
           const fKey = sortConfig.key.split('.')[1];
-          aVal = a.features[fKey] || 0;
-          bVal = b.features[fKey] || 0;
+          aVal = a.features?.[fKey] || 0;
+          bVal = b.features?.[fKey] || 0;
         }
 
         if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
@@ -532,7 +532,7 @@ export default function CandidateConsole() {
                     className={`cursor-pointer transition-colors feature-row group ${selectedCandidate?.candidate_id === c.candidate_id ? 'bg-[#18181B]' : 'hover:bg-[#121212]'}`}
                   >
                     <td className="px-6 py-3 font-mono text-[#A1A1AA] text-xs">
-                      {c.rank.toString().padStart(3, '0')}
+                      {c.rank?.toString().padStart(3, '0') || '---'}
                     </td>
                     <td className="px-6 py-3 font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity">
                       <div className="text-[#EDEDED] font-medium font-sans text-sm flex items-center gap-2">
@@ -572,8 +572,8 @@ export default function CandidateConsole() {
                       </div>
                     </td>
                     <td className="px-6 py-3 text-right font-mono text-[#EDEDED] text-xs">
-                      {(c.score * 100).toFixed(2)}
-                      {c.features.honeypot_suspicion_score >= 0.5 && (
+                      {c.score !== undefined ? (c.score * 100).toFixed(2) : 'N/A'}
+                      {c.features?.honeypot_suspicion_score >= 0.5 && (
                         <AlertTriangle size={12} className="inline ml-2 text-[#EF4444]" title="Honeypot Suspicion" />
                       )}
                     </td>
