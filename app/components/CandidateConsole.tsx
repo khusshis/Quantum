@@ -135,7 +135,10 @@ export default function CandidateConsole() {
   const [tabs, setTabs] = useState<{ id: string; name: string; candidates: any[] }[]>(() => {
     try {
       const saved = sessionStorage.getItem('quantum_tabs');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.map((t: any) => ({ ...t, name: t.name || t.label || 'Default Run' }));
+      }
     } catch (e) {}
     return [{ id: 'default', name: 'Default Run', candidates: [] }];
   });
