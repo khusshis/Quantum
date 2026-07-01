@@ -27,60 +27,79 @@ We engineered specific **Boosts** and **Penalties** to mimic a strict, senior te
 
 ## 🏗️ Architecture Overview
 
-The solution is divided into two decoupled systems to satisfy the strict compute constraints of the ranking challenge while providing a rich recruiter experience:
+The solution provides both a blazing-fast CLI for evaluation and a dynamic API-powered UI for real recruiters:
 
 ### 1. `engine/` (Offline Ranking Engine)
-A pure-Python offline engine that runs under the strict budget (no network, CPU-only, 16GB RAM, <5 minutes for 100K candidates).
+A pure-Python engine optimized for strict compute constraints (CPU-only, <5 minutes for 100K candidates).
 - **LightGBM Learning-to-Rank (`LGBMRanker`):** A blazing-fast 17-feature tree-based ranker.
-- **Post-Model Multipliers:** Strict heuristic business logic applied *after* the base prediction to ensure strict compliance with JD guidelines without breaking model training data.
-- **Deterministic Reasoning:** Generates hallucination-free, grounded reasoning explanations for the top 100 candidates.
+- **Post-Model Multipliers:** Strict heuristic business logic applied *after* the base prediction.
+- **Dynamic Retrieval Fallback:** If a custom JD is passed, it intelligently decouples from the ML bias and relies purely on Semantic/BM25 retrieval + quality multipliers.
 
-### 2. `app/` (React/Vite Web App)
-A single-purpose **Candidate Intelligence Console**. It visualizes the output of the offline engine (`ranked_candidates.json`) in a dense, enterprise-grade dark-mode dashboard meant for recruiters.
-- **Visualizes Feature Breakdowns:** See exactly why a candidate was ranked #1 or #50.
-- **Instant Badges:** Hoverable UI dots highlighting "Fast Mover" or "Top Contributor".
-- **Comprehensive Verification Tracking:** Visualizes GitHub activity, RedRob Skill Assessments, Response Times, and 30-day funnel metrics (Searches -> Saves -> Apps).
+### 2. `api.py` (Flask API Server)
+A lightweight HTTP wrapper around the engine that allows real-time execution of the AI pipeline on custom JSON files with custom Job Descriptions.
+
+### 3. `app/` (React/Vite Web App)
+A single-purpose **Candidate Intelligence Console** featuring an enterprise-grade dark-mode dashboard.
+- **Visualizes Feature Breakdowns:** See exactly why a candidate was ranked #1 or #50 via SHAP-driven reasoning.
+- **Live Configuration:** Upload a raw candidates JSON file, set a shortlist size, provide a Custom JD, and watch it rank candidates on the fly!
 
 ---
 
-## ⚙️ Setup & Running the Engine
+## ⚙️ Step-by-Step Execution Guide
 
 ### Prerequisites
+- Node.js (v18+)
 - Python 3.10+
-- `pip install -r requirements.txt`
 
-### Data Setup
-Ensure `candidates.jsonl` is placed in `data/candidates.jsonl`. *(Note: This file is large and explicitly excluded from git).*
-
-### 1. Ranking Candidates (The Core Entrypoint)
-To run the 5-minute ranking step over the 100K candidates:
+### Step 1: Install Python Dependencies
 ```bash
-python -m engine.rank
+pip install -r requirements.txt
+pip install flask flask-cors
 ```
-This will:
-- Load the precomputed artifacts (embeddings, model).
-- Score 100K candidates using vectorized operations, LightGBM, and our Custom Penalties.
-- Output the top 100 to `submission.csv`.
-- Run the validation script (`validate_submission.py`) on the output to guarantee format compliance.
-- Export `ranked_candidates.json` for the UI Dashboard.
 
-### 2. Running the Main Application (React UI)
-Experience the enterprise-grade dashboard we built for recruiters to analyze the engine's output.
+### Step 2: Data Setup
+Ensure your 100,000 row dataset `candidates.jsonl` is placed inside the `data/` folder:
+`data/candidates.jsonl`
+*(Note: This file is large and explicitly excluded from git).*
+
+### Step 3: Start the Backend (API Server)
+Open a terminal and start the Flask server. This server handles dynamic ranking requests when you upload a custom file in the UI.
+```bash
+python api.py
+```
+*(Runs on port 5000)*
+
+### Step 4: Start the Frontend (Candidate Console)
+Open a **new, separate terminal** and start the React application:
 ```bash
 cd app
 npm install
 npm run dev
 ```
-Navigate to the "Candidate Intel" tab in the local host browser to see the ranked pipeline results.
+*(Runs on port 3000)*
 
-### 3. Benchmarking
-To verify time and memory constraints match the Hackathon requirements:
-```bash
-python engine/benchmark.py
-```
-See `engine/benchmark_report.txt` for the results.
+### Step 5: Using the UI
+1. Navigate to `http://localhost:3000`.
+2. By default, it will load the pre-computed `ranked_candidates.json` for the original ML Engineer JD.
+3. **To test the dynamic pipeline:** Click **"IMPORT JSON"** in the top right.
+4. Select `data/candidates.jsonl` (or any raw schema file).
+5. A sleek configuration modal will appear. Enter a custom shortlist size and a **Custom JD** (e.g., "Project Manager").
+6. Click **Run AI Pipeline**. The UI will send the file to the Flask backend, execute the pipeline on the fly, and render the new results in a new tab!
 
 ---
 
-## 🛡️ Methodology Note: Weak Label Generation
-Weak labels for training the LightGBM model are a deterministic function of the hand-engineered features used as model inputs. The LightGBM model's contribution here is smoothing a hard-bucketed heuristic into a continuous, interaction-aware ranking function. We deliberately chose extreme fidelity to the RedRob JD's explicit criteria (building strict heuristic penalties) over a purely 'ML-native' pipeline, as generic ML often fails to catch the keyword-stuffing and title-chasing patterns that the JD specifically warned against.
+## 📊 Offline Evaluation & Benchmarking
+
+If you just want to run the core engine from the command line for scoring and benchmarking (without the UI):
+
+**Generate Submission (CLI):**
+```bash
+python -m engine.rank
+```
+*Outputs the top 100 to `submission.csv` and validates it.*
+
+**Run Benchmark:**
+```bash
+python engine/benchmark.py
+```
+*Checks memory usage and execution time.*
