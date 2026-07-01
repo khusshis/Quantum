@@ -125,7 +125,7 @@ def main():
         
         avail = df.loc[i, "availability_score"]
         final = score * max(0.1, avail) * hp_downweight
-        final_scores.append(final)
+        final_scores.append(round(final, 4))
         
     print("Ranking candidates...")
     results = []

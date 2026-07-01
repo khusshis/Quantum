@@ -1,0 +1,101 @@
+candidate_id,rank,score,reasoning
+CAND_0023422,1,0.2841,"Highly aligned with production embeddings/retrieval experience, featuring 10.8 years as a Marketing Manager and demonstrated hands-on work with HTML and Airflow; however, notice period is 150 days (above JD preference)."
+CAND_0043418,2,0.2841,"Strong fit driven by production embeddings/retrieval experience: 10.8 years of experience as a Customer Support, with verified expertise in Data Pipelines and Tally; however, notice period is 60 days (above JD preference)."
+CAND_0049091,3,0.2841,"Highly aligned with production embeddings/retrieval experience, featuring 10.8 years as a Marketing Manager and demonstrated hands-on work with Computer Vision and Redis."
+CAND_0072833,4,0.2841,"Highly aligned with production embeddings/retrieval experience, featuring 10.8 years as a Business Analyst and demonstrated hands-on work with PowerPoint and Agile; however, notice period is 90 days (above JD preference)."
+CAND_0000509,5,0.2817,"Top candidate based on production embeddings/retrieval experience. Brings 10.4 years of experience currently as Customer Support, leveraging Node.js and Excel; however, notice period is 90 days (above JD preference)."
+CAND_0004586,6,0.2817,"Strong fit driven by production embeddings/retrieval experience: 10.1 years of experience as a Customer Support, with verified expertise in Apache Beam and Angular; however, notice period is 60 days (above JD preference)."
+CAND_0004703,7,0.2817,"Highly aligned with production embeddings/retrieval experience, featuring 10.3 years as a Graphic Designer and demonstrated hands-on work with Kafka and Kubernetes."
+CAND_0016056,8,0.2817,"Highly aligned with production embeddings/retrieval experience, featuring 9.4 years as a Customer Support and demonstrated hands-on work with ETL and PostgreSQL; however, notice period is 120 days (above JD preference)."
+CAND_0018179,9,0.2817,"Strong fit driven by production embeddings/retrieval experience: 9.5 years of experience as a Mechanical Engineer, with verified expertise in AWS and Docker."
+CAND_0026523,10,0.2817,"Top candidate based on production embeddings/retrieval experience. Brings 10.4 years of experience currently as Sales Executive, leveraging SAP and PostgreSQL; however, notice period is 60 days (above JD preference)."
+CAND_0032259,11,0.2817,"A fair fit providing 9.7 years as a Graphic Designer and Redis and Docker aligned to production embeddings/retrieval experience; however, notice period is 150 days (above JD preference)."
+CAND_0035020,12,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.4 years of experience as Graphic Designer with Redux and Content Writing; however, notice period is 150 days (above JD preference)."
+CAND_0035288,13,0.2817,"A fair fit providing 10.2 years as a Civil Engineer and SQL and Kubernetes aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0036045,14,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.5 years of experience as Civil Engineer with Airflow and Illustrator; however, notice period is 60 days (above JD preference)."
+CAND_0040935,15,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.6 years of experience as Marketing Manager with Spring Boot and dbt; however, notice period is 150 days (above JD preference)."
+CAND_0041156,16,0.2817,A fair fit providing 9.5 years as a Accountant and TypeScript and Figma aligned to production embeddings/retrieval experience.
+CAND_0041182,17,0.2817,"A fair fit providing 9.8 years as a Accountant and Six Sigma and CI/CD aligned to production embeddings/retrieval experience; however, notice period is 150 days (above JD preference)."
+CAND_0041931,18,0.2817,"A fair fit providing 10.4 years as a Business Analyst and SQL and GANs aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0042259,19,0.2817,"Solid candidate with 10.0 years as a Mechanical Engineer matching our need for production embeddings/retrieval experience (skills: PowerPoint and Redux); however, notice period is 60 days (above JD preference)."
+CAND_0042820,20,0.2817,"Solid candidate with 10.6 years as a Graphic Designer matching our need for production embeddings/retrieval experience (skills: Rust and SEO); however, notice period is 150 days (above JD preference)."
+CAND_0043599,21,0.2817,"Solid candidate with 9.8 years as a Customer Support matching our need for production embeddings/retrieval experience (skills: REST APIs and dbt); however, notice period is 60 days (above JD preference)."
+CAND_0045060,22,0.2817,A fair fit providing 10.1 years as a Content Writer and Next.js and Snowflake aligned to production embeddings/retrieval experience.
+CAND_0045061,23,0.2817,"A fair fit providing 9.9 years as a Business Analyst and SAP and Redis aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0045907,24,0.2817,Meets core requirements for production embeddings/retrieval experience via 9.5 years of experience as Graphic Designer with Photoshop and GCP.
+CAND_0048575,25,0.2817,"Solid candidate with 10.6 years as a Mechanical Engineer matching our need for production embeddings/retrieval experience (skills: Illustrator and CI/CD); however, notice period is 90 days (above JD preference)."
+CAND_0049600,26,0.2817,"Meets core requirements for production embeddings/retrieval experience via 9.6 years of experience as Mechanical Engineer with Tailwind and TypeScript; however, notice period is 90 days (above JD preference)."
+CAND_0053577,27,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.5 years of experience as Customer Support with OpenCV and Kubernetes; however, notice period is 120 days (above JD preference)."
+CAND_0060960,28,0.2817,"Meets core requirements for production embeddings/retrieval experience via 3.3 years of experience as Business Analyst with dbt and Rust; however, notice period is 60 days (above JD preference)."
+CAND_0064080,29,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.7 years of experience as Content Writer with Figma and Spring Boot; however, notice period is 90 days (above JD preference)."
+CAND_0066751,30,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.5 years of experience as Mechanical Engineer with SEO and BigQuery; however, notice period is 90 days (above JD preference)."
+CAND_0066854,31,0.2817,"Solid candidate with 9.9 years as a Customer Support matching our need for production embeddings/retrieval experience (skills: GraphQL and JavaScript); however, notice period is 60 days (above JD preference)."
+CAND_0066874,32,0.2817,"Solid candidate with 9.5 years as a Business Analyst matching our need for production embeddings/retrieval experience (skills: Weights & Biases and CSS); however, notice period is 60 days (above JD preference)."
+CAND_0067012,33,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.2 years of experience as Mechanical Engineer with Spark and BigQuery; however, notice period is 90 days (above JD preference)."
+CAND_0069071,34,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.6 years of experience as Graphic Designer with gRPC and Azure; however, notice period is 90 days (above JD preference)."
+CAND_0072190,35,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.4 years of experience as Business Analyst with Webpack and Marketing; however, notice period is 120 days (above JD preference)."
+CAND_0074878,36,0.2817,"Solid candidate with 9.7 years as a Marketing Manager matching our need for production embeddings/retrieval experience (skills: Django and Apache Flink); however, notice period is 60 days (above JD preference)."
+CAND_0075789,37,0.2817,"Meets core requirements for production embeddings/retrieval experience via 9.7 years of experience as Graphic Designer with JavaScript and Tally; however, notice period is 120 days (above JD preference)."
+CAND_0082773,38,0.2817,"Solid candidate with 3.7 years as a Marketing Manager matching our need for production embeddings/retrieval experience (skills: Reinforcement Learning and Illustrator); however, notice period is 60 days (above JD preference)."
+CAND_0084440,39,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.6 years of experience as Graphic Designer with Hadoop and Microservices; however, notice period is 60 days (above JD preference)."
+CAND_0086491,40,0.2817,"Solid candidate with 9.8 years as a Accountant matching our need for production embeddings/retrieval experience (skills: AWS and Tally); however, notice period is 150 days (above JD preference)."
+CAND_0089706,41,0.2817,"A fair fit providing 9.8 years as a Content Writer and GCP and Next.js aligned to production embeddings/retrieval experience; however, notice period is 120 days (above JD preference)."
+CAND_0095352,42,0.2817,"Solid candidate with 10.5 years as a Business Analyst matching our need for production embeddings/retrieval experience (skills: CI/CD and PowerPoint); however, notice period is 60 days (above JD preference)."
+CAND_0096884,43,0.2817,"Meets core requirements for production embeddings/retrieval experience via 10.2 years of experience as Business Analyst with React and ASR; however, notice period is 90 days (above JD preference)."
+CAND_0097370,44,0.2817,"A fair fit providing 4.0 years as a Content Writer and Apache Beam and SEO aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0097617,45,0.2817,"Meets core requirements for production embeddings/retrieval experience via 9.4 years of experience as Graphic Designer with JavaScript and Airflow; however, notice period is 150 days (above JD preference)."
+CAND_0099557,46,0.2817,"Meets core requirements for production embeddings/retrieval experience via 4.6 years of experience as Customer Support with dbt and Content Writing; however, notice period is 60 days (above JD preference)."
+CAND_0001400,47,0.2804,"Meets core requirements for production embeddings/retrieval experience via 11.0 years of experience as Accountant with Apache Flink and Kubeflow; however, notice period is 90 days (above JD preference)."
+CAND_0002762,48,0.2804,"A fair fit providing 3.1 years as a Sales Executive and Rust and Agile aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0010743,49,0.2804,"A fair fit providing 3.1 years as a Accountant and PowerPoint and Content Writing aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0016668,50,0.2804,"A fair fit providing 11.0 years as a Content Writer and Apache Flink and Terraform aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0020762,51,0.2804,"Meets core requirements for production embeddings/retrieval experience via 11.0 years of experience as Accountant with Vector Search and Fine-tuning LLMs; however, notice period is 90 days (above JD preference)."
+CAND_0028034,52,0.2804,"Meets core requirements for production embeddings/retrieval experience via 3.1 years of experience as Sales Executive with Airflow and SQL; however, notice period is 120 days (above JD preference)."
+CAND_0028298,53,0.2804,"A fair fit providing 3.2 years as a Customer Support and React and PowerPoint aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0038752,54,0.2804,"A fair fit providing 10.8 years as a Accountant and MLOps and BigQuery aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0042328,55,0.2804,"A fair fit providing 11.0 years as a Mechanical Engineer and Airflow and Illustrator aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0043593,56,0.2804,"A fair fit providing 11.0 years as a Graphic Designer and PowerPoint and ETL aligned to production embeddings/retrieval experience; however, notice period is 150 days (above JD preference)."
+CAND_0065685,57,0.2804,"Meets core requirements for production embeddings/retrieval experience via 10.8 years of experience as Content Writer with CI/CD and Six Sigma; however, notice period is 60 days (above JD preference)."
+CAND_0066389,58,0.2804,"A fair fit providing 10.9 years as a Sales Executive and Airflow and Vue.js aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0070030,59,0.2804,Solid candidate with 10.8 years as a Customer Support matching our need for production embeddings/retrieval experience (skills: Django and Rust).
+CAND_0071202,60,0.2804,A fair fit providing 10.8 years as a Content Writer and Semantic Search and LLMs aligned to production embeddings/retrieval experience.
+CAND_0074973,61,0.2804,Included as filler given notice period is 120 days (above JD preference). Profile shows 10.9 years as a Content Writer with REST APIs and React.
+CAND_0076182,62,0.2804,Lower confidence match. Brings 11.1 years of experience as HR Manager (MongoDB and Accounting).
+CAND_0084916,63,0.2804,Included as filler given notice period is 120 days (above JD preference). Profile shows 11.1 years as a Civil Engineer with FastAPI and Agile.
+CAND_0095801,64,0.2804,Included as filler given notice period is 90 days (above JD preference). Profile shows 11.0 years as a Mechanical Engineer with TTS and Node.js.
+CAND_0091573,65,0.2803,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.2 years as a Mechanical Engineer with Spring Boot and Project Management.
+CAND_0005303,66,0.2800,Included as filler given notice period is 45 days (above JD preference). Brings 3.1 years of experience as Junior ML Engineer (BentoML and Reinforcement Learning).
+CAND_0023587,67,0.2800,Included as filler given notice period is 120 days (above JD preference). Brings 3.2 years of experience as ML Engineer (Vector Search).
+CAND_0068409,68,0.2800,Lower confidence match. Profile shows 10.1 years as a Customer Support with Marketing and Photoshop.
+CAND_0001369,69,0.2795,Included as filler given notice period is 60 days (above JD preference). Brings 10.8 years of experience as Content Writer (GraphQL and Content Writing).
+CAND_0031528,70,0.2795,Included as filler given notice period is 60 days (above JD preference). Brings 11.1 years of experience as Customer Support (Information Retrieval and Fine-tuning LLMs).
+CAND_0038377,71,0.2795,Included as filler given notice period is 60 days (above JD preference). Profile shows 11.1 years as a Business Analyst with LLMs and Vector Search.
+CAND_0042282,72,0.2795,Included as filler given notice period is 90 days (above JD preference). Brings 11.0 years of experience as Sales Executive (Embeddings and Vector Search).
+CAND_0045292,73,0.2795,Included as filler given notice period is 60 days (above JD preference). Brings 3.1 years of experience as Civil Engineer (Information Retrieval and Semantic Search).
+CAND_0087950,74,0.2795,Included as filler given notice period is 90 days (above JD preference). Brings 10.9 years of experience as Accountant (MongoDB and Docker).
+CAND_0093547,75,0.2795,Included as filler given notice period is 60 days (above JD preference). Profile shows 2.9 years as a Senior Machine Learning Engineer with LLMs and Python.
+CAND_0002610,76,0.2792,Included as filler given notice period is 90 days (above JD preference). Brings 3.0 years of experience as Senior Software Engineer (ML) (Pinecone and LLMs).
+CAND_0028908,77,0.2792,Included as filler given notice period is 120 days (above JD preference). Brings 3.1 years of experience as Junior ML Engineer (Qdrant and Vector Search).
+CAND_0063585,78,0.2792,Included as filler given notice period is 120 days (above JD preference). Profile shows 3.1 years as a AI Research Engineer with Qdrant and Vector Search.
+CAND_0085557,79,0.2792,Included as filler given notice period is 120 days (above JD preference). Profile shows 3.1 years as a Data Scientist with LLMs and Weaviate.
+CAND_0089726,80,0.2792,Included as filler given notice period is 60 days (above JD preference). Profile shows 3.1 years as a Junior ML Engineer with Python and Information Retrieval.
+CAND_0013618,81,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.1 years as a Operations Manager with Fine-tuning LLMs and LLMs.
+CAND_0021903,82,0.2790,Included as filler given notice period is 90 days (above JD preference). Brings 4.2 years of experience as Project Manager (LLMs and Pinecone).
+CAND_0024701,83,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.1 years as a HR Manager with Tailwind and Six Sigma.
+CAND_0028255,84,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 9.7 years as a Project Manager with Node.js and GraphQL.
+CAND_0034735,85,0.2790,Included as filler given notice period is 60 days (above JD preference). Profile shows 10.2 years as a Operations Manager with Semantic Search and Information Retrieval.
+CAND_0039665,86,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 9.4 years as a Operations Manager with Snowflake and Tally.
+CAND_0039982,87,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 11.1 years as a HR Manager with Fine-tuning LLMs and Information Retrieval.
+CAND_0062884,88,0.2790,Lower confidence match. Brings 9.4 years of experience as Operations Manager (LLMs and Vector Search).
+CAND_0066628,89,0.2790,Included as filler given notice period is 150 days (above JD preference). Profile shows 10.4 years as a HR Manager with LLMs and Embeddings.
+CAND_0075004,90,0.2790,Included as filler given notice period is 150 days (above JD preference). Brings 4.4 years of experience as Marketing Manager (Semantic Search and LLMs).
+CAND_0075010,91,0.2790,Lower confidence match. Profile shows 9.4 years as a Operations Manager with Embeddings and Semantic Search.
+CAND_0091364,92,0.2790,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.0 years as a HR Manager with LLMs and Embeddings.
+CAND_0030441,93,0.2789,Lower confidence match. Profile shows 11.1 years as a Civil Engineer with Agile and Redis.
+CAND_0068351,94,0.2786,Lower confidence match. Profile shows 6.4 years as a Lead AI Engineer with Qdrant and Elasticsearch.
+CAND_0011805,95,0.2782,Lower confidence match. Brings 10.4 years of experience as Graphic Designer (Snowflake and Next.js).
+CAND_0001305,96,0.2779,Included as filler given notice period is 60 days (above JD preference). Brings 4.6 years of experience as Graphic Designer (Vue.js and Databricks).
+CAND_0003574,97,0.2779,Included as filler given notice period is 60 days (above JD preference). Profile shows 9.5 years as a HR Manager with Azure and Kafka.
+CAND_0004254,98,0.2779,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.1 years as a Accountant with Illustrator and TypeScript.
+CAND_0005065,99,0.2779,Lower confidence match. Profile shows 10.6 years as a Customer Support with Terraform and Rust.
+CAND_0005945,100,0.2779,Included as filler given notice period is 90 days (above JD preference). Profile shows 10.7 years as a Sales Executive with Spring Boot and Tally.

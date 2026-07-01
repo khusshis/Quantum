@@ -81,8 +81,15 @@ def main():
     # LightGBM requires groups. We will have 1 group for train, 1 for val.
     X_train, X_val, y_train, y_val = train_test_split(df, y, test_size=0.2, random_state=42)
     
-    group_train = [len(X_train)]
-    group_val = [len(X_val)]
+    def chunk_groups(total_len, chunk_size=10000):
+        groups = []
+        while total_len > 0:
+            groups.append(min(total_len, chunk_size))
+            total_len -= chunk_size
+        return groups
+
+    group_train = chunk_groups(len(X_train))
+    group_val = chunk_groups(len(X_val))
     
     print("Training LightGBM Ranker...")
     ranker = lgb.LGBMRanker(
