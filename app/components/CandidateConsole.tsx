@@ -3,6 +3,51 @@ import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, F
 import { CandidateDrawer } from './CandidateDrawer';
 import { FEATURE_KEYS, FEATURE_COLORS, formatFeatureName } from './FeatureConstants';
 
+const CustomSelect = ({ value, onChange, options, widthClass = "w-full" }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find((o: any) => o.value === value) || options[0];
+
+  return (
+    <div className={`relative ${widthClass} font-sans text-xs`} ref={selectRef}>
+      <div 
+        className="flex items-center justify-between bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded pl-3 pr-2 py-1.5 cursor-pointer hover:border-[#3F3F46] focus-within:border-[#52525B] transition-colors"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="truncate pr-2">{selectedOption?.label}</span>
+        <ChevronDown size={14} className={`text-[#71717A] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </div>
+      
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-1 w-full bg-[#121212] border border-[#27272A] rounded shadow-2xl z-50 overflow-hidden max-h-60 overflow-y-auto no-scrollbar">
+          {options.map((opt: any) => (
+            <div 
+              key={opt.value}
+              className={`px-3 py-1.5 cursor-pointer hover:bg-[#27272A] transition-colors truncate ${value === opt.value ? 'bg-[#18181B] text-[#EDEDED] font-medium' : 'text-[#A1A1AA]'}`}
+              onClick={() => {
+                onChange(opt.value);
+                setIsOpen(false);
+              }}
+            >
+              {opt.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, anyValue }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [tempValue, setTempValue] = useState(value);
@@ -43,7 +88,7 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
             <span className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-wider">{label}</span>
             <input 
               type="text" 
-              className="bg-[#0A0A0A] border border-[#27272A] rounded px-2 py-1 text-[#EDEDED] text-[11px] font-mono w-14 text-center outline-none focus:border-[#3B82F6] transition-colors"
+              className="bg-[#0A0A0A] border border-[#27272A] rounded px-2 py-1 text-[#EDEDED] text-[11px] font-mono w-14 text-center outline-none focus:border-[#52525B] transition-colors"
               value={tempValue === anyValue ? '' : tempValue}
               placeholder="Any"
               onChange={(e) => {
@@ -66,7 +111,7 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
               }}
               className="w-full h-1 bg-[#27272A] rounded-lg appearance-none cursor-pointer outline-none custom-slider-thumb"
               style={{
-                background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A 100%)`
+                background: `linear-gradient(to right, #EDEDED 0%, #EDEDED ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A 100%)`
               }}
             />
           </div>
@@ -278,44 +323,31 @@ export default function CandidateConsole() {
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="text-[#71717A]">Honeypot:</span>
-          <select 
-            value={filterHoneypot}
-            onChange={(e) => setFilterHoneypot(e.target.value as any)}
-            className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded px-2 py-1 outline-none focus:border-[#52525B]"
-          >
-            <option value="all">All Candidates</option>
-            <option value="safe">Safe Only</option>
-            <option value="flagged">Flagged Only</option>
-          </select>
-        </div>
-
-        <div className="flex items-center gap-2">
           <span className="text-[#71717A]">Notice:</span>
-          <select 
+          <CustomSelect 
             value={filterNotice}
-            onChange={(e) => setFilterNotice(e.target.value as any)}
-            className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded px-2 py-1 outline-none focus:border-[#52525B]"
-          >
-            <option value="all">Any</option>
-            <option value="30">≤ 30 days</option>
-            <option value="60">≤ 60 days</option>
-            <option value="90">&gt; 60 days</option>
-          </select>
+            onChange={(val: any) => setFilterNotice(val)}
+            options={[
+              { value: 'all', label: 'Any' },
+              { value: '30', label: '≤ 30 days' },
+              { value: '60', label: '≤ 60 days' },
+              { value: '90', label: '> 60 days' }
+            ]}
+            widthClass="w-32"
+          />
         </div>
         
         <div className="flex items-center gap-2">
           <span className="text-[#71717A]">Role:</span>
-          <select 
+          <CustomSelect 
             value={filterTitle}
-            onChange={(e) => setFilterTitle(e.target.value)}
-            className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded px-2 py-1 outline-none focus:border-[#52525B] max-w-[120px]"
-          >
-            <option value="all">All Roles</option>
-            {uniqueTitles.map(t => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select>
+            onChange={(val: any) => setFilterTitle(val)}
+            options={[
+              { value: 'all', label: 'All Roles' },
+              ...uniqueTitles.map(t => ({ value: t, label: t }))
+            ]}
+            widthClass="w-[160px]"
+          />
         </div>
         
         <FilterPopover 
