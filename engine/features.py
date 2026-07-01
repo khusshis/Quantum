@@ -37,8 +37,6 @@ class CandidateFeatures:
     immediate_joiner_boost: float
     salary_mismatch_penalty: float
     non_coder_penalty: float
-    loyalty_boost: float
-    recent_ml_focus: float
 
 # --- ENTERPRISE KNOWLEDGE GRAPH (SKILL ONTOLOGY) ---
 # Simulates a Graph DB logic. If a candidate has a specific skill, 
@@ -428,24 +426,6 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
                 desc_lower = current_job.description.lower() if current_job.description else ""
                 if not any(k in desc_lower for k in coding_keywords):
                     non_coder_penalty = 0.6  # Severe penalty for not coding recently
-                    
-    # 6. Loyalty Boost
-    # If candidate has stayed at any single company for 3+ years, they are highly retainable.
-    loyalty_boost = 1.0
-    for entry in sorted_career:
-        if entry.duration_months >= 36:
-            loyalty_boost = 1.1
-            break
-            
-    # 7. Recent ML Focus Boost
-    # If the current/most recent job explicitly involves ML/AI/Data Science
-    recent_ml_focus = 1.0
-    ml_keywords = ["ai", "ml", "machine learning", "nlp", "llm", "data scientist", "deep learning", "ranking", "retrieval", "search", "recommendation"]
-    if sorted_career:
-        current_job = sorted_career[0]
-        title_desc = (current_job.title + " " + (current_job.description or "")).lower()
-        if any(k in title_desc for k in ml_keywords):
-            recent_ml_focus = 1.1
         
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
@@ -471,7 +451,5 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         overqualified_penalty=overqualified_penalty,
         immediate_joiner_boost=immediate_joiner_boost,
         salary_mismatch_penalty=salary_mismatch_penalty,
-        non_coder_penalty=non_coder_penalty,
-        loyalty_boost=loyalty_boost,
-        recent_ml_focus=recent_ml_focus
+        non_coder_penalty=non_coder_penalty
     )

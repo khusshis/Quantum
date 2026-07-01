@@ -20,10 +20,8 @@ We engineered specific **Boosts** and **Penalties** to mimic a strict, senior te
 8. **The "Honeypot Trap":** Integrates anomaly detection to aggressively filter out fake profiles and fraudulent platform behavior.
 
 ### 🟢 The Enterprise Boosts (The "Superstars")
-1. **Loyalty Boost (Retainability):** Applies a 1.1x boost to candidates who have demonstrated 3+ years of tenure at a single company.
-2. **Recent ML Focus:** Boosts candidates whose *current* job is heavily focused on AI/ML, ensuring their skills are sharp.
-3. **Fast Mover (Immediate Joiner):** Heavily boosts candidates with a Notice Period of <15 days.
-4. **Open Source Top Contributor:** Leverages RedRob signals to boost candidates with verified, high-activity GitHub profiles (Score > 80).
+1. **Fast Mover (Immediate Joiner):** Heavily boosts candidates with a Notice Period of <15 days.
+2. **Open Source Top Contributor:** Leverages RedRob signals to boost candidates with verified, high-activity GitHub profiles (Score > 80).
 
 ---
 
