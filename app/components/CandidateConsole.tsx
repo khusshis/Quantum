@@ -129,11 +129,20 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
 export default function CandidateConsole() {
   interface Tab {
     id: string;
-    name: string;
+    label: string;
     candidates: any[];
   }
-  const [tabs, setTabs] = useState<Tab[]>([{ id: 'default', name: 'Default Run', candidates: [] }]);
-  const [activeTabId, setActiveTabId] = useState<string>('default');
+  const [tabs, setTabs] = useState<{ id: string; label: string; candidates: any[] }[]>(() => {
+    try {
+      const saved = sessionStorage.getItem('quantum_tabs');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return [{ id: 'default', label: 'Default Run', candidates: [] }];
+  });
+  
+  const [activeTabId, setActiveTabId] = useState(() => {
+    return sessionStorage.getItem('quantum_activeTab') || 'default';
+  });
 
   const activeTab = tabs.find(t => t.id === activeTabId) || tabs[0];
   const candidates = activeTab.candidates;
@@ -193,7 +202,41 @@ export default function CandidateConsole() {
     return () => clearInterval(interval);
   }, [isImporting, importProgress, importStartTime, estimatedTotalSeconds]);
 
-  const [benchmark, setBenchmark] = useState<any>(null);
+  const [benchmark, setBenchmark] = useState<any>(() => {
+    try {
+      const saved = sessionStorage.getItem('quantum_benchmark');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return null;
+  });
+  
+  const [timeAgoStr, setTimeAgoStr] = useState('');
+
+  // Persist state
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('quantum_tabs', JSON.stringify(tabs));
+      sessionStorage.setItem('quantum_activeTab', activeTab);
+      if (benchmark) sessionStorage.setItem('quantum_benchmark', JSON.stringify(benchmark));
+    } catch (e) {
+      console.warn('Session storage quota exceeded');
+    }
+  }, [tabs, activeTab, benchmark]);
+
+  // Real-time Last Run Update
+  useEffect(() => {
+    const updateTimeAgo = () => {
+      if (!benchmark || !benchmark.timestamp) return;
+      const seconds = Math.floor(Date.now() / 1000 - benchmark.timestamp);
+      if (seconds < 60) setTimeAgoStr('just now');
+      else if (seconds < 3600) setTimeAgoStr(`${Math.floor(seconds / 60)} mins ago`);
+      else setTimeAgoStr(`${Math.floor(seconds / 3600)} hours ago`);
+    };
+    updateTimeAgo();
+    const int = setInterval(updateTimeAgo, 10000);
+    return () => clearInterval(int);
+  }, [benchmark]);
+
   const [selectedCandidate, setSelectedCandidate] = useState<any | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
 
@@ -216,7 +259,12 @@ export default function CandidateConsole() {
 
     fetch('/benchmark_report.json?t=' + new Date().getTime())
       .then(res => res.json())
-      .then(data => setBenchmark(data))
+      .then(data => {
+        // Only update benchmark from default if we don't have a newer session benchmark
+        if (!sessionStorage.getItem('quantum_benchmark')) {
+          setBenchmark(data);
+        }
+      })
       .catch(err => console.error("Error loading benchmark:", err));
   }, []);
 
@@ -628,7 +676,7 @@ export default function CandidateConsole() {
           <div className="flex items-center gap-4 mt-2 text-[11px] text-[#71717A] font-mono tracking-wider">
             <span>POOL: 100,000</span>
             <span className="text-[#EDEDED]">SHORTLIST: {candidates.length}</span>
-            {benchmark && <span>LAST RUN: {new Date(benchmark.timestamp * 1000).toLocaleString()}</span>}
+            {benchmark && <span className="flex items-center gap-1.5"><Clock size={12}/> LAST RUN: <span className="text-[#10B981]">{timeAgoStr}</span></span>}
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -913,20 +961,6 @@ export default function CandidateConsole() {
           />
         )}
       </div>
-
-      {/* Footer Panel - Terminal Style */}
-      <footer className="flex items-center justify-between px-6 py-1.5 border-t border-[#27272A] bg-[#0A0A0A] text-[10px] font-mono text-[#71717A]">
-        <div className="flex gap-6">
-          <span className="flex items-center gap-1.5 text-[#EDEDED]"><Cpu size={12} className="text-[#A1A1AA]"/> CPU_RANKING</span>
-          <span className="flex items-center gap-1.5"><Clock size={12}/> ELAPSED: {benchmark?.elapsed_seconds?.toFixed(3) || '--'}s</span>
-          <span className="flex items-center gap-1.5"><HardDrive size={12}/> PEAK_RSS: {benchmark?.peak_memory_mb?.toFixed(1) || '--'}MB</span>
-        </div>
-        <div className="flex gap-4">
-          <span>PIPELINE: Hybrid BM25/Dense + LightGBM</span>
-          <span className="text-[#52525B]">|</span>
-          <span>v1.0.0</span>
-        </div>
-      </footer>
     </div>
   );
 }
