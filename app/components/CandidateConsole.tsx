@@ -144,7 +144,9 @@ export default function CandidateConsole() {
   });
   
   const [activeTabId, setActiveTabId] = useState(() => {
-    return sessionStorage.getItem('quantum_activeTab') || 'default';
+    const saved = sessionStorage.getItem('quantum_activeTab');
+    if (saved && saved !== '[object Object]') return saved;
+    return 'default';
   });
 
   const activeTab = tabs.find(t => t.id === activeTabId) || tabs[0];
@@ -219,12 +221,12 @@ export default function CandidateConsole() {
   useEffect(() => {
     try {
       sessionStorage.setItem('quantum_tabs', JSON.stringify(tabs));
-      sessionStorage.setItem('quantum_activeTab', activeTab);
+      sessionStorage.setItem('quantum_activeTab', activeTabId);
       if (benchmark) sessionStorage.setItem('quantum_benchmark', JSON.stringify(benchmark));
     } catch (e) {
       console.warn('Session storage quota exceeded');
     }
-  }, [tabs, activeTab, benchmark]);
+  }, [tabs, activeTabId, benchmark]);
 
   // Real-time Last Run Update
   useEffect(() => {
@@ -702,7 +704,7 @@ export default function CandidateConsole() {
       </header>
 
       {/* Workspace Tabs */}
-      <div className="flex items-center gap-1 px-4 pt-2 bg-[#0A0A0A] border-b border-[#27272A] overflow-x-auto no-scrollbar">
+      <div className="flex items-center gap-1 px-4 pt-0 bg-[#0A0A0A] border-b border-[#27272A] overflow-x-auto no-scrollbar">
         {tabs.map(tab => (
           <div 
             key={tab.id}
