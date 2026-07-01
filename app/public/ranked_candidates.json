@@ -21,7 +21,7 @@
       "bm25_score": 0.3770924936330605,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 1.0,
       "verification_trust_score": 0.1,
@@ -3131,7 +3131,7 @@
       "bm25_score": 0.39297111686268266,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.4,
       "verification_trust_score": 0.1,
@@ -3591,7 +3591,7 @@
       "role_relevance_score": 1.0,
       "skill_semantic_match": 0.490258127450943,
       "bm25_score": 0.3789040326152359,
-      "skill_trust_score": 0.8459890410804075,
+      "skill_trust_score": 0.8499890410804076,
       "framework_enthusiast_penalty": 1.0,
       "education_tier_score": 0.2,
       "availability_score": 1.0,
@@ -3796,7 +3796,7 @@
       "bm25_score": 0.3072598524005263,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.4,
       "verification_trust_score": 0.15000000000000002,
@@ -4008,7 +4008,7 @@
       "role_relevance_score": 1.0,
       "skill_semantic_match": 0.500064492225647,
       "bm25_score": 0.47010913449397423,
-      "skill_trust_score": 0.997499332995772,
+      "skill_trust_score": 0.999499332995772,
       "framework_enthusiast_penalty": 1.0,
       "education_tier_score": 0.2,
       "availability_score": 1.0,
@@ -4688,7 +4688,7 @@
       "bm25_score": 0.4095390948206291,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.4,
       "verification_trust_score": 0.05,
@@ -4887,7 +4887,7 @@
       "bm25_score": 0.2388394740890091,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.7,
       "verification_trust_score": 0.1,
@@ -9123,7 +9123,7 @@
       "role_relevance_score": 1.0,
       "skill_semantic_match": 0.504159688949585,
       "bm25_score": 0.39755418905566203,
-      "skill_trust_score": 0.9926322065463933,
+      "skill_trust_score": 0.9966322065463933,
       "framework_enthusiast_penalty": 1.0,
       "education_tier_score": 0.1,
       "availability_score": 1.0,
@@ -9553,7 +9553,7 @@
       "bm25_score": 0.33170440138616136,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.4,
       "verification_trust_score": 0.15000000000000002,
@@ -16474,7 +16474,7 @@
       "bm25_score": 0.42415000789365576,
       "skill_trust_score": 1.0,
       "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.0,
+      "education_tier_score": 0.15,
       "availability_score": 1.0,
       "notice_period_fit": 0.4,
       "verification_trust_score": 0.1,
@@ -16895,236 +16895,8 @@
     "summary": "Data scientist / ML engineer with 4.7 years of experience in applied machine learning. Worked across predictive modeling, NLP, analytics, and lightweight deployment workflows. My current role is split between dashboarding/analytics and shipping production ML models. I'm strongest at the modeling and analysis side; comfortable with Python, scikit-learn, pandas, and standard MLOps tooling, but I'm still building depth on the engineering and infra side of production ML. I want to grow into senior AI engineering \u2014 get serious about LLMs and retrieval beyond the surface level."
   },
   {
-    "candidate_id": "CAND_0055139",
-    "rank": 75,
-    "score": 0.6221,
-    "reasoning": "This candidate is a highly ranked ML Engineer with 6.9 years of experience and expertise in Statistical Modeling, Elasticsearch, Object Detection. From a recruiter's perspective, they stand out as an excellent fit specifically because their Role Relevance Score and Production Ml Evidence Score are exceptionally strong for this role.",
-    "preview_reasoning": "Role Relevance Score 93 | Production Ml Evidence Score 80 | Skill Trust Score 78",
-    "name": "Rajesh Subramanian",
-    "title": "ML Engineer",
-    "company": "HCL",
-    "yoe": 6.9,
-    "features": {
-      "years_experience_fit": 1.0,
-      "title_trajectory_score": 0.5,
-      "production_ml_evidence_score": 1.0,
-      "domain_adjacency_penalty": 1.0,
-      "consulting_only_penalty": 1.0,
-      "research_only_disqualifier": 1.0,
-      "role_relevance_score": 1.0,
-      "skill_semantic_match": 0.47734326124191284,
-      "bm25_score": 0.39297111686268266,
-      "skill_trust_score": 1.0,
-      "framework_enthusiast_penalty": 1.0,
-      "education_tier_score": 0.05,
-      "availability_score": 0.9182465753424658,
-      "notice_period_fit": 0.4,
-      "verification_trust_score": 0.15000000000000002,
-      "location_boost": 0.0,
-      "honeypot_suspicion_score": 0.0,
-      "github_activity_boost": 1.143,
-      "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
-    },
-    "notice_period_days": 120,
-    "expected_salary": {
-      "min": 35.9,
-      "max": 40.5
-    },
-    "availability_score": 0.9182465753424658,
-    "honeypot_score": 0.0,
-    "redrob_signals": {
-      "profile_completeness_score": 46.6,
-      "signup_date": "2024-06-19",
-      "last_active_date": "2026-05-01",
-      "open_to_work_flag": true,
-      "profile_views_received_30d": 42,
-      "applications_submitted_30d": 5,
-      "recruiter_response_rate": 0.25,
-      "avg_response_time_hours": 42.6,
-      "skill_assessment_scores": {
-        "Statistical Modeling": 84.0,
-        "Deep Learning": 69.4,
-        "LLMs": 41.7
-      },
-      "connection_count": 428,
-      "endorsements_received": 28,
-      "notice_period_days": 120,
-      "expected_salary_range_inr_lpa": {
-        "min": 35.9,
-        "max": 40.5
-      },
-      "preferred_work_mode": "onsite",
-      "willing_to_relocate": false,
-      "github_activity_score": 57.2,
-      "search_appearance_30d": 217,
-      "saved_by_recruiters_30d": 37,
-      "interview_completion_rate": 0.65,
-      "offer_acceptance_rate": 0.57,
-      "verified_email": true,
-      "verified_phone": true,
-      "linkedin_connected": true
-    },
-    "skills": [
-      {
-        "name": "Statistical Modeling",
-        "proficiency": "advanced",
-        "endorsements": 1,
-        "duration_months": 42
-      },
-      {
-        "name": "Elasticsearch",
-        "proficiency": "intermediate",
-        "endorsements": 13,
-        "duration_months": 13
-      },
-      {
-        "name": "Object Detection",
-        "proficiency": "intermediate",
-        "endorsements": 1,
-        "duration_months": 18
-      },
-      {
-        "name": "Data Science",
-        "proficiency": "intermediate",
-        "endorsements": 15,
-        "duration_months": 26
-      },
-      {
-        "name": "JavaScript",
-        "proficiency": "intermediate",
-        "endorsements": 8,
-        "duration_months": 30
-      },
-      {
-        "name": "Python",
-        "proficiency": "intermediate",
-        "endorsements": 3,
-        "duration_months": 13
-      },
-      {
-        "name": "Computer Vision",
-        "proficiency": "intermediate",
-        "endorsements": 9,
-        "duration_months": 28
-      },
-      {
-        "name": "Semantic Search",
-        "proficiency": "intermediate",
-        "endorsements": 7,
-        "duration_months": 28
-      },
-      {
-        "name": "Deep Learning",
-        "proficiency": "advanced",
-        "endorsements": 57,
-        "duration_months": 37
-      },
-      {
-        "name": "LLMs",
-        "proficiency": "advanced",
-        "endorsements": 56,
-        "duration_months": 19
-      },
-      {
-        "name": "GANs",
-        "proficiency": "intermediate",
-        "endorsements": 15,
-        "duration_months": 29
-      },
-      {
-        "name": "Machine Learning",
-        "proficiency": "intermediate",
-        "endorsements": 7,
-        "duration_months": 22
-      },
-      {
-        "name": "Time Series",
-        "proficiency": "intermediate",
-        "endorsements": 11,
-        "duration_months": 14
-      },
-      {
-        "name": "pgvector",
-        "proficiency": "advanced",
-        "endorsements": 36,
-        "duration_months": 37
-      }
-    ],
-    "career_history": [
-      {
-        "company": "HCL",
-        "title": "ML Engineer",
-        "start_date": "2024-10-04",
-        "end_date": null,
-        "duration_months": 20,
-        "is_current": true,
-        "industry": "IT Services",
-        "company_size": "10001+",
-        "description": "Built recommendation-style features at a mid-stage startup \u2014 lighter weight than ranking systems at FAANG, but production. Used a combination of collaborative filtering (matrix factorization in implicit-feedback library) and gradient-boosted re-ranking over engagement signals. Pure ML side of the work; production deployment was handled by the platform team."
-      },
-      {
-        "company": "Freshworks",
-        "title": "ML Engineer",
-        "start_date": "2021-07-22",
-        "end_date": "2024-10-04",
-        "duration_months": 39,
-        "is_current": false,
-        "industry": "SaaS",
-        "company_size": "5001-10000",
-        "description": "Built computer vision models for our product's image moderation feature using PyTorch \u2014 fine-tuned ResNet variants on a labeled dataset of ~200K images. Set up the training pipeline (data loading, augmentation, evaluation) and the inference service. Most of my project work has been in CV; I'm now interested in transitioning toward NLP/LLM work but my professional experience there is limited."
-      },
-      {
-        "company": "Yellow.ai",
-        "title": "Data Scientist",
-        "start_date": "2019-10-01",
-        "end_date": "2021-07-22",
-        "duration_months": 22,
-        "is_current": false,
-        "industry": "AI/ML",
-        "company_size": "201-500",
-        "description": "Built recommendation-style features at a mid-stage startup \u2014 lighter weight than ranking systems at FAANG, but production. Used a combination of collaborative filtering (matrix factorization in implicit-feedback library) and gradient-boosted re-ranking over engagement signals. Pure ML side of the work; production deployment was handled by the platform team."
-      }
-    ],
-    "education": [
-      {
-        "institution": "Chandigarh University",
-        "degree": "B.Sc",
-        "field_of_study": "Statistics",
-        "start_year": 2000,
-        "end_year": 2005,
-        "grade": "89%",
-        "tier": "tier_3"
-      },
-      {
-        "institution": "Lovely Professional University",
-        "degree": "B.E.",
-        "field_of_study": "Electrical Engineering",
-        "start_year": 2002,
-        "end_year": 2005,
-        "grade": "82%",
-        "tier": "tier_3"
-      }
-    ],
-    "certifications": [],
-    "languages": [
-      {
-        "language": "English",
-        "proficiency": "native"
-      },
-      {
-        "language": "Hindi",
-        "proficiency": "native"
-      }
-    ],
-    "location": "Chennai, Tamil Nadu",
-    "country": "India",
-    "headline": "ML Engineer | Building ML-powered solutions",
-    "summary": "Data scientist / ML engineer with 6.9 years of experience in applied machine learning. Worked across predictive modeling, NLP, analytics, and lightweight deployment workflows. Most of my recent work has been on predictive modeling for customer-facing problems \u2014 churn, conversion, lifetime value. I'm strongest at the modeling and analysis side; comfortable with Python, scikit-learn, pandas, and standard MLOps tooling, but I'm still building depth on the engineering and infra side of production ML. I want to grow into senior AI engineering \u2014 get serious about LLMs and retrieval beyond the surface level."
-  },
-  {
     "candidate_id": "CAND_0017960",
-    "rank": 76,
+    "rank": 75,
     "score": 0.6218,
     "reasoning": "This candidate is a highly ranked Recommendation Systems Engineer with 7.7 years of experience and expertise in LlamaIndex, QLoRA, Hugging Face Transformers. From a recruiter's perspective, they stand out as an excellent fit specifically because their Role Relevance Score and Skill Semantic Match are exceptionally strong for this role.",
     "preview_reasoning": "Role Relevance Score 92 | Skill Semantic Match 77 | Availability Score 77",
@@ -17350,7 +17122,7 @@
   },
   {
     "candidate_id": "CAND_0000981",
-    "rank": 77,
+    "rank": 76,
     "score": 0.6216,
     "reasoning": "This candidate is a highly ranked ML Engineer with 6.4 years of experience and expertise in Semantic Search, Computer Vision, Image Classification. From a recruiter's perspective, they stand out as an excellent fit specifically because their Role Relevance Score and Production Ml Evidence Score are exceptionally strong for this role.",
     "preview_reasoning": "Role Relevance Score 93 | Production Ml Evidence Score 77 | Availability Score 77",
@@ -17554,7 +17326,7 @@
   },
   {
     "candidate_id": "CAND_0073504",
-    "rank": 78,
+    "rank": 77,
     "score": 0.6215,
     "reasoning": "This candidate is a highly ranked Junior ML Engineer with 6.6 years of experience and expertise in Elasticsearch, Angular, LangChain. From a recruiter's perspective, they stand out as an excellent fit specifically because their Role Relevance Score and Production Ml Evidence Score are exceptionally strong for this role.",
     "preview_reasoning": "Role Relevance Score 93 | Production Ml Evidence Score 77 | Availability Score 77",
@@ -17792,6 +17564,234 @@
     "country": "India",
     "headline": "Junior ML Engineer | Building ML-powered solutions",
     "summary": "Data scientist / ML engineer with 6.6 years of experience in applied machine learning. Worked across predictive modeling, NLP, analytics, and lightweight deployment workflows. I've been working on recommendation-style features but lighter on the deep-learning side \u2014 mostly classical methods like collaborative filtering and gradient-boosted models. I'm strongest at the modeling and analysis side; comfortable with Python, scikit-learn, pandas, and standard MLOps tooling, but I'm still building depth on the engineering and infra side of production ML. Looking for a role where I can step up to more end-to-end ownership of ML systems, not just modeling."
+  },
+  {
+    "candidate_id": "CAND_0055139",
+    "rank": 78,
+    "score": 0.6213,
+    "reasoning": "This candidate is a highly ranked ML Engineer with 6.9 years of experience and expertise in Statistical Modeling, Elasticsearch, Object Detection. From a recruiter's perspective, they stand out as an excellent fit specifically because their Role Relevance Score and Production Ml Evidence Score are exceptionally strong for this role.",
+    "preview_reasoning": "Role Relevance Score 93 | Production Ml Evidence Score 80 | Skill Trust Score 78",
+    "name": "Rajesh Subramanian",
+    "title": "ML Engineer",
+    "company": "HCL",
+    "yoe": 6.9,
+    "features": {
+      "years_experience_fit": 1.0,
+      "title_trajectory_score": 0.5,
+      "production_ml_evidence_score": 1.0,
+      "domain_adjacency_penalty": 1.0,
+      "consulting_only_penalty": 1.0,
+      "research_only_disqualifier": 1.0,
+      "role_relevance_score": 1.0,
+      "skill_semantic_match": 0.47734326124191284,
+      "bm25_score": 0.39297111686268266,
+      "skill_trust_score": 1.0,
+      "framework_enthusiast_penalty": 1.0,
+      "education_tier_score": 0.15,
+      "availability_score": 0.9182465753424658,
+      "notice_period_fit": 0.4,
+      "verification_trust_score": 0.15000000000000002,
+      "location_boost": 0.0,
+      "honeypot_suspicion_score": 0.0,
+      "github_activity_boost": 1.143,
+      "platform_reliability_score": 1.0,
+      "engagement_multiplier": 1.2
+    },
+    "notice_period_days": 120,
+    "expected_salary": {
+      "min": 35.9,
+      "max": 40.5
+    },
+    "availability_score": 0.9182465753424658,
+    "honeypot_score": 0.0,
+    "redrob_signals": {
+      "profile_completeness_score": 46.6,
+      "signup_date": "2024-06-19",
+      "last_active_date": "2026-05-01",
+      "open_to_work_flag": true,
+      "profile_views_received_30d": 42,
+      "applications_submitted_30d": 5,
+      "recruiter_response_rate": 0.25,
+      "avg_response_time_hours": 42.6,
+      "skill_assessment_scores": {
+        "Statistical Modeling": 84.0,
+        "Deep Learning": 69.4,
+        "LLMs": 41.7
+      },
+      "connection_count": 428,
+      "endorsements_received": 28,
+      "notice_period_days": 120,
+      "expected_salary_range_inr_lpa": {
+        "min": 35.9,
+        "max": 40.5
+      },
+      "preferred_work_mode": "onsite",
+      "willing_to_relocate": false,
+      "github_activity_score": 57.2,
+      "search_appearance_30d": 217,
+      "saved_by_recruiters_30d": 37,
+      "interview_completion_rate": 0.65,
+      "offer_acceptance_rate": 0.57,
+      "verified_email": true,
+      "verified_phone": true,
+      "linkedin_connected": true
+    },
+    "skills": [
+      {
+        "name": "Statistical Modeling",
+        "proficiency": "advanced",
+        "endorsements": 1,
+        "duration_months": 42
+      },
+      {
+        "name": "Elasticsearch",
+        "proficiency": "intermediate",
+        "endorsements": 13,
+        "duration_months": 13
+      },
+      {
+        "name": "Object Detection",
+        "proficiency": "intermediate",
+        "endorsements": 1,
+        "duration_months": 18
+      },
+      {
+        "name": "Data Science",
+        "proficiency": "intermediate",
+        "endorsements": 15,
+        "duration_months": 26
+      },
+      {
+        "name": "JavaScript",
+        "proficiency": "intermediate",
+        "endorsements": 8,
+        "duration_months": 30
+      },
+      {
+        "name": "Python",
+        "proficiency": "intermediate",
+        "endorsements": 3,
+        "duration_months": 13
+      },
+      {
+        "name": "Computer Vision",
+        "proficiency": "intermediate",
+        "endorsements": 9,
+        "duration_months": 28
+      },
+      {
+        "name": "Semantic Search",
+        "proficiency": "intermediate",
+        "endorsements": 7,
+        "duration_months": 28
+      },
+      {
+        "name": "Deep Learning",
+        "proficiency": "advanced",
+        "endorsements": 57,
+        "duration_months": 37
+      },
+      {
+        "name": "LLMs",
+        "proficiency": "advanced",
+        "endorsements": 56,
+        "duration_months": 19
+      },
+      {
+        "name": "GANs",
+        "proficiency": "intermediate",
+        "endorsements": 15,
+        "duration_months": 29
+      },
+      {
+        "name": "Machine Learning",
+        "proficiency": "intermediate",
+        "endorsements": 7,
+        "duration_months": 22
+      },
+      {
+        "name": "Time Series",
+        "proficiency": "intermediate",
+        "endorsements": 11,
+        "duration_months": 14
+      },
+      {
+        "name": "pgvector",
+        "proficiency": "advanced",
+        "endorsements": 36,
+        "duration_months": 37
+      }
+    ],
+    "career_history": [
+      {
+        "company": "HCL",
+        "title": "ML Engineer",
+        "start_date": "2024-10-04",
+        "end_date": null,
+        "duration_months": 20,
+        "is_current": true,
+        "industry": "IT Services",
+        "company_size": "10001+",
+        "description": "Built recommendation-style features at a mid-stage startup \u2014 lighter weight than ranking systems at FAANG, but production. Used a combination of collaborative filtering (matrix factorization in implicit-feedback library) and gradient-boosted re-ranking over engagement signals. Pure ML side of the work; production deployment was handled by the platform team."
+      },
+      {
+        "company": "Freshworks",
+        "title": "ML Engineer",
+        "start_date": "2021-07-22",
+        "end_date": "2024-10-04",
+        "duration_months": 39,
+        "is_current": false,
+        "industry": "SaaS",
+        "company_size": "5001-10000",
+        "description": "Built computer vision models for our product's image moderation feature using PyTorch \u2014 fine-tuned ResNet variants on a labeled dataset of ~200K images. Set up the training pipeline (data loading, augmentation, evaluation) and the inference service. Most of my project work has been in CV; I'm now interested in transitioning toward NLP/LLM work but my professional experience there is limited."
+      },
+      {
+        "company": "Yellow.ai",
+        "title": "Data Scientist",
+        "start_date": "2019-10-01",
+        "end_date": "2021-07-22",
+        "duration_months": 22,
+        "is_current": false,
+        "industry": "AI/ML",
+        "company_size": "201-500",
+        "description": "Built recommendation-style features at a mid-stage startup \u2014 lighter weight than ranking systems at FAANG, but production. Used a combination of collaborative filtering (matrix factorization in implicit-feedback library) and gradient-boosted re-ranking over engagement signals. Pure ML side of the work; production deployment was handled by the platform team."
+      }
+    ],
+    "education": [
+      {
+        "institution": "Chandigarh University",
+        "degree": "B.Sc",
+        "field_of_study": "Statistics",
+        "start_year": 2000,
+        "end_year": 2005,
+        "grade": "89%",
+        "tier": "tier_3"
+      },
+      {
+        "institution": "Lovely Professional University",
+        "degree": "B.E.",
+        "field_of_study": "Electrical Engineering",
+        "start_year": 2002,
+        "end_year": 2005,
+        "grade": "82%",
+        "tier": "tier_3"
+      }
+    ],
+    "certifications": [],
+    "languages": [
+      {
+        "language": "English",
+        "proficiency": "native"
+      },
+      {
+        "language": "Hindi",
+        "proficiency": "native"
+      }
+    ],
+    "location": "Chennai, Tamil Nadu",
+    "country": "India",
+    "headline": "ML Engineer | Building ML-powered solutions",
+    "summary": "Data scientist / ML engineer with 6.9 years of experience in applied machine learning. Worked across predictive modeling, NLP, analytics, and lightweight deployment workflows. Most of my recent work has been on predictive modeling for customer-facing problems \u2014 churn, conversion, lifetime value. I'm strongest at the modeling and analysis side; comfortable with Python, scikit-learn, pandas, and standard MLOps tooling, but I'm still building depth on the engineering and infra side of production ML. I want to grow into senior AI engineering \u2014 get serious about LLMs and retrieval beyond the surface level."
   },
   {
     "candidate_id": "CAND_0030468",
@@ -20545,7 +20545,7 @@
       "role_relevance_score": 1.0,
       "skill_semantic_match": 0.4922703802585602,
       "bm25_score": 0.3284969579012774,
-      "skill_trust_score": 0.7758488105278459,
+      "skill_trust_score": 0.7778488105278459,
       "framework_enthusiast_penalty": 1.0,
       "education_tier_score": 0.2,
       "availability_score": 1.0,

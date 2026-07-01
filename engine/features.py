@@ -31,7 +31,36 @@ class CandidateFeatures:
     platform_reliability_score: float
     engagement_multiplier: float
 
+# --- ENTERPRISE KNOWLEDGE GRAPH (SKILL ONTOLOGY) ---
+# Simulates a Graph DB logic. If a candidate has a specific skill, 
+# they implicitly have the parent/foundational skills.
+SKILL_ONTOLOGY = {
+    "pytorch": ["python", "deep learning", "machine learning", "neural networks"],
+    "tensorflow": ["python", "deep learning", "machine learning", "neural networks"],
+    "keras": ["python", "deep learning", "machine learning", "neural networks"],
+    "react": ["javascript", "frontend", "typescript", "web"],
+    "django": ["python", "backend", "web"],
+    "fastapi": ["python", "backend", "api"],
+    "spring boot": ["java", "backend", "api"],
+    "pandas": ["python", "data analysis", "data manipulation"],
+    "scikit-learn": ["python", "machine learning", "data science"],
+    "kubernetes": ["devops", "containers", "docker", "infrastructure"],
+    "aws": ["cloud", "infrastructure", "deployment"],
+    "gcp": ["cloud", "infrastructure", "deployment"],
+    "azure": ["cloud", "infrastructure", "deployment"],
+    "langchain": ["llm", "generative ai", "python"],
+    "llamaindex": ["llm", "generative ai", "python", "rag"],
+    "docker": ["devops", "containers"]
+}
+
 def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_match: float = 0.0) -> CandidateFeatures:
+    # Expand candidate skills via Knowledge Graph Ontology
+    expanded_skill_names = set(s.name.lower() for s in candidate.skills)
+    for skill in candidate.skills:
+        skill_lower = skill.name.lower()
+        if skill_lower in SKILL_ONTOLOGY:
+            expanded_skill_names.update(SKILL_ONTOLOGY[skill_lower])
+            
     # --- CAREER-FIT FEATURES ---
     
     # years_experience_fit
@@ -236,6 +265,11 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
             # a score out of 100 boosts trust
             skill_trust += (s_score / 100.0) * 0.5
             
+    # Ontology Expansion Bonus: Reward candidates whose skills map strongly to the core JD tech stack
+    jd_tech_lower = [t.lower() for t in _tech_keywords]
+    ontology_overlap = len(expanded_skill_names.intersection(set(jd_tech_lower)))
+    skill_trust += (ontology_overlap * 0.1) # small semantic boost from the graph
+            
     # Normalize skill trust roughly
     skill_trust = min(1.0, skill_trust / 50.0)
     
@@ -247,12 +281,19 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         if avg_dur < 12 and avg_end < 10 and prod_score < 0.5:
             framework_penalty = 0.5
             
-    # --- EDUCATION FEATURES ---
+    # --- EDUCATION FEATURES & ANTI-BIAS CALIBRATION ---
     tier_scores = {"tier_1": 0.2, "tier_2": 0.1, "tier_3": 0.05, "tier_4": 0.0, "unknown": 0.0}
     edu_score = 0.0
     for edu in candidate.education:
         if edu.tier:
             edu_score = max(edu_score, tier_scores.get(edu.tier.lower(), 0.0))
+            
+    # Merit-over-Pedigree Anti-Bias Calibrator:
+    # If a candidate has exceptionally high production ML evidence (>0.8) and skill trust (>0.6), 
+    # but a low education tier (e.g. unknown or tier_4), we artificially boost their education score
+    # to prevent elite-school bias from artificially suppressing true technical talent.
+    if prod_score >= 0.8 and skill_trust >= 0.6 and edu_score < 0.1:
+        edu_score = 0.15 # Elevate to near Tier 2 equivalent based on pure merit
             
     # --- BEHAVIORAL FEATURES ---
     signals = candidate.redrob_signals
