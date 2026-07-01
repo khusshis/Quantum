@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldCheck, AlertCircle, TrendingDown, AlignLeft, CheckCircle2, Activity, Mail, Phone, Linkedin, DollarSign, Search } from 'lucide-react';
+import { X, ShieldCheck, AlertCircle, TrendingDown, AlignLeft, CheckCircle2, Activity, Mail, Phone, Linkedin, DollarSign, Search, Github } from 'lucide-react';
 import { FEATURE_KEYS, formatFeatureName } from './FeatureConstants';
 
 export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClose: () => void }) {
@@ -288,6 +288,7 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                 <Mail size={14} className={signals.verified_email ? 'text-[#10B981]' : 'text-[#3F3F46]'} />
                 <Phone size={14} className={signals.verified_phone ? 'text-[#10B981]' : 'text-[#3F3F46]'} />
                 <Linkedin size={14} className={signals.linkedin_connected ? 'text-[#10B981]' : 'text-[#3F3F46]'} />
+                <Github size={14} className={hasGithub ? 'text-[#10B981]' : 'text-[#3F3F46]'} />
               </div>
             </div>
           </div>
