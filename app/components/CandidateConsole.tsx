@@ -172,17 +172,30 @@ export default function CandidateConsole() {
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
-        const json = JSON.parse(event.target?.result as string);
+        const text = event.target?.result as string;
+        let json;
+        
+        // Handle JSON Lines (.jsonl)
+        if (text.trim().startsWith('{') && text.includes('\n') && !text.trim().startsWith('[')) {
+          json = text.trim().split('\n').filter(l => l.trim()).map(line => JSON.parse(line));
+        } else {
+          json = JSON.parse(text);
+        }
+
         if (Array.isArray(json)) {
+          if (json.length > 2000) {
+            alert(`File contains ${json.length} candidates. Only loading the first 2000 to ensure smooth performance.`);
+            json = json.slice(0, 2000);
+          }
           const newTabId = 'tab_' + Date.now();
           setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: json }]);
           setActiveTabId(newTabId);
         } else {
-          alert('Invalid JSON format. Expected an array of candidates.');
+          alert('Invalid JSON format. Expected an array of candidates or JSON Lines.');
         }
       } catch (err) {
         console.error(err);
-        alert('Failed to parse JSON file.');
+        alert('Failed to parse file. Ensure it is valid JSON or JSONL.');
       }
     };
     reader.readAsText(file);
@@ -317,7 +330,7 @@ export default function CandidateConsole() {
             IMPORT JSON
             <input 
               type="file" 
-              accept=".json" 
+              accept=".json,.jsonl" 
               className="hidden" 
               onChange={handleFileUpload}
             />
