@@ -148,8 +148,10 @@ def run_pipeline(candidates, shortlist_size=100, model_path="engine/model.txt",
         
         if custom_jd_text:
             bm25 = df.loc[i, "bm25_score"]
-            # Massive boost to override the ML Engineer bias for custom queries
-            final = final * (1.0 + (bm25 * 100.0))
+            # For custom queries, completely bypass the ML Engineer-biased LightGBM model score.
+            # Use the BM25 text match as the primary base score, and only apply universal 
+            # quality/availability multipliers (ignoring role-specific penalties like non_coder).
+            final = (bm25 + 0.01) * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult * job_hop * imm_join
             
         unbounded_scores.append(final)
         
@@ -197,7 +199,13 @@ def run_pipeline(candidates, shortlist_size=100, model_path="engine/model.txt",
         # Get the specific SHAP contributions for this candidate
         shap_vals = contribs[rank_idx].tolist()
         
-        reasoning = generate_reasoning(cand, feats, JD, rank, shap_contribs=shap_vals, feature_names=feature_names)
+        if custom_jd_text:
+            reasoning = {
+                "preview": f"Custom Requirement Match {(score * 100):.0f}/100",
+                "detailed": f"{cand.profile.years_of_experience} YOE {cand.profile.current_title or 'professional'}. Ranked specifically for match against custom JD requirements."
+            }
+        else:
+            reasoning = generate_reasoning(cand, feats, JD, rank, shap_contribs=shap_vals, feature_names=feature_names)
         
         csv_rows.append({
             "candidate_id": cid,
