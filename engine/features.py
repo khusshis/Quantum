@@ -383,21 +383,21 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         if total_months_recent <= 36:
             recent_jobs += 1
             
-    if recent_jobs >= 3:
-        job_hopper_penalty = 0.95  # Light penalty for demo purposes (so they stay in top 100)
-    elif recent_jobs == 2:
-        job_hopper_penalty = 0.98  
+    if recent_jobs >= 4:
+        job_hopper_penalty = 0.6  # Severe penalty for 4+ jobs in 3 years
+    elif recent_jobs == 3:
+        job_hopper_penalty = 0.8  # Moderate penalty for 3 jobs in 3 years
         
     # 2. Overqualified Penalty (Flight Risk)
     # If JD doesn't ask for a VP/Director, but candidate is currently a VP/Director.
     overqualified_penalty = 1.0
-    exec_keywords = ["vp", "vice president", "director", "head of", "chief", "cto", "ceo", "senior", "lead"] # Added senior/lead just to force it to trigger for demo
-    jd_is_exec = False # Force false for demo
+    exec_keywords = ["vp", "vice president", "director", "head of", "chief", "cto", "ceo"]
+    jd_is_exec = any(k in jd.ideal_profile_narrative.lower() for k in exec_keywords)
     
     if sorted_career and not jd_is_exec:
         current_title = sorted_career[0].title.lower()
         if any(k in current_title.split() or k in current_title for k in exec_keywords):
-            overqualified_penalty = 0.95  # Light penalty so they stay in top 100
+            overqualified_penalty = 0.7  # Penalize for being drastically overqualified
         
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
