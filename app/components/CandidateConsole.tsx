@@ -218,6 +218,24 @@ export default function CandidateConsole() {
               json = json.slice(0, 2000);
             }
             
+            // Normalize raw candidates to match UI expected schema
+            json = json.map(c => {
+              if (c.profile) {
+                return {
+                  ...c,
+                  name: c.name || c.profile.anonymized_name,
+                  title: c.title || c.profile.current_title,
+                  company: c.company || c.profile.current_company,
+                  yoe: c.yoe !== undefined ? c.yoe : c.profile.years_of_experience,
+                  expected_salary: c.expected_salary || c.redrob_signals?.expected_salary_range_inr_lpa,
+                  notice_period_days: c.notice_period_days !== undefined ? c.notice_period_days : c.redrob_signals?.notice_period_days,
+                  location: c.location || c.profile.location,
+                  country: c.country || c.profile.country
+                };
+              }
+              return c;
+            });
+            
             setImportProgress(90);
             setImportStatus('Rendering Workspace UI...');
             
