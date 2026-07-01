@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp } from 'lucide-react';
+import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { CandidateDrawer } from './CandidateDrawer';
 import { FEATURE_KEYS, FEATURE_COLORS, formatFeatureName } from './FeatureConstants';
 
@@ -127,7 +127,17 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
 };
 
 export default function CandidateConsole() {
-  const [candidates, setCandidates] = useState<any[]>([]);
+  interface Tab {
+    id: string;
+    name: string;
+    candidates: any[];
+  }
+  const [tabs, setTabs] = useState<Tab[]>([{ id: 'default', name: 'Default Run', candidates: [] }]);
+  const [activeTabId, setActiveTabId] = useState<string>('default');
+
+  const activeTab = tabs.find(t => t.id === activeTabId) || tabs[0];
+  const candidates = activeTab.candidates;
+
   const [benchmark, setBenchmark] = useState<any>(null);
   const [selectedCandidate, setSelectedCandidate] = useState<any | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
@@ -144,7 +154,9 @@ export default function CandidateConsole() {
   useEffect(() => {
     fetch('/ranked_candidates.json?t=' + new Date().getTime())
       .then(res => res.json())
-      .then(data => setCandidates(data))
+      .then(data => {
+        setTabs(prev => prev.map(t => t.id === 'default' ? { ...t, candidates: data } : t));
+      })
       .catch(err => console.error("Error loading candidates:", err));
 
     fetch('/benchmark_report.json?t=' + new Date().getTime())
@@ -162,7 +174,9 @@ export default function CandidateConsole() {
       try {
         const json = JSON.parse(event.target?.result as string);
         if (Array.isArray(json)) {
-          setCandidates(json);
+          const newTabId = 'tab_' + Date.now();
+          setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: json }]);
+          setActiveTabId(newTabId);
         } else {
           alert('Invalid JSON format. Expected an array of candidates.');
         }
@@ -314,6 +328,32 @@ export default function CandidateConsole() {
           </button>
         </div>
       </header>
+
+      {/* Workspace Tabs */}
+      <div className="flex items-center gap-1 px-4 pt-2 bg-[#0A0A0A] border-b border-[#27272A] overflow-x-auto no-scrollbar">
+        {tabs.map(tab => (
+          <div 
+            key={tab.id}
+            onClick={() => setActiveTabId(tab.id)}
+            className={`group flex items-center gap-2 px-4 py-2 text-xs font-mono border-t border-l border-r rounded-t cursor-pointer transition-colors ${activeTabId === tab.id ? 'bg-[#121212] border-[#3F3F46] text-[#10B981]' : 'bg-[#0A0A0A] border-transparent text-[#71717A] hover:bg-[#121212] hover:text-[#A1A1AA]'}`}
+          >
+            {tab.name}
+            {tab.id !== 'default' && (
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const newTabs = tabs.filter(t => t.id !== tab.id);
+                  setTabs(newTabs);
+                  if (activeTabId === tab.id) setActiveTabId(newTabs[newTabs.length - 1].id);
+                }}
+                className="opacity-0 group-hover:opacity-100 hover:text-red-400 transition-opacity focus:outline-none"
+              >
+                <X size={12} />
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
 
       {/* Filter Bar */}
       <div className="flex items-center gap-6 px-6 py-2 border-b border-[#27272A] bg-[#121212] text-xs font-mono">
