@@ -34,6 +34,8 @@ class CandidateFeatures:
     # Advanced Enterprise Penalties (Post-Model Multipliers)
     job_hopper_penalty: float
     overqualified_penalty: float
+    immediate_joiner_boost: float
+    salary_mismatch_penalty: float
 
 # --- ENTERPRISE KNOWLEDGE GRAPH (SKILL ONTOLOGY) ---
 # Simulates a Graph DB logic. If a candidate has a specific skill, 
@@ -398,6 +400,17 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         current_title = sorted_career[0].title.lower()
         if any(k in current_title.split() or k in current_title for k in exec_keywords):
             overqualified_penalty = 0.7  # Penalize for being drastically overqualified
+            
+    # 3. Immediate Joiner Boost
+    immediate_joiner_boost = 1.0
+    if signals.notice_period_days is not None and signals.notice_period_days <= 15:
+        immediate_joiner_boost = 1.15
+        
+    # 4. Salary Out-of-Budget Penalty
+    salary_mismatch_penalty = 1.0
+    if signals.expected_salary_range_inr_lpa and signals.expected_salary_range_inr_lpa.max is not None:
+        if signals.expected_salary_range_inr_lpa.max > 45: # assuming JD budget is around 45LPA max
+            salary_mismatch_penalty = 0.9
         
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
@@ -420,5 +433,7 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         platform_reliability_score=reliability,
         engagement_multiplier=eng_boost,
         job_hopper_penalty=job_hopper_penalty,
-        overqualified_penalty=overqualified_penalty
+        overqualified_penalty=overqualified_penalty,
+        immediate_joiner_boost=immediate_joiner_boost,
+        salary_mismatch_penalty=salary_mismatch_penalty
     )

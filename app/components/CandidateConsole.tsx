@@ -354,7 +354,12 @@ export default function CandidateConsole() {
                       {c.rank.toString().padStart(3, '0')}
                     </td>
                     <td className="px-6 py-3 font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity">
-                      <div className="text-[#EDEDED] font-medium font-sans text-sm">{c.name}</div>
+                      <div className="text-[#EDEDED] font-medium font-sans text-sm flex items-center gap-1.5">
+                        {c.name}
+                        {c.redrob_signals?.recruiter_response_rate > 0.90 && c.redrob_signals?.interview_completion_rate > 0.90 && (
+                          <span className="text-[8px] font-bold text-[#EAB308] bg-[#EAB308]/10 border border-[#EAB308]/30 px-1 py-0.5 rounded-sm" title="Highly responsive">⚡ FAST</span>
+                        )}
+                      </div>
                       <div className="text-[#71717A] text-[10px]">{c.candidate_id}</div>
                     </td>
                     <td className="px-6 py-3">

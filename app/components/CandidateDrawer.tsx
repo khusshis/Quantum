@@ -40,8 +40,14 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                 {(candidate.score * 100).toFixed(2)}/100
               </span>
             </div>
-            <h2 className="text-sm font-medium text-white mb-1 font-mono tracking-tight">
-              {candidate.name} <span className="text-[#71717A] text-xs ml-2">({candidate.candidate_id})</span>
+            <h2 className="text-sm font-medium text-white mb-1 font-mono tracking-tight flex items-center gap-2">
+              {candidate.name} 
+              {signals.recruiter_response_rate > 0.90 && signals.interview_completion_rate > 0.90 && (
+                <span className="text-[9px] text-[#EAB308] font-sans font-bold bg-[#EAB308]/10 border border-[#EAB308]/30 px-1.5 py-0.5 rounded-sm uppercase tracking-wider">
+                  ⚡ Fast Mover
+                </span>
+              )}
+              <span className="text-[#71717A] text-xs font-sans font-normal ml-1">({candidate.candidate_id})</span>
             </h2>
             <p className="text-xs text-[#A1A1AA]">
               {candidate.title || 'Unknown Title'} <span className="text-[#52525B] mx-1">/</span> {candidate.company || 'Unknown Company'}
@@ -243,7 +249,11 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                 <div className="text-[10px] text-[#A1A1AA] mb-1">GitHub Activity</div>
                 <div className="flex items-end gap-2">
                   <span className="text-lg font-mono font-medium text-[#EDEDED] leading-none">{Math.round(signals.github_activity_score)}</span>
-                  <span className="text-[9px] text-[#10B981] font-mono leading-none mb-0.5 border border-[#10B981]/30 bg-[#10B981]/10 px-1 py-0.5 rounded-sm">VERIFIED</span>
+                  {signals.github_activity_score > 80 ? (
+                    <span className="text-[9px] text-[#F59E0B] font-mono leading-none mb-0.5 border border-[#F59E0B]/30 bg-[#F59E0B]/10 px-1 py-0.5 rounded-sm whitespace-nowrap">🌟 TOP CONTRIBUTOR</span>
+                  ) : (
+                    <span className="text-[9px] text-[#10B981] font-mono leading-none mb-0.5 border border-[#10B981]/30 bg-[#10B981]/10 px-1 py-0.5 rounded-sm">VERIFIED</span>
+                  )}
                 </div>
               </div>
             )}
