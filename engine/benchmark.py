@@ -18,7 +18,7 @@ def main():
     # We will use psutil to track peak memory if we can, or just track at start/end.
     # A cleaner way is to run subprocess and poll memory.
     proc = subprocess.Popen(
-        [sys.executable, "engine/rank.py", "--candidates", "data/candidates.jsonl"],
+        [sys.executable, "-m", "engine.rank", "--candidates", "data/candidates.jsonl"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True
