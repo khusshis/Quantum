@@ -1,0 +1,18 @@
+team_name: "Antigravity Engineers"
+track: "AI & Data Engineering"
+approach_summary: >
+  Built a decoupled, two-part architecture. 
+  1. An offline compute engine (`engine/`) that runs under strict resource limits (CPU-only, no network). 
+  It uses precomputed MiniLM embeddings for dense retrieval, BM25 for sparse retrieval, rule-based features, 
+  and trains a LightGBM ranker. It includes deterministic, template-based grounded reasoning generation.
+  2. A React/Vite web application (`app/`) that visualizes the output of the engine in a rich UI.
+model_details:
+  retrieval: "all-MiniLM-L6-v2 (CPU-friendly, precomputed dense embeddings)"
+  sparse: "BM25 (built at ranking time or precomputed)"
+  ranker: "LightGBM LGBMRanker (LambdaRank objective)"
+  reasoning: "Rule-based and template-driven (0% hallucination risk)"
+repo_structure:
+  engine: "Core Python algorithms, LTR model, schema, and tests."
+  app: "React frontend displaying the candidate intelligence dashboard."
+  sandbox: "Streamlit app for interactive subset testing of the engine."
+  data: "Source data and challenge files (git-ignored)."
