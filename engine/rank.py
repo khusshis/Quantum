@@ -145,6 +145,12 @@ def run_pipeline(candidates, shortlist_size=100, model_path="engine/model.txt",
         non_coder = df.loc[i, "non_coder_penalty"] if "non_coder_penalty" in df.columns else 1.0
         
         final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult * job_hop * overqual * imm_join * sal_mis * non_coder
+        
+        if custom_jd_text:
+            bm25 = df.loc[i, "bm25_score"]
+            # Massive boost to override the ML Engineer bias for custom queries
+            final = final * (1.0 + (bm25 * 100.0))
+            
         unbounded_scores.append(final)
         
     print("Ranking candidates...")

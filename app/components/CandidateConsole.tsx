@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp, X, Loader2 } from 'lucide-react';
 import { CandidateDrawer } from './CandidateDrawer';
 import { FEATURE_KEYS, FEATURE_COLORS, formatFeatureName } from './FeatureConstants';
 
@@ -173,7 +173,16 @@ export default function CandidateConsole() {
       if (estimatedTotalSeconds > 0) {
          const remaining = Math.max(0, estimatedTotalSeconds - elapsedSeconds);
          if (importProgress === 100) setEta('Complete');
-         else if (remaining < 1) setEta('Almost done...');
+         else if (remaining < 1) {
+             const overtime = Math.floor(elapsedSeconds - estimatedTotalSeconds);
+             const messages = [
+                 "Finalizing results...",
+                 "Almost there...",
+                 "Just a few more seconds...",
+                 "Running final checks..."
+             ];
+             setEta(messages[Math.floor(overtime / 2) % messages.length]);
+         }
          else if (remaining < 60) setEta(`~${Math.ceil(remaining)}s remaining`);
          else setEta(`~${Math.floor(remaining / 60)}m ${Math.ceil(remaining % 60)}s remaining`);
       } else {
@@ -489,8 +498,19 @@ export default function CandidateConsole() {
         <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center font-mono">
           <div className="loading-fade-in flex flex-col items-center max-w-md w-full px-8">
             
-            {/* Siri-like Morphing Orb */}
-            <div className="quantum-orb mb-10 opacity-90"></div>
+            {/* Cancel Button */}
+            <button 
+              onClick={() => setIsImporting(false)}
+              className="absolute top-6 right-6 text-[#71717A] hover:text-white transition-colors"
+            >
+              <X size={20} />
+            </button>
+            
+            {/* Minimalist Verified Spinner */}
+            <div className="mb-8 relative flex items-center justify-center">
+               <div className="absolute inset-0 bg-[#10B981] blur-[30px] opacity-20 rounded-full"></div>
+               <Loader2 size={48} className="text-[#10B981] animate-spin relative z-10" />
+            </div>
             
             {/* Status Text */}
             <h2 className="text-[#EDEDED] text-base font-medium tracking-tight mb-1.5 text-center">
