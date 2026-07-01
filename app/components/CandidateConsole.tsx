@@ -129,7 +129,7 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
 const highlightNumbers = (text: string) => {
   if (!text) return null;
   return text.split(/(\d+(?:\.\d+)?)/).map((part, i) => 
-    /^\d+(?:\.\d+)?$/.test(part) ? <span key={i} className="text-[#60A5FA] font-bold">{part}</span> : part
+    /^\d+(?:\.\d+)?$/.test(part) ? <span key={i} className="text-[#EDEDED] font-bold">{part}</span> : part
   );
 };
 export default function CandidateConsole() {
