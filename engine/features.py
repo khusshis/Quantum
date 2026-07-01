@@ -13,6 +13,7 @@ class CandidateFeatures:
     domain_adjacency_penalty: float
     consulting_only_penalty: float
     research_only_disqualifier: float
+    role_relevance_score: float
     
     skill_semantic_match: float
     skill_trust_score: float
@@ -126,6 +127,79 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         research_disqualifier = 0.1
     else:
         research_disqualifier = 1.0
+
+    # --- ROLE RELEVANCE SCORE (new, separate from title_trajectory_score) ---
+    # Mirrors the JD's explicit trap: "A candidate who has all the AI keywords
+    # listed as skills but whose title is 'Marketing Manager' is not a fit."
+    # Checks the *majority* of career_history (recency-weighted), not just current_title.
+    # Produces a graded 0.0-1.0 score.
+    
+    # Technical function keywords — broad enough to catch legitimate variants
+    # ("Founding Engineer", "SDE-2", "AI Architect", "Member of Technical Staff")
+    _tech_keywords = [
+        "engineer", "developer", "programmer", "sde", "swe",
+        "scientist", "researcher", "data", "ml", "ai",
+        "architect", "devops", "sre", "backend", "frontend",
+        "fullstack", "full-stack", "full stack",
+        "technical", "software", "platform", "infrastructure",
+        "analytics", "analyst",  # data analyst is a valid adjacent role
+        "machine learning", "deep learning", "nlp", "mts",
+        "cto", "vp engineering", "head of engineering",
+        "founding",  # "Founding Engineer", etc.
+    ]
+    # Explicitly non-technical function keywords
+    _nontech_keywords = [
+        "marketing", "sales", "support", "customer success",
+        "hr", "human resource", "recruiter", "recruiting",
+        "finance", "accounting", "accountant",
+        "operations", "admin", "administrative",
+        "graphic design", "content writer", "copywriter",
+        "business development", "bdr", "sdr",
+        "legal", "compliance", "executive assistant",
+        "teacher", "professor", "lecturer",
+        "mechanical engineer", "civil engineer", "electrical engineer",
+        "chemical engineer",
+    ]
+    
+    # Score each role in career_history with recency weighting
+    sorted_career = sorted(candidate.career_history, 
+                           key=lambda e: e.start_date, reverse=True)
+    tech_weight = 0.0
+    total_weight = 0.0
+    
+    for pos_idx, entry in enumerate(sorted_career):
+        title_lower = entry.title.lower()
+        # Recency weight: most recent role gets weight 1.0, each older role decays
+        recency_weight = 1.0 / (1.0 + pos_idx * 0.5)
+        # Duration weight: longer roles count more
+        dur_weight = min(entry.duration_months / 12.0, 3.0)  # cap at 3 years
+        w = recency_weight * max(dur_weight, 0.5)  # minimum weight of 0.5
+        
+        is_tech = any(k in title_lower for k in _tech_keywords)
+        is_nontech = any(k in title_lower for k in _nontech_keywords)
+        
+        if is_tech and not is_nontech:
+            tech_weight += w * 1.0
+        elif is_nontech and not is_tech:
+            tech_weight += w * 0.0
+        else:
+            # Ambiguous or unlisted title — check description for technical signals
+            desc_lower = entry.description.lower() if entry.description else ""
+            desc_tech = any(k in desc_lower for k in [
+                "python", "java", "code", "deploy", "api", "model",
+                "algorithm", "database", "sql", "pipeline", "architecture"
+            ])
+            tech_weight += w * (0.7 if desc_tech else 0.3)
+        
+        total_weight += w
+    
+    if total_weight > 0:
+        role_relevance = tech_weight / total_weight
+    else:
+        role_relevance = 0.5  # no career history — neutral
+    
+    # Clamp to 0.0-1.0
+    role_relevance = max(0.0, min(1.0, role_relevance))
         
     # --- SKILLS FEATURES ---
     
@@ -156,10 +230,10 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
     
     # framework_enthusiast_penalty
     framework_penalty = 1.0
-    if trendy_count > 3:
+    if trendy_count >= 1:
         avg_dur = total_trendy_duration / trendy_count
         avg_end = total_trendy_endorsements / trendy_count
-        if avg_dur < 6 and avg_end < 5 and prod_score < 0.3:
+        if avg_dur < 12 and avg_end < 10 and prod_score < 0.5:
             framework_penalty = 0.5
             
     # --- EDUCATION FEATURES ---
@@ -216,6 +290,7 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         domain_adjacency_penalty=domain_penalty,
         consulting_only_penalty=consulting_penalty,
         research_only_disqualifier=research_disqualifier,
+        role_relevance_score=role_relevance,
         skill_semantic_match=precomputed_semantic_match,
         skill_trust_score=skill_trust,
         framework_enthusiast_penalty=framework_penalty,

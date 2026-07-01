@@ -46,7 +46,7 @@ def main():
         
         feats = compute_features(c, JD, precomputed_semantic_match=r_scores["dense"])
         
-        weak_label = generate_weak_label(c, feats, hp_score, r_scores)
+        continuous_score, ordinal_label = generate_weak_label(c, feats, hp_score, r_scores)
         
         # Build feature dict
         feat_dict = {
@@ -56,6 +56,7 @@ def main():
             "domain_adjacency_penalty": feats.domain_adjacency_penalty,
             "consulting_only_penalty": feats.consulting_only_penalty,
             "research_only_disqualifier": feats.research_only_disqualifier,
+            "role_relevance_score": feats.role_relevance_score,
             "skill_semantic_match": feats.skill_semantic_match,
             "bm25_score": r_scores["sparse"],
             "skill_trust_score": feats.skill_trust_score,
@@ -68,7 +69,7 @@ def main():
             "honeypot_suspicion_score": hp_score
         }
         feature_rows.append(feat_dict)
-        labels.append(weak_label)
+        labels.append(continuous_score)
         
     df = pd.DataFrame(feature_rows)
     y = np.array(labels)
@@ -81,43 +82,31 @@ def main():
     # LightGBM requires groups. We will have 1 group for train, 1 for val.
     X_train, X_val, y_train, y_val = train_test_split(df, y, test_size=0.2, random_state=42)
     
-    def chunk_groups(total_len, chunk_size=10000):
-        groups = []
-        while total_len > 0:
-            groups.append(min(total_len, chunk_size))
-            total_len -= chunk_size
-        return groups
-
-    group_train = chunk_groups(len(X_train))
-    group_val = chunk_groups(len(X_val))
-    
-    print("Training LightGBM Ranker...")
-    ranker = lgb.LGBMRanker(
-        objective="lambdarank",
-        metric="ndcg",
-        eval_at=[10, 50],
+    print("Training LightGBM Regressor...")
+    regressor = lgb.LGBMRegressor(
+        objective="regression",
+        metric="rmse",
         learning_rate=0.05,
-        n_estimators=100,
+        n_estimators=200,
+        num_leaves=63,
+        min_child_samples=20,
         importance_type="gain",
         random_state=42
     )
     
-    # LightGBM requires validation data for early stopping
-    ranker.fit(
+    regressor.fit(
         X_train, y_train,
-        group=group_train,
         eval_set=[(X_val, y_val)],
-        eval_group=[group_val],
-        callbacks=[lgb.early_stopping(stopping_rounds=10), lgb.log_evaluation(10)]
+        callbacks=[lgb.log_evaluation(50)]
     )
     
     # Save model
     model_path = os.path.join(args.out_dir, "model.txt")
-    ranker.booster_.save_model(model_path)
+    regressor.booster_.save_model(model_path)
     print(f"Saved trained model to {model_path}")
     
     # Feature Importance Plot
-    importance = ranker.feature_importances_
+    importance = regressor.feature_importances_
     features = X_train.columns
     
     plt.figure(figsize=(10, 8))

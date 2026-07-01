@@ -17,8 +17,7 @@ def main():
     print("=== TOP 100 HONEYPOT AUDIT ===")
     for c in top_cands:
         score, _, reasons = is_honeypot(c)
-        if score > 0.0:
-            print(f"[{c.candidate_id}] Score: {score:.2f} | Reasons: {reasons}")
+        print(f"[{c.candidate_id}] Score: {score:.2f} | Reasons: {reasons}")
         if score > threshold:
             above_threshold += 1
             

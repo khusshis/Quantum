@@ -5,7 +5,13 @@ import psutil
 import subprocess
 from pathlib import Path
 
+import argparse
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", type=str, default="engine/benchmark_report.txt")
+    args = parser.parse_args()
+    
     print("Running benchmark for rank.py...")
     start_time = time.time()
     
@@ -61,7 +67,7 @@ def main():
     report_text = "\n".join(report)
     print(report_text)
     
-    with open("engine/benchmark_report.txt", "w", encoding="utf-8") as f:
+    with open(args.out, "w", encoding="utf-8") as f:
         f.write(report_text)
 
 if __name__ == "__main__":

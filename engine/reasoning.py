@@ -19,12 +19,12 @@ def generate_reasoning(candidate: Candidate, features: CandidateFeatures, jd: Pa
     
     skill_str = " and ".join(matched_skills[:2]) if matched_skills else "general engineering"
     
-    # 3. Connection to JD
-    if features.production_ml_evidence_score > 0.5:
+    # 3. Connection to JD (gated on role relevance — don't assert production ML for non-tech roles)
+    if features.production_ml_evidence_score > 0.5 and features.role_relevance_score >= 0.5:
         jd_category = "production embeddings/retrieval experience"
-    elif features.years_experience_fit == 1.0:
+    elif features.years_experience_fit == 1.0 and features.role_relevance_score >= 0.5:
         jd_category = "ideal experience range (5-9 years)"
-    elif features.skill_trust_score > 0.5:
+    elif features.skill_trust_score > 0.5 and features.role_relevance_score >= 0.5:
         jd_category = "strong python and ML toolset"
     else:
         jd_category = "general technical background"
@@ -41,6 +41,8 @@ def generate_reasoning(candidate: Candidate, features: CandidateFeatures, jd: Pa
         concerns.append("experience is primarily CV/robotics rather than NLP/IR")
     if features.framework_enthusiast_penalty < 0.8:
         concerns.append("skills show a framework-enthusiast pattern")
+    if features.role_relevance_score < 0.5:
+        concerns.append("career history is primarily non-technical roles")
 
     concern_str = ""
     if concerns:

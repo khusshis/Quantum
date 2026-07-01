@@ -51,10 +51,30 @@ def create_synthetic_candidate(i: int):
 
 def test_reasoning_generation():
     reasonings = set()
-    
-    features_top = CandidateFeatures(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.2, 1.0, 1.0, 1.0, 0.1, 0.1)
-    features_mid = CandidateFeatures(1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.2, 0.8, 1.0, 1.0, 0.1, 0.1)
-    features_low = CandidateFeatures(0.0, 0.0, 0.0, 0.1, 0.1, 1.0, 0.0, 0.1, 0.5, 0.0, 0.1, 0.1, 1.0, 0.0, 0.0)
+    features_top = CandidateFeatures(
+        years_experience_fit=1.0, title_trajectory_score=1.0, production_ml_evidence_score=1.0,
+        domain_adjacency_penalty=1.0, consulting_only_penalty=1.0, research_only_disqualifier=1.0,
+        role_relevance_score=1.0, skill_semantic_match=1.0, skill_trust_score=1.0,
+        framework_enthusiast_penalty=1.0, education_tier_score=0.2, availability_score=1.0,
+        notice_period_fit=1.0, salary_alignment_flag=1.0, verification_trust_score=0.1,
+        location_boost=0.1
+    )
+    features_mid = CandidateFeatures(
+        years_experience_fit=1.0, title_trajectory_score=1.0, production_ml_evidence_score=0.0,
+        domain_adjacency_penalty=1.0, consulting_only_penalty=1.0, research_only_disqualifier=1.0,
+        role_relevance_score=0.5, skill_semantic_match=0.5, skill_trust_score=1.0,
+        framework_enthusiast_penalty=1.0, education_tier_score=0.2, availability_score=0.8,
+        notice_period_fit=1.0, salary_alignment_flag=1.0, verification_trust_score=0.1,
+        location_boost=0.1
+    )
+    features_low = CandidateFeatures(
+        years_experience_fit=0.0, title_trajectory_score=0.0, production_ml_evidence_score=0.0,
+        domain_adjacency_penalty=0.1, consulting_only_penalty=0.1, research_only_disqualifier=1.0,
+        role_relevance_score=0.0, skill_semantic_match=0.1, skill_trust_score=0.5,
+        framework_enthusiast_penalty=1.0, education_tier_score=0.0, availability_score=0.1,
+        notice_period_fit=0.1, salary_alignment_flag=1.0, verification_trust_score=0.0,
+        location_boost=0.0
+    )
 
     for i in range(100):
         cand = create_synthetic_candidate(i)

@@ -93,6 +93,7 @@ def main():
             "domain_adjacency_penalty": feats.domain_adjacency_penalty,
             "consulting_only_penalty": feats.consulting_only_penalty,
             "research_only_disqualifier": feats.research_only_disqualifier,
+            "role_relevance_score": feats.role_relevance_score,
             "skill_semantic_match": feats.skill_semantic_match,
             "bm25_score": r_scores["sparse"],
             "skill_trust_score": feats.skill_trust_score,
@@ -176,7 +177,9 @@ def main():
     
     # Write JSON for UI
     if args.export_ui_json:
-        os.makedirs(os.path.dirname(args.export_ui_json), exist_ok=True)
+        export_dir = os.path.dirname(args.export_ui_json)
+        if export_dir:
+            os.makedirs(export_dir, exist_ok=True)
         with open(args.export_ui_json, "w", encoding="utf-8") as f:
             json.dump(json_export, f, indent=2)
         print(f"Wrote rich JSON to {args.export_ui_json}")
