@@ -219,9 +219,12 @@ export default function CandidateConsole() {
             }
             
             // Normalize raw candidates to match UI expected schema
+            let isRawData = false;
+            
             json = json.map(c => {
+              let normalized = c;
               if (c.profile) {
-                return {
+                normalized = {
                   ...c,
                   name: c.name || c.profile.anonymized_name,
                   title: c.title || c.profile.current_title,
@@ -233,8 +236,38 @@ export default function CandidateConsole() {
                   country: c.country || c.profile.country
                 };
               }
-              return c;
+              
+              // Auto-fill missing Rank and Score for raw datasets
+              if (normalized.score === undefined) {
+                 isRawData = true;
+                 const completeness = normalized.redrob_signals?.profile_completeness_score || 50;
+                 const responseRate = (normalized.redrob_signals?.recruiter_response_rate || 0.5) * 100;
+                 const mockScore = (completeness * 0.6 + responseRate * 0.4) / 100;
+                 normalized.score = mockScore + (Math.random() * 0.05); // Add slight jitter
+              }
+              
+              if (!normalized.features) {
+                 normalized.features = { 
+                     honeypot_suspicion_score: Math.random() > 0.95 ? 0.8 : 0.1,
+                     role_relevance_score: 0.8 + (Math.random() * 0.2),
+                     experience_alignment_score: 0.7 + (Math.random() * 0.2)
+                 };
+              }
+              
+              if (!normalized.reasoning) {
+                 normalized.reasoning = "Auto-generated preview profile. This candidate was imported from raw data, so a heuristic-based simulated score has been assigned by the frontend.";
+              }
+              
+              return normalized;
             });
+            
+            // If it was raw data without ranks, sort it and assign sequential ranks
+            if (isRawData) {
+               json.sort((a, b) => b.score - a.score);
+               json.forEach((c, idx) => {
+                   if (c.rank === undefined) c.rank = idx + 1;
+               });
+            }
             
             setImportProgress(90);
             setImportStatus('Rendering Workspace UI...');
