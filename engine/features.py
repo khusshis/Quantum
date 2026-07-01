@@ -36,6 +36,7 @@ class CandidateFeatures:
     overqualified_penalty: float
     immediate_joiner_boost: float
     salary_mismatch_penalty: float
+    non_coder_penalty: float
 
 # --- ENTERPRISE KNOWLEDGE GRAPH (SKILL ONTOLOGY) ---
 # Simulates a Graph DB logic. If a candidate has a specific skill, 
@@ -411,6 +412,20 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
     if signals.expected_salary_range_inr_lpa and signals.expected_salary_range_inr_lpa.max is not None:
         if signals.expected_salary_range_inr_lpa.max > 45: # assuming JD budget is around 45LPA max
             salary_mismatch_penalty = 0.9
+            
+    # 5. Non-Coder Penalty (Architect / Manager who doesn't code)
+    non_coder_penalty = 1.0
+    non_coding_titles = ["architect", "manager", "tech lead", "head"]
+    coding_keywords = ["code", "python", "developed", "built", "implemented", "shipped", "repo", "github", "hands-on", "engineered", "script"]
+    
+    if sorted_career:
+        current_job = sorted_career[0]
+        if current_job.duration_months > 18:
+            title_lower = current_job.title.lower()
+            if any(k in title_lower for k in non_coding_titles):
+                desc_lower = current_job.description.lower() if current_job.description else ""
+                if not any(k in desc_lower for k in coding_keywords):
+                    non_coder_penalty = 0.6  # Severe penalty for not coding recently
         
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
@@ -435,5 +450,6 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         job_hopper_penalty=job_hopper_penalty,
         overqualified_penalty=overqualified_penalty,
         immediate_joiner_boost=immediate_joiner_boost,
-        salary_mismatch_penalty=salary_mismatch_penalty
+        salary_mismatch_penalty=salary_mismatch_penalty,
+        non_coder_penalty=non_coder_penalty
     )

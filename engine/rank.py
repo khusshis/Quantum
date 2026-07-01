@@ -111,7 +111,8 @@ def main():
             "job_hopper_penalty": feats.job_hopper_penalty,
             "overqualified_penalty": feats.overqualified_penalty,
             "immediate_joiner_boost": feats.immediate_joiner_boost,
-            "salary_mismatch_penalty": feats.salary_mismatch_penalty
+            "salary_mismatch_penalty": feats.salary_mismatch_penalty,
+            "non_coder_penalty": feats.non_coder_penalty
         }
         
         feature_rows.append(feat_dict)
@@ -122,7 +123,7 @@ def main():
     df = pd.DataFrame(feature_rows)
     
     # Model prediction - drop the new post-multipliers so the feature count matches training (17)
-    cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier", "job_hopper_penalty", "overqualified_penalty", "immediate_joiner_boost", "salary_mismatch_penalty"]
+    cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier", "job_hopper_penalty", "overqualified_penalty", "immediate_joiner_boost", "salary_mismatch_penalty", "non_coder_penalty"]
     df_model = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
     
     raw_scores = bst.predict(df_model)
@@ -151,8 +152,9 @@ def main():
         overqual = df.loc[i, "overqualified_penalty"] if "overqualified_penalty" in df.columns else 1.0
         imm_join = df.loc[i, "immediate_joiner_boost"] if "immediate_joiner_boost" in df.columns else 1.0
         sal_mis = df.loc[i, "salary_mismatch_penalty"] if "salary_mismatch_penalty" in df.columns else 1.0
+        non_coder = df.loc[i, "non_coder_penalty"] if "non_coder_penalty" in df.columns else 1.0
         
-        final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult * job_hop * overqual * imm_join * sal_mis
+        final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult * job_hop * overqual * imm_join * sal_mis * non_coder
         unbounded_scores.append(final)
         
     print("Ranking candidates...")
