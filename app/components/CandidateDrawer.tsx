@@ -127,6 +127,21 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
               ))}
             </div>
           </section>
+        {/* Skill Assessments */}
+        {signals.skill_assessment_scores && Object.keys(signals.skill_assessment_scores).length > 0 && (
+          <section>
+            <h3 className="text-[10px] font-bold font-mono uppercase tracking-wider text-[#71717A] mb-2">
+              Verified Assessments
+            </h3>
+            <div className="grid grid-cols-4 gap-2">
+              {Object.entries(signals.skill_assessment_scores).map(([skill, score]: [string, any], i: number) => (
+                <div key={i} className="flex flex-col items-center justify-center bg-[#121212] border border-[#27272A] p-2 rounded">
+                  <span className="text-[14px] font-mono font-medium text-[#EDEDED] leading-none mb-1">{score}%</span>
+                  <span className="text-[9px] text-[#A1A1AA] uppercase tracking-wider text-center line-clamp-1" title={skill}>{skill}</span>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
 
         {/* Career History */}
@@ -228,6 +243,7 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                <div className="flex flex-col">
                  <span className="text-sm font-mono text-[#EDEDED]">{(signals.recruiter_response_rate * 100).toFixed(0)}%</span>
                  <span className="text-[9px] text-[#71717A] mt-1">Response Rate</span>
+                 <span className="text-[8px] text-[#52525B] font-mono mt-0.5">~{signals.avg_response_time_hours || 0}h avg</span>
                </div>
                <div className="flex flex-col">
                  <span className="text-sm font-mono text-[#EDEDED]">{(signals.interview_completion_rate * 100).toFixed(0)}%</span>
@@ -277,9 +293,11 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
               </div>
             </div>
             <div className="bg-[#121212] border border-[#27272A] p-3 rounded">
-              <div className="text-[10px] text-[#A1A1AA] mb-1 flex items-center gap-1"><Search size={10}/> 30d Visibility</div>
-              <div className="font-mono text-xs text-[#EDEDED]">
-                {signals.search_appearance_30d || 0} searches
+              <div className="text-[10px] text-[#A1A1AA] mb-2 flex items-center gap-1"><Search size={10}/> 30d Activity</div>
+              <div className="font-mono text-[9px] text-[#EDEDED] flex flex-col gap-1.5">
+                <div className="flex justify-between"><span>Searches</span> <span className="text-[#10B981] font-bold">{signals.search_appearance_30d || 0}</span></div>
+                <div className="flex justify-between"><span>Saves</span> <span className="text-[#3B82F6] font-bold">{signals.saved_by_recruiters_30d || 0}</span></div>
+                <div className="flex justify-between"><span>Apps</span> <span className="text-[#A1A1AA] font-bold">{signals.applications_submitted_30d || 0}</span></div>
               </div>
             </div>
             <div className="bg-[#121212] border border-[#27272A] p-3 rounded flex flex-col justify-center">
