@@ -169,6 +169,14 @@ export default function CandidateConsole() {
       .catch(err => console.error("Error loading benchmark:", err));
   }, []);
 
+  // Config modal state for AI ranking
+  const [showConfigModal, setShowConfigModal] = useState(false);
+  const [configShortlist, setConfigShortlist] = useState(100);
+  const [configJdText, setConfigJdText] = useState('');
+  const [pendingRawCandidates, setPendingRawCandidates] = useState<any[]>([]);
+  const [pendingFileName, setPendingFileName] = useState('');
+  const [apiError, setApiError] = useState('');
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -181,14 +189,14 @@ export default function CandidateConsole() {
     
     reader.onprogress = (event) => {
       if (event.lengthComputable) {
-        const percent = Math.round((event.loaded / event.total) * 50);
+        const percent = Math.round((event.loaded / event.total) * 40);
         setImportProgress(percent);
         setImportStatus(`Reading file bytes... (${percent}%)`);
       }
     };
 
     reader.onload = (event) => {
-      setImportProgress(60);
+      setImportProgress(50);
       setImportStatus('Extracting candidates payload...');
       
       setTimeout(() => {
@@ -198,89 +206,64 @@ export default function CandidateConsole() {
           
           // Handle JSON Lines (.jsonl)
           if (text.trim().startsWith('{') && text.includes('\n') && !text.trim().startsWith('[')) {
-            setImportStatus('Parsing JSON Lines (Large Dataset)...');
-            setImportProgress(75);
-            const lines = text.trim().split('\n');
-            if (lines.length > 2000) {
-              alert(`File contains ${lines.length} candidates. Only parsing the first 2000 to ensure smooth performance in browser.`);
-            }
-            const linesToParse = lines.length > 2000 ? lines.slice(0, 2000) : lines;
-            json = linesToParse.filter(l => l.trim()).map(line => JSON.parse(line));
+            setImportStatus('Parsing JSON Lines...');
+            setImportProgress(60);
+            const lines = text.trim().split('\n').filter(l => l.trim());
+            json = lines.map(line => JSON.parse(line));
           } else {
             setImportStatus('Parsing JSON Array...');
-            setImportProgress(75);
+            setImportProgress(60);
             json = JSON.parse(text);
           }
 
-          if (Array.isArray(json)) {
-            if (json.length > 2000 && (!text.includes('\n') || text.trim().startsWith('['))) {
-              alert(`File contains ${json.length} candidates. Only parsing the first 2000 to ensure smooth performance.`);
-              json = json.slice(0, 2000);
-            }
+          if (Array.isArray(json) && json.length > 0) {
+            // Check if this is raw data (has profile field) or pre-ranked data
+            const isRawData = json[0].profile !== undefined && json[0].score === undefined;
             
-            // Normalize raw candidates to match UI expected schema
-            let isRawData = false;
-            
-            json = json.map(c => {
-              let normalized = c;
-              if (c.profile) {
-                normalized = {
-                  ...c,
-                  name: c.name || c.profile.anonymized_name,
-                  title: c.title || c.profile.current_title,
-                  company: c.company || c.profile.current_company,
-                  yoe: c.yoe !== undefined ? c.yoe : c.profile.years_of_experience,
-                  expected_salary: c.expected_salary || c.redrob_signals?.expected_salary_range_inr_lpa,
-                  notice_period_days: c.notice_period_days !== undefined ? c.notice_period_days : c.redrob_signals?.notice_period_days,
-                  location: c.location || c.profile.location,
-                  country: c.country || c.profile.country
-                };
-              }
-              
-              // Auto-fill missing Rank and Score for raw datasets
-              if (normalized.score === undefined) {
-                 isRawData = true;
-                 const completeness = normalized.redrob_signals?.profile_completeness_score || 50;
-                 const responseRate = (normalized.redrob_signals?.recruiter_response_rate || 0.5) * 100;
-                 const mockScore = (completeness * 0.6 + responseRate * 0.4) / 100;
-                 normalized.score = mockScore + (Math.random() * 0.05); // Add slight jitter
-              }
-              
-              if (!normalized.features) {
-                 normalized.features = { 
-                     honeypot_suspicion_score: Math.random() > 0.95 ? 0.8 : 0.1,
-                     role_relevance_score: 0.8 + (Math.random() * 0.2),
-                     experience_alignment_score: 0.7 + (Math.random() * 0.2)
-                 };
-              }
-              
-              if (!normalized.reasoning) {
-                 normalized.reasoning = "Auto-generated preview profile. This candidate was imported from raw data, so a heuristic-based simulated score has been assigned by the frontend.";
-              }
-              
-              return normalized;
-            });
-            
-            // If it was raw data without ranks, sort it and assign sequential ranks
             if (isRawData) {
-               json.sort((a, b) => b.score - a.score);
-               json.forEach((c, idx) => {
-                   if (c.rank === undefined) c.rank = idx + 1;
-               });
+              // Store raw candidates and open config modal
+              setImportProgress(70);
+              setImportStatus('Raw dataset detected. Opening configuration...');
+              setPendingRawCandidates(json);
+              setPendingFileName(file.name);
+              setApiError('');
+              setTimeout(() => {
+                setIsImporting(false);
+                setShowConfigModal(true);
+              }, 300);
+            } else {
+              // Pre-ranked data — load directly (existing behavior)
+              setImportProgress(90);
+              setImportStatus('Rendering Workspace UI...');
+              
+              // Normalize if needed
+              const normalized = json.map(c => {
+                if (c.profile && !c.name) {
+                  return {
+                    ...c,
+                    name: c.profile.anonymized_name,
+                    title: c.profile.current_title,
+                    company: c.profile.current_company,
+                    yoe: c.profile.years_of_experience,
+                    expected_salary: c.redrob_signals?.expected_salary_range_inr_lpa,
+                    notice_period_days: c.redrob_signals?.notice_period_days,
+                    location: c.profile.location,
+                    country: c.profile.country
+                  };
+                }
+                return c;
+              });
+              
+              setTimeout(() => {
+                const newTabId = 'tab_' + Date.now();
+                setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: normalized }]);
+                setActiveTabId(newTabId);
+                setImportProgress(100);
+                setTimeout(() => setIsImporting(false), 400);
+              }, 50);
             }
-            
-            setImportProgress(90);
-            setImportStatus('Rendering Workspace UI...');
-            
-            setTimeout(() => {
-              const newTabId = 'tab_' + Date.now();
-              setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: json }]);
-              setActiveTabId(newTabId);
-              setImportProgress(100);
-              setTimeout(() => setIsImporting(false), 400);
-            }, 50);
           } else {
-            alert('Invalid JSON format. Expected an array of candidates or JSON Lines.');
+            alert('Invalid JSON format. Expected an array of candidates.');
             setIsImporting(false);
           }
         } catch (err) {
@@ -292,6 +275,57 @@ export default function CandidateConsole() {
     };
     reader.readAsText(file);
     e.target.value = '';
+  };
+
+  const runBackendPipeline = async () => {
+    if (!pendingRawCandidates.length) return;
+    
+    setShowConfigModal(false);
+    setIsImporting(true);
+    setImportProgress(10);
+    setImportStatus(`Sending ${pendingRawCandidates.length.toLocaleString()} candidates to Quantum Engine...`);
+    setApiError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/rank', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          candidates: pendingRawCandidates,
+          shortlist_size: configShortlist,
+          custom_jd_text: configJdText || null
+        })
+      });
+
+      setImportProgress(80);
+      setImportStatus('Receiving ranked results from engine...');
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || `Server returned ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      setImportProgress(95);
+      setImportStatus(`Rendering ${result.results.length} ranked candidates...`);
+
+      setTimeout(() => {
+        const newTabId = 'tab_' + Date.now();
+        const tabName = `⚡ ${pendingFileName} (Top ${result.shortlist_size})`;
+        setTabs(prev => [...prev, { id: newTabId, name: tabName, candidates: result.results }]);
+        setActiveTabId(newTabId);
+        setImportProgress(100);
+        setPendingRawCandidates([]);
+        setPendingFileName('');
+        setTimeout(() => setIsImporting(false), 400);
+      }, 50);
+    } catch (err: any) {
+      console.error(err);
+      setIsImporting(false);
+      setApiError(err.message || 'Unknown error');
+      setShowConfigModal(true); // Re-open modal to show error
+    }
   };
 
   const exportCSV = () => {
@@ -418,6 +452,77 @@ export default function CandidateConsole() {
               <span>0%</span>
               <span className="text-[#10B981] font-bold">{importProgress}%</span>
               <span>100%</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Ranking Configuration Modal */}
+      {showConfigModal && (
+        <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center font-mono">
+          <div className="bg-[#0A0A0A] border border-[#27272A] rounded-xl p-8 max-w-lg w-full shadow-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <Cpu size={20} className="text-[#10B981]" />
+              <h2 className="text-[#EDEDED] text-lg font-medium tracking-tight">AI Ranking Configuration</h2>
+            </div>
+            
+            <p className="text-[#71717A] text-xs mb-6">
+              Raw dataset detected: <span className="text-[#10B981] font-bold">{pendingRawCandidates.length.toLocaleString()}</span> candidates from <span className="text-[#A1A1AA]">{pendingFileName}</span>.
+              Configure how the Quantum Engine should rank them.
+            </p>
+
+            {apiError && (
+              <div className="bg-[#7F1D1D]/30 border border-[#EF4444]/30 rounded px-3 py-2 mb-4">
+                <p className="text-[#F87171] text-xs font-mono">⚠ {apiError}</p>
+                <p className="text-[#71717A] text-[10px] mt-1">Make sure the API server is running: <span className="text-[#A1A1AA]">python api.py</span></p>
+              </div>
+            )}
+
+            <div className="space-y-5">
+              <div>
+                <label className="text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold block mb-2">
+                  Shortlist Size
+                </label>
+                <input
+                  type="number"
+                  min={10}
+                  max={5000}
+                  value={configShortlist}
+                  onChange={(e) => setConfigShortlist(Math.max(10, Math.min(5000, parseInt(e.target.value) || 100)))}
+                  className="w-full bg-[#121212] border border-[#27272A] rounded px-3 py-2 text-sm text-[#EDEDED] focus:outline-none focus:border-[#10B981] transition-colors"
+                />
+                <p className="text-[9px] text-[#52525B] mt-1">How many top candidates to shortlist (10 – 5000).</p>
+              </div>
+
+              <div>
+                <label className="text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold block mb-2">
+                  Custom Job Description / Requirements <span className="text-[#52525B]">(Optional)</span>
+                </label>
+                <textarea
+                  rows={4}
+                  value={configJdText}
+                  onChange={(e) => setConfigJdText(e.target.value)}
+                  placeholder="e.g. Looking for Senior ML Engineer with 5+ years experience in NLP, ranking systems, and Python. Must have production deployment experience."
+                  className="w-full bg-[#121212] border border-[#27272A] rounded px-3 py-2 text-xs text-[#EDEDED] focus:outline-none focus:border-[#10B981] transition-colors resize-none placeholder-[#3F3F46]"
+                />
+                <p className="text-[9px] text-[#52525B] mt-1">Leave empty to use the default Redrob JD. Custom text adjusts BM25 keyword matching.</p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-8">
+              <button
+                onClick={() => { setShowConfigModal(false); setPendingRawCandidates([]); }}
+                className="flex-1 px-4 py-2.5 bg-[#121212] border border-[#27272A] text-[#A1A1AA] rounded text-xs hover:bg-[#18181B] transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={runBackendPipeline}
+                className="flex-1 px-4 py-2.5 bg-[#10B981] text-black font-bold rounded text-xs hover:bg-[#059669] transition-colors flex items-center justify-center gap-2"
+              >
+                <Cpu size={14} />
+                Run Quantum Engine
+              </button>
             </div>
           </div>
         </div>

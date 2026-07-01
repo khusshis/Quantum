@@ -43,38 +43,28 @@ def validate_submission_file(csv_path: str):
     else:
         print("Warning: validate_submission.py has no validate_submission() function. Skipping validation.")
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--candidates", type=str, default="data/candidates.jsonl")
-    parser.add_argument("--out", type=str, default="submission.csv")
-    parser.add_argument("--export-ui-json", type=str, default="app/public/ranked_candidates.json")
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--limit", type=int, default=None)
-    parser.add_argument("--model", type=str, default="engine/model.txt")
-    parser.add_argument("--embeddings", type=str, default="engine/embeddings/candidate_embeddings.npy")
-    parser.add_argument("--ids", type=str, default="engine/embeddings/candidate_ids.json")
-    parser.add_argument("--jd_embedding", type=str, default="engine/embeddings/jd_embedding.npy")
-    args = parser.parse_args()
-
-    np.random.seed(args.seed)
-    
-    print(f"Loading candidates from {args.candidates}...")
-    candidates = load_candidates(args.candidates)
-    if args.limit:
-        candidates = candidates[:args.limit]
-        
+def run_pipeline(candidates, shortlist_size=100, model_path="engine/model.txt",
+                  embeddings_path="engine/embeddings/candidate_embeddings.npy",
+                  ids_path="engine/embeddings/candidate_ids.json",
+                  jd_embedding_path="engine/embeddings/jd_embedding.npy",
+                  custom_jd_text=None):
+    """
+    Core ranking pipeline. Can be called from CLI (main) or from the Flask API.
+    Returns a list of ranked candidate dicts ready for the UI.
+    """
     if not candidates:
-        print("No candidates loaded.")
-        return
-        
-    print("Loading precomputed artifacts (embeddings, model)...")
-    retriever = HybridRetriever(candidates, args.embeddings, args.ids)
-    jd_emb = np.load(args.jd_embedding)[0]
+        return []
+
+    print(f"Loading precomputed artifacts (embeddings, model)...")
+    retriever = HybridRetriever(candidates, embeddings_path, ids_path)
+    jd_emb = np.load(jd_embedding_path)[0]
     
-    bst = lgb.Booster(model_file=args.model)
+    bst = lgb.Booster(model_file=model_path)
+
+    jd_narrative = custom_jd_text if custom_jd_text else JD.ideal_profile_narrative
     
     print("Computing features and scores...")
-    retrieval_scores = retriever.score_all(JD.ideal_profile_narrative, jd_embedding=jd_emb)
+    retrieval_scores = retriever.score_all(jd_narrative, jd_embedding=jd_emb)
     
     feature_rows = []
     c_list = []
@@ -124,7 +114,7 @@ def main():
     
     # Model prediction - drop the new post-multipliers so the feature count matches training (17)
     cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier", "job_hopper_penalty", "overqualified_penalty", "immediate_joiner_boost", "salary_mismatch_penalty", "non_coder_penalty"]
-    df_model = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
+    df_model = df.drop(columns=[col for col in cols_to_drop if col in df.columns])
     
     raw_scores = bst.predict(df_model)
     
@@ -165,35 +155,35 @@ def main():
     # Sort by final unbounded score DESC, candidate_id ASC for ties
     results.sort(key=lambda x: (-x[0], x[1]))
     
-    top_100_raw = results[:100]
+    top_n_raw = results[:shortlist_size]
     
-    # Rescale top 100 to [0.60, 0.99] to give a beautiful, readable distribution in the UI
-    top_100 = []
-    if len(top_100_raw) > 0:
-        max_top = top_100_raw[0][0]
-        min_top = top_100_raw[-1][0]
-        for val, cid, orig_idx in top_100_raw:
+    # Rescale top N to [0.60, 0.99] to give a beautiful, readable distribution in the UI
+    top_n = []
+    if len(top_n_raw) > 0:
+        max_top = top_n_raw[0][0]
+        min_top = top_n_raw[-1][0]
+        for val, cid, orig_idx in top_n_raw:
             if max_top > min_top:
                 scaled = 0.60 + 0.39 * ((val - min_top) / (max_top - min_top))
             else:
                 scaled = 0.99
-            top_100.append((round(scaled, 4), cid, orig_idx))
+            top_n.append((round(scaled, 4), cid, orig_idx))
             
-    # Re-sort top_100 because rounding to 4 decimals can create new ties that violate candidate_id ASC
-    top_100.sort(key=lambda x: (-x[0], x[1]))
+    # Re-sort because rounding to 4 decimals can create new ties
+    top_n.sort(key=lambda x: (-x[0], x[1]))
     
-    print(f"Generating reasoning for top {len(top_100)}...")
+    print(f"Generating reasoning for top {len(top_n)}...")
     
-    # Calculate SHAP contributions for top 100
-    top_indices = [orig_idx for _, _, orig_idx in top_100]
+    # Calculate SHAP contributions for top N
+    top_indices = [orig_idx for _, _, orig_idx in top_n]
     top_df_model = df_model.iloc[top_indices]
     contribs = bst.predict(top_df_model, pred_contrib=True)
     feature_names = df_model.columns.tolist()
     
-    csv_rows = []
     json_export = []
+    csv_rows = []
     
-    for rank_idx, (score, cid, orig_idx) in enumerate(top_100):
+    for rank_idx, (score, cid, orig_idx) in enumerate(top_n):
         rank = rank_idx + 1
         cand = c_list[orig_idx]
         feats = feat_obj_list[orig_idx]
@@ -227,7 +217,7 @@ def main():
             "honeypot_score": hp_list[orig_idx],
             "redrob_signals": asdict(cand.redrob_signals),
             "skills": [asdict(s) for s in cand.skills],
-            "career_history": [asdict(c) for c in cand.career_history],
+            "career_history": [asdict(ch) for ch in cand.career_history],
             "education": [asdict(e) for e in cand.education],
             "certifications": [asdict(cert) for cert in cand.certifications] if hasattr(cand, 'certifications') and cand.certifications else [],
             "languages": [asdict(l) for l in cand.languages] if hasattr(cand, 'languages') and cand.languages else [],
@@ -236,7 +226,39 @@ def main():
             "headline": cand.profile.headline,
             "summary": cand.profile.summary
           })
-        
+
+    return json_export, csv_rows
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--candidates", type=str, default="data/candidates.jsonl")
+    parser.add_argument("--out", type=str, default="submission.csv")
+    parser.add_argument("--export-ui-json", type=str, default="app/public/ranked_candidates.json")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--model", type=str, default="engine/model.txt")
+    parser.add_argument("--embeddings", type=str, default="engine/embeddings/candidate_embeddings.npy")
+    parser.add_argument("--ids", type=str, default="engine/embeddings/candidate_ids.json")
+    parser.add_argument("--jd_embedding", type=str, default="engine/embeddings/jd_embedding.npy")
+    args = parser.parse_args()
+
+    np.random.seed(args.seed)
+    
+    print(f"Loading candidates from {args.candidates}...")
+    candidates = load_candidates(args.candidates)
+    if args.limit:
+        candidates = candidates[:args.limit]
+
+    json_export, csv_rows = run_pipeline(
+        candidates,
+        shortlist_size=100,
+        model_path=args.model,
+        embeddings_path=args.embeddings,
+        ids_path=args.ids,
+        jd_embedding_path=args.jd_embedding
+    )
+
     # Write JSON for UI
     if args.export_ui_json:
         export_dir = os.path.dirname(args.export_ui_json)
