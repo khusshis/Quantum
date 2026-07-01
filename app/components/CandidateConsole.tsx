@@ -612,12 +612,12 @@ export default function CandidateConsole() {
                 <Search size={12} /> Contrastive Analysis: Runners-Up
               </span>
               <span className="text-[10px] text-[#71717A] ml-4 font-mono">
-                Baseline: Rank {selectedCandidate && selectedCandidate.rank <= 10 ? `#${selectedCandidate.rank}` : '#10 (Cutoff)'}
+                Baseline: Rank {selectedCandidate && (selectedCandidate.rank ?? 999) <= 10 ? `#${selectedCandidate.rank}` : '#10 (Cutoff)'}
               </span>
             </div>
             <div className="flex overflow-x-auto no-scrollbar">
               {runnersUp.map(runner => {
-                const cutoff = (selectedCandidate && selectedCandidate.rank <= 10) ? selectedCandidate : top10[9];
+                const cutoff = (selectedCandidate && (selectedCandidate.rank ?? 999) <= 10) ? selectedCandidate : top10[9];
                 let biggestGapKey = '';
                 let biggestGap = -9999;
                 
@@ -636,8 +636,8 @@ export default function CandidateConsole() {
                 return (
                 <div key={runner.candidate_id} className="flex-shrink-0 w-64 border-r border-[#27272A] p-3 hover:bg-[#121212] transition-colors">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="font-mono text-[10px] text-[#71717A]">RANK {runner.rank.toString().padStart(3, '0')}</span>
-                    <span className="font-mono text-[10px] text-[#EDEDED]">{(runner.score * 100).toFixed(2)}</span>
+                    <span className="font-mono text-[10px] text-[#71717A]">RANK {runner.rank?.toString().padStart(3, '0') || 'N/A'}</span>
+                    <span className="font-mono text-[10px] text-[#EDEDED]">{runner.score !== undefined ? (runner.score * 100).toFixed(2) : 'N/A'}</span>
                   </div>
                   <div className="text-xs font-medium truncate text-[#EDEDED] mb-2">{runner.title || 'Unknown Title'}</div>
                   
