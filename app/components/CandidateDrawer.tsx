@@ -127,6 +127,8 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
               ))}
             </div>
           </section>
+        )}
+
         {/* Skill Assessments */}
         {signals.skill_assessment_scores && Object.keys(signals.skill_assessment_scores).length > 0 && (
           <section>
