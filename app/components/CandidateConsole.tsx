@@ -129,15 +129,15 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
 export default function CandidateConsole() {
   interface Tab {
     id: string;
-    label: string;
+    name: string;
     candidates: any[];
   }
-  const [tabs, setTabs] = useState<{ id: string; label: string; candidates: any[] }[]>(() => {
+  const [tabs, setTabs] = useState<{ id: string; name: string; candidates: any[] }[]>(() => {
     try {
       const saved = sessionStorage.getItem('quantum_tabs');
       if (saved) return JSON.parse(saved);
     } catch (e) {}
-    return [{ id: 'default', label: 'Default Run', candidates: [] }];
+    return [{ id: 'default', name: 'Default Run', candidates: [] }];
   });
   
   const [activeTabId, setActiveTabId] = useState(() => {
@@ -649,13 +649,13 @@ export default function CandidateConsole() {
             <div className="flex gap-3 mt-8">
               <button
                 onClick={() => { setShowConfigModal(false); setPendingRawCandidates([]); }}
-                className="flex-1 px-4 py-2.5 bg-[#121212] border border-[#27272A] text-[#A1A1AA] rounded text-xs hover:bg-[#18181B] transition-colors"
+                className="flex-1 px-4 py-2.5 bg-[#121212] border border-[#27272A] text-[#A1A1AA] rounded-full text-xs hover:bg-[#18181B] transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={runBackendPipeline}
-                className="flex-1 px-4 py-2.5 bg-[#10B981] text-black font-bold rounded text-xs hover:bg-[#059669] transition-colors flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 bg-[#10B981] text-black font-bold rounded-full text-xs hover:bg-[#059669] transition-colors flex items-center justify-center gap-2"
               >
                 <Cpu size={14} />
                 Run Quantum Engine
@@ -677,14 +677,11 @@ export default function CandidateConsole() {
             <span>POOL: 100,000</span>
             <span className="text-[#EDEDED]">SHORTLIST: {candidates.length}</span>
             {benchmark && <span className="flex items-center gap-1.5"><Clock size={12}/> LAST RUN: <span className="text-[#10B981]">{timeAgoStr}</span></span>}
+            <span className="flex items-center gap-1.5 text-[#10B981] ml-2"><CheckCircle2 size={12} /> 0 EXTERNAL API CALLS</span>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-[#10B981] bg-[#10B981]/10 rounded border border-[#10B981]/20">
-            <CheckCircle2 size={14} />
-            <span>0 EXTERNAL API CALLS</span>
-          </div>
-          <label className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded transition-colors cursor-pointer">
+          <label className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded-full transition-colors cursor-pointer">
             <Upload size={14} />
             IMPORT JSON
             <input 
@@ -694,7 +691,7 @@ export default function CandidateConsole() {
               onChange={handleFileUpload}
             />
           </label>
-          <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded transition-colors">
+          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded-full transition-colors">
             <Download size={14} />
             EXPORT CSV
           </button>
@@ -847,7 +844,7 @@ export default function CandidateConsole() {
                       <div className="font-medium text-[#EDEDED] flex items-center gap-2">
                         {c.title || 'Unknown Title'}
                         {c.notice_period_days !== undefined && c.notice_period_days <= 30 && (
-                          <span className="px-1.5 py-0.5 rounded-sm bg-[#10B981]/10 text-[#10B981] text-[9px] font-mono font-bold">FAST JOIN</span>
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[#10B981] text-[9px] font-mono font-bold">FAST JOIN</span>
                         )}
                       </div>
                       <div className="text-xs text-[#71717A] mt-0.5 font-medium">{c.company || 'Unknown Company'}</div>
