@@ -43,7 +43,12 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
             <h2 className="text-sm font-medium text-white mb-1 font-mono tracking-tight flex items-center gap-2">
               {candidate.name} 
               {signals.recruiter_response_rate > 0.90 && signals.interview_completion_rate > 0.90 && (
-                <div className="w-1.5 h-1.5 rounded-full bg-[#EAB308] shadow-[0_0_6px_rgba(234,179,8,0.6)] cursor-help" title="⚡ Fast Mover: >90% Response & Interview Show Rate"></div>
+                <div className="relative group cursor-help flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#EAB308] shadow-[0_0_6px_rgba(234,179,8,0.6)]"></div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-[#27272A] border border-[#3F3F46] text-[#EDEDED] text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
+                    ⚡ Fast Mover: &gt;90% Response & Interview Show Rate
+                  </div>
+                </div>
               )}
               <span className="text-[#71717A] text-xs font-sans font-normal ml-1">({candidate.candidate_id})</span>
             </h2>
@@ -248,9 +253,19 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-mono font-medium text-[#EDEDED] leading-none">{Math.round(signals.github_activity_score)}</span>
                   {signals.github_activity_score > 80 ? (
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] shadow-[0_0_6px_rgba(245,158,11,0.6)] cursor-help" title="🌟 Top Open Source Contributor (Score > 80)"></div>
+                    <div className="relative group cursor-help flex items-center justify-center mb-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] shadow-[0_0_6px_rgba(245,158,11,0.6)]"></div>
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-[#27272A] border border-[#3F3F46] text-[#EDEDED] text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
+                        🌟 Top Open Source Contributor (Score &gt; 80)
+                      </div>
+                    </div>
                   ) : (
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_6px_rgba(16,185,129,0.6)] cursor-help" title="GitHub Verified"></div>
+                    <div className="relative group cursor-help flex items-center justify-center mb-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_6px_rgba(16,185,129,0.6)]"></div>
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-[#27272A] border border-[#3F3F46] text-[#EDEDED] text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
+                        GitHub Verified
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>

@@ -357,7 +357,12 @@ export default function CandidateConsole() {
                       <div className="text-[#EDEDED] font-medium font-sans text-sm flex items-center gap-2">
                         {c.name}
                         {c.redrob_signals?.recruiter_response_rate > 0.90 && c.redrob_signals?.interview_completion_rate > 0.90 && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#EAB308] shadow-[0_0_6px_rgba(234,179,8,0.6)] cursor-help" title="⚡ Fast Mover: >90% Response & Interview Show Rate"></div>
+                          <div className="relative group cursor-help flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#EAB308] shadow-[0_0_6px_rgba(234,179,8,0.6)]"></div>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-[#27272A] border border-[#3F3F46] text-[#EDEDED] text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
+                              ⚡ Fast Mover: &gt;90% Response & Interview Show Rate
+                            </div>
+                          </div>
                         )}
                       </div>
                       <div className="text-[#71717A] text-[10px]">{c.candidate_id}</div>
