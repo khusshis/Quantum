@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Credentials provided for this environment
-const PROVIDED_SUPABASE_URL = "https://kjsbnjufqwsoxtqrfbfr.supabase.co";
-const PROVIDED_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtqc2JuanVmcXdzb3h0cXJmYmZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzOTQ0MTMsImV4cCI6MjA4MDk3MDQxM30.OxHV5BxQKjOEy1LphilHWyrGzD2CJS0dyUm4UYUU7hU";
+const PROVIDED_SUPABASE_URL = "https://wkuibwcapqoacngfbrdp.supabase.co";
+const PROVIDED_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndrdWlid2NhcHFvYWNuZ2ZicmRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4Njk1NDUsImV4cCI6MjA5ODQ0NTU0NX0.3lRXq8n8GH_EUkBw004S-GReA9qD7tzEOGxaQE6zD34";
 
 // Helper to safely get env vars
 const getEnvVar = (key: string): string => {

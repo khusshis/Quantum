@@ -12,7 +12,8 @@ import {
   Map,
   BookOpen,
   Settings,
-  LineChart
+  LineChart,
+  Users
 } from 'lucide-react';
 import { User, CareerProfile, OnboardingPreferences } from './types';
 import { AuroraBackground, MouseSpotlight } from './components/ui/Visuals';
@@ -31,6 +32,7 @@ import AppSettings from './components/Settings';
 import Progress from './components/Progress'; 
 import { BootScreen } from './components/BootScreen';
 import { Features, Pricing, HowItWorks } from './components/StaticPages';
+import RankedCandidates from './components/RankedCandidates';
 
 // --- Auth Context ---
 interface AuthContextType {
@@ -129,6 +131,7 @@ const AppLayout = ({ children }: { children?: React.ReactNode }) => {
 
                 {!isCollapsed && <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-6 px-7">AI Agents</div>}
                 {isCollapsed && <div className="h-6"></div>}
+                <SidebarItem to="/candidates" icon={Users} label="Candidate Intel" active={location.pathname === '/candidates'} collapsed={isCollapsed} onClick={() => setIsCollapsed(true)} />
                 <SidebarItem to="/copilot" icon={MessageSquareText} label="Agent Chat" active={location.pathname === '/copilot'} collapsed={isCollapsed} onClick={() => setIsCollapsed(true)} />
                 <SidebarItem to="/live" icon={Mic} label="Live Interview" active={location.pathname === '/live'} collapsed={isCollapsed} onClick={() => setIsCollapsed(true)} />
 
@@ -189,6 +192,7 @@ const AppLayout = ({ children }: { children?: React.ReactNode }) => {
               <SidebarItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" active={location.pathname === '/dashboard'} onClick={closeMobileMenu} />
               <SidebarItem to="/simulations" icon={Map} label="Career Paths" active={location.pathname === '/simulations'} onClick={closeMobileMenu} />
               <SidebarItem to="/progress" icon={LineChart} label="My Progress" active={location.pathname === '/progress'} onClick={closeMobileMenu} />
+              <SidebarItem to="/candidates" icon={Users} label="Candidate Intel" active={location.pathname === '/candidates'} onClick={closeMobileMenu} />
               <SidebarItem to="/copilot" icon={MessageSquareText} label="Agent Chat" active={location.pathname === '/copilot'} onClick={closeMobileMenu} />
               <SidebarItem to="/live" icon={Mic} label="Live Interview" active={location.pathname === '/live'} onClick={closeMobileMenu} />
               <SidebarItem to="/courses" icon={BookOpen} label="Courses & ROI" active={location.pathname === '/courses'} onClick={closeMobileMenu} />
@@ -434,6 +438,7 @@ export default function App() {
                 <AppLayout>
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/candidates" element={<RankedCandidates />} />
                     <Route path="/copilot" element={<ChatInterface />} />
                     <Route path="/live" element={<LiveInterview />} />
                     <Route path="/simulations" element={<Simulations />} />
@@ -448,6 +453,7 @@ export default function App() {
                 <Navigate to="/onboarding" replace />
               )
             ) : (
+
               <Navigate to="/" replace />
             )
           } />
