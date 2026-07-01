@@ -138,6 +138,10 @@ export default function CandidateConsole() {
   const activeTab = tabs.find(t => t.id === activeTabId) || tabs[0];
   const candidates = activeTab.candidates;
 
+  const [isImporting, setIsImporting] = useState(false);
+  const [importProgress, setImportProgress] = useState(0);
+  const [importStatus, setImportStatus] = useState('');
+
   const [benchmark, setBenchmark] = useState<any>(null);
   const [selectedCandidate, setSelectedCandidate] = useState<any | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
@@ -169,34 +173,71 @@ export default function CandidateConsole() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const text = event.target?.result as string;
-        let json;
-        
-        // Handle JSON Lines (.jsonl)
-        if (text.trim().startsWith('{') && text.includes('\n') && !text.trim().startsWith('[')) {
-          json = text.trim().split('\n').filter(l => l.trim()).map(line => JSON.parse(line));
-        } else {
-          json = JSON.parse(text);
-        }
+    setIsImporting(true);
+    setImportProgress(0);
+    setImportStatus('Reading file bytes... (0%)');
 
-        if (Array.isArray(json)) {
-          if (json.length > 2000) {
-            alert(`File contains ${json.length} candidates. Only loading the first 2000 to ensure smooth performance.`);
-            json = json.slice(0, 2000);
-          }
-          const newTabId = 'tab_' + Date.now();
-          setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: json }]);
-          setActiveTabId(newTabId);
-        } else {
-          alert('Invalid JSON format. Expected an array of candidates or JSON Lines.');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('Failed to parse file. Ensure it is valid JSON or JSONL.');
+    const reader = new FileReader();
+    
+    reader.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 50);
+        setImportProgress(percent);
+        setImportStatus(`Reading file bytes... (${percent}%)`);
       }
+    };
+
+    reader.onload = (event) => {
+      setImportProgress(60);
+      setImportStatus('Extracting candidates payload...');
+      
+      setTimeout(() => {
+        try {
+          const text = event.target?.result as string;
+          let json;
+          
+          // Handle JSON Lines (.jsonl)
+          if (text.trim().startsWith('{') && text.includes('\n') && !text.trim().startsWith('[')) {
+            setImportStatus('Parsing JSON Lines (Large Dataset)...');
+            setImportProgress(75);
+            const lines = text.trim().split('\n');
+            if (lines.length > 2000) {
+              alert(`File contains ${lines.length} candidates. Only parsing the first 2000 to ensure smooth performance in browser.`);
+            }
+            const linesToParse = lines.length > 2000 ? lines.slice(0, 2000) : lines;
+            json = linesToParse.filter(l => l.trim()).map(line => JSON.parse(line));
+          } else {
+            setImportStatus('Parsing JSON Array...');
+            setImportProgress(75);
+            json = JSON.parse(text);
+          }
+
+          if (Array.isArray(json)) {
+            if (json.length > 2000 && (!text.includes('\n') || text.trim().startsWith('['))) {
+              alert(`File contains ${json.length} candidates. Only parsing the first 2000 to ensure smooth performance.`);
+              json = json.slice(0, 2000);
+            }
+            
+            setImportProgress(90);
+            setImportStatus('Rendering Workspace UI...');
+            
+            setTimeout(() => {
+              const newTabId = 'tab_' + Date.now();
+              setTabs(prev => [...prev, { id: newTabId, name: file.name, candidates: json }]);
+              setActiveTabId(newTabId);
+              setImportProgress(100);
+              setTimeout(() => setIsImporting(false), 400);
+            }, 50);
+          } else {
+            alert('Invalid JSON format. Expected an array of candidates or JSON Lines.');
+            setIsImporting(false);
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Failed to parse file. Ensure it is valid JSON or JSONL.');
+          setIsImporting(false);
+        }
+      }, 50);
     };
     reader.readAsText(file);
     e.target.value = '';
@@ -308,6 +349,29 @@ export default function CandidateConsole() {
   return (
     <div className="flex flex-col h-screen bg-[#0A0A0A] text-[#EDEDED] font-sans overflow-hidden">
       
+      {/* Sleek Loading Overlay */}
+      {isImporting && (
+        <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center font-mono">
+          <div className="bg-[#0A0A0A] border border-[#27272A] rounded-xl p-8 max-w-md w-full shadow-2xl flex flex-col items-center">
+            <div className="w-12 h-12 rounded-full border-4 border-[#27272A] border-t-[#10B981] animate-spin mb-6"></div>
+            <h2 className="text-[#EDEDED] text-lg font-medium tracking-tight mb-2">Workspace Preparation</h2>
+            <p className="text-[#71717A] text-xs mb-8 text-center">{importStatus}</p>
+            
+            <div className="w-full bg-[#121212] rounded-full h-1.5 mb-2 overflow-hidden border border-[#27272A]">
+              <div 
+                className="bg-[#10B981] h-1.5 rounded-full transition-all duration-300 ease-out" 
+                style={{ width: `${importProgress}%` }}
+              ></div>
+            </div>
+            <div className="flex justify-between w-full text-[10px] text-[#A1A1AA]">
+              <span>0%</span>
+              <span className="text-[#10B981] font-bold">{importProgress}%</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header Panel */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-[#27272A] bg-[#0A0A0A]">
         <div>
