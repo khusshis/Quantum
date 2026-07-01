@@ -332,7 +332,7 @@ export default function CandidateConsole() {
                     Rank {getSortIcon('rank')}
                   </th>
                   <th className="px-6 py-2.5 font-medium cursor-pointer hover:text-[#EDEDED]" onClick={() => requestSort('candidate_id')}>
-                    Candidate ID {getSortIcon('candidate_id')}
+                    Candidate {getSortIcon('candidate_id')}
                   </th>
                   <th className="px-6 py-2.5 font-medium">Profile Overview</th>
                   <th className="px-6 py-2.5 font-medium">Notice</th>
@@ -340,7 +340,7 @@ export default function CandidateConsole() {
                   <th className="px-6 py-2.5 font-medium text-right cursor-pointer hover:text-[#EDEDED]" onClick={() => requestSort('score')}>
                     Rating (/100) {getSortIcon('score')}
                   </th>
-                  <th className="px-6 py-2.5 font-medium w-64">Feature Signals <span className="lowercase text-[9px] text-[#52525B] ml-1">(hover)</span></th>
+                  <th className="px-6 py-2.5 font-medium w-48">Hiring Signals</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#27272A]">
@@ -353,8 +353,9 @@ export default function CandidateConsole() {
                     <td className="px-6 py-3 font-mono text-[#A1A1AA] text-xs">
                       {c.rank.toString().padStart(3, '0')}
                     </td>
-                    <td className="px-6 py-3 font-mono text-[#EDEDED] text-xs opacity-80 group-hover:opacity-100 transition-opacity">
-                      {c.candidate_id}
+                    <td className="px-6 py-3 font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity">
+                      <div className="text-[#EDEDED] font-medium font-sans text-sm">{c.name}</div>
+                      <div className="text-[#71717A] text-[10px]">{c.candidate_id}</div>
                     </td>
                     <td className="px-6 py-3">
                       <div className="font-medium text-[#EDEDED] flex items-center gap-2">
@@ -386,21 +387,25 @@ export default function CandidateConsole() {
                       )}
                     </td>
                     <td className="px-6 py-3">
-                      <div className="flex w-full h-1.5 rounded-sm overflow-hidden bg-[#27272A] relative" onMouseLeave={() => setHoveredFeature(null)}>
-                        {FEATURE_KEYS.map(key => {
-                          const val = c.features[key] ?? 0;
-                          const width = Math.max(0, Math.min(100, Math.abs(val) * 100 / 17)); // Normalized for visual density
-                          if (width === 0) return null;
-                          return (
-                            <div 
-                              key={key}
-                              onMouseEnter={() => setHoveredFeature(key)}
-                              className={`h-full ${FEATURE_COLORS[key] || 'bg-[#71717A]'} score-bar-segment ${hoveredFeature === key ? 'opacity-100' : (hoveredFeature ? 'opacity-20' : 'opacity-90')}`}
-                              style={{ width: `${width}%` }}
-                              title={`${formatFeatureName(key)}: ${val.toFixed(3)}`}
-                            />
-                          );
-                        })}
+                      <div className="flex flex-col gap-1.5 w-full max-w-[160px] text-[9px] font-mono">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#71717A]">Status</span>
+                          <span className={c.redrob_signals?.open_to_work_flag ? 'text-[#10B981] font-bold' : 'text-[#A1A1AA]'}>
+                            {c.redrob_signals?.open_to_work_flag ? 'Open to Work' : 'Passive'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#71717A]">Response Rate</span>
+                          <span className="text-[#EDEDED]">
+                            {c.redrob_signals?.recruiter_response_rate ? `${(c.redrob_signals.recruiter_response_rate * 100).toFixed(0)}%` : 'N/A'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#71717A]">Interview Show</span>
+                          <span className="text-[#EDEDED]">
+                            {c.redrob_signals?.interview_completion_rate ? `${(c.redrob_signals.interview_completion_rate * 100).toFixed(0)}%` : 'N/A'}
+                          </span>
+                        </div>
                       </div>
                     </td>
                   </tr>

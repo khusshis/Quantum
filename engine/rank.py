@@ -215,8 +215,17 @@ def main():
             "expected_salary": asdict(cand.redrob_signals.expected_salary_range_inr_lpa),
             "availability_score": feats.availability_score,
             "honeypot_score": hp_list[orig_idx],
-            "redrob_signals": asdict(cand.redrob_signals)
-        })
+            "redrob_signals": asdict(cand.redrob_signals),
+            "skills": [asdict(s) for s in cand.skills],
+            "career_history": [asdict(c) for c in cand.career_history],
+            "education": [asdict(e) for e in cand.education],
+            "certifications": [asdict(cert) for cert in cand.certifications] if hasattr(cand, 'certifications') and cand.certifications else [],
+            "languages": [asdict(l) for l in cand.languages] if hasattr(cand, 'languages') and cand.languages else [],
+            "location": cand.profile.location,
+            "country": cand.profile.country,
+            "headline": cand.profile.headline,
+            "summary": cand.profile.summary
+          })
         
     # Write JSON for UI
     if args.export_ui_json:

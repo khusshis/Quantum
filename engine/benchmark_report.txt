@@ -1,16 +1,14 @@
 === Benchmark Report ===
-Wall-clock time: 80.78 seconds
-Peak memory: 2827.39 MB
+Wall-clock time: 6.86 seconds
+Peak memory: 179.99 MB
 Time constraint (5 min): PASS
 Memory constraint (16 GB): PASS
 
 === Stdout ===
-Loading candidates from data/candidates.jsonl...
-Loading precomputed artifacts (embeddings, model)...
-Computing features and scores...
-Ranking candidates...
-Generating reasoning for top 100...
-Wrote rich JSON to app/public/ranked_candidates.json
-Wrote 100 rows to submission.csv
-Running validation script...
-PASS: Submission is valid.
+
+
+=== Stderr ===
+Traceback (most recent call last):
+  File "D:\Quantum\engine\rank.py", line 15, in <module>
+    from engine.schema import load_candidates
+ModuleNotFoundError: No module named 'engine'
