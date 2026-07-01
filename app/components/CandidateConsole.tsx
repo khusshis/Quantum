@@ -142,6 +142,7 @@ export default function CandidateConsole() {
   const [importProgress, setImportProgress] = useState(0);
   const [importStatus, setImportStatus] = useState('');
   const [importStartTime, setImportStartTime] = useState(0);
+  const [estimatedTotalSeconds, setEstimatedTotalSeconds] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
   const [eta, setEta] = useState('Calculating...');
 
@@ -153,25 +154,35 @@ export default function CandidateConsole() {
       return;
     }
     const interval = setInterval(() => {
+      const elapsedSeconds = (Date.now() - importStartTime) / 1000;
+      
+      let simulatedProgress = 0;
+      if (estimatedTotalSeconds > 0) {
+          const ratio = Math.min(elapsedSeconds / estimatedTotalSeconds, 1);
+          simulatedProgress = (1 - Math.pow(1 - ratio, 3)) * 95; // Smooth ease-out to 95%
+      }
+      
+      const targetProgress = Math.max(importProgress, simulatedProgress);
+
       setSmoothProgress(prev => {
-        const diff = importProgress - prev;
-        // Ease towards target, never overshoot
+        const diff = targetProgress - prev;
         const next = prev + diff * 0.08;
         return Math.min(next, 99.9);
       });
 
-      // Calculate ETA
-      if (importStartTime > 0 && importProgress > 5) {
-        const elapsed = (Date.now() - importStartTime) / 1000;
-        const rate = importProgress / elapsed;
-        const remaining = Math.max(0, (100 - importProgress) / rate);
-        if (remaining < 1) setEta('Almost done...');
-        else if (remaining < 60) setEta(`~${Math.ceil(remaining)}s remaining`);
-        else setEta(`~${Math.ceil(remaining / 60)}m ${Math.ceil(remaining % 60)}s remaining`);
+      if (estimatedTotalSeconds > 0) {
+         const remaining = Math.max(0, estimatedTotalSeconds - elapsedSeconds);
+         if (importProgress === 100) setEta('Complete');
+         else if (remaining < 1) setEta('Almost done...');
+         else if (remaining < 60) setEta(`~${Math.ceil(remaining)}s remaining`);
+         else setEta(`~${Math.floor(remaining / 60)}m ${Math.ceil(remaining % 60)}s remaining`);
+      } else {
+         setEta('Processing...');
       }
+
     }, 50);
     return () => clearInterval(interval);
-  }, [isImporting, importProgress, importStartTime]);
+  }, [isImporting, importProgress, importStartTime, estimatedTotalSeconds]);
 
   const [benchmark, setBenchmark] = useState<any>(null);
   const [selectedCandidate, setSelectedCandidate] = useState<any | null>(null);
@@ -214,6 +225,7 @@ export default function CandidateConsole() {
 
     setIsImporting(true);
     setImportStartTime(Date.now());
+    setEstimatedTotalSeconds(2); // Fast parsing for initial load
     setImportProgress(0);
     setImportStatus('Reading file bytes... (0%)');
 
@@ -312,9 +324,14 @@ export default function CandidateConsole() {
   const runBackendPipeline = async () => {
     if (!pendingRawCandidates.length) return;
     
+    const numCandidates = pendingRawCandidates.length;
+    // Estimate 1s per 1600 candidates + 3s base
+    const est = Math.max(5, Math.ceil(numCandidates / 1600) + 3);
+    
     setShowConfigModal(false);
     setIsImporting(true);
     setImportStartTime(Date.now());
+    setEstimatedTotalSeconds(est);
     setImportProgress(10);
     setImportStatus(`Sending ${pendingRawCandidates.length.toLocaleString()} candidates to Quantum Engine...`);
     setApiError('');
