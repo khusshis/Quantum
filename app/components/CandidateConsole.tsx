@@ -126,6 +126,12 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
   );
 };
 
+const highlightNumbers = (text: string) => {
+  if (!text) return null;
+  return text.split(/(\d+(?:\.\d+)?)/).map((part, i) => 
+    /^\d+(?:\.\d+)?$/.test(part) ? <span key={i} className="text-[#60A5FA] font-bold">{part}</span> : part
+  );
+};
 export default function CandidateConsole() {
   interface Tab {
     id: string;
@@ -854,7 +860,7 @@ export default function CandidateConsole() {
                       </div>
                       <div className="text-xs text-[#71717A] mt-0.5 font-medium">{c.company || 'Unknown Company'}</div>
                       <div className="text-[10px] text-[#A1A1AA] mt-1.5 line-clamp-1 border-l-2 border-[#3F3F46] pl-2 font-mono">
-                        {c.preview_reasoning || c.reasoning}
+                        {highlightNumbers(c.preview_reasoning || c.reasoning)}
                       </div>
                     </td>
                     <td className="px-6 py-3 font-mono text-[#A1A1AA] text-sm">
