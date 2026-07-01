@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Download, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp } from 'lucide-react';
+import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp } from 'lucide-react';
 import { CandidateDrawer } from './CandidateDrawer';
 import { FEATURE_KEYS, FEATURE_COLORS, formatFeatureName } from './FeatureConstants';
 
@@ -107,6 +107,28 @@ export default function CandidateConsole() {
       .then(data => setBenchmark(data))
       .catch(err => console.error("Error loading benchmark:", err));
   }, []);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target?.result as string);
+        if (Array.isArray(json)) {
+          setCandidates(json);
+        } else {
+          alert('Invalid JSON format. Expected an array of candidates.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Failed to parse JSON file.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
 
   const exportCSV = () => {
     if (!candidates.length) return;
@@ -231,7 +253,17 @@ export default function CandidateConsole() {
             <CheckCircle2 size={14} />
             <span>0 EXTERNAL API CALLS</span>
           </div>
-          <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-white bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded transition-colors">
+          <label className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded transition-colors cursor-pointer">
+            <Upload size={14} />
+            IMPORT JSON
+            <input 
+              type="file" 
+              accept=".json" 
+              className="hidden" 
+              onChange={handleFileUpload}
+            />
+          </label>
+          <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded transition-colors">
             <Download size={14} />
             EXPORT CSV
           </button>
