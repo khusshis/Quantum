@@ -3,7 +3,8 @@ export const FEATURE_KEYS = [
   'domain_adjacency_penalty', 'consulting_only_penalty', 'research_only_disqualifier', 
   'role_relevance_score', 'skill_semantic_match', 'bm25_score', 'skill_trust_score', 
   'framework_enthusiast_penalty', 'education_tier_score', 'availability_score', 
-  'notice_period_fit', 'verification_trust_score', 'location_boost', 'honeypot_suspicion_score'
+  'notice_period_fit', 'verification_trust_score', 'location_boost', 'honeypot_suspicion_score',
+  'job_hopper_penalty', 'overqualified_penalty'
 ];
 
 export const FEATURE_COLORS: Record<string, string> = {
@@ -23,7 +24,9 @@ export const FEATURE_COLORS: Record<string, string> = {
   'notice_period_fit': 'bg-[#22C55E]',
   'verification_trust_score': 'bg-[#60A5FA]',
   'location_boost': 'bg-[#A855F7]',
-  'honeypot_suspicion_score': 'bg-[#DC2626]'
+  'honeypot_suspicion_score': 'bg-[#DC2626]',
+  'job_hopper_penalty': 'bg-[#B91C1C]',
+  'overqualified_penalty': 'bg-[#991B1B]'
 };
 
 export const formatFeatureName = (key: string) => {

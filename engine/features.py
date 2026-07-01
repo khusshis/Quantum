@@ -30,6 +30,10 @@ class CandidateFeatures:
     github_activity_boost: float
     platform_reliability_score: float
     engagement_multiplier: float
+    
+    # Advanced Enterprise Penalties (Post-Model Multipliers)
+    job_hopper_penalty: float
+    overqualified_penalty: float
 
 # --- ENTERPRISE KNOWLEDGE GRAPH (SKILL ONTOLOGY) ---
 # Simulates a Graph DB logic. If a candidate has a specific skill, 
@@ -366,6 +370,34 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
     engagement = math.log1p(searches) + math.log1p(saves) * 2.0 + math.log1p(apps) * 0.5
     # Normalize engagement to a boost between 1.0 and 1.2
     eng_boost = 1.0 + min(0.2, engagement / 50.0)
+    
+    # --- ADVANCED ENTERPRISE PENALTIES ---
+    
+    # 1. Job Hopper Penalty
+    # If a candidate has >= 3 jobs in the last 36 months, they are a flight risk.
+    job_hopper_penalty = 1.0
+    recent_jobs = 0
+    total_months_recent = 0
+    for entry in sorted_career:
+        total_months_recent += entry.duration_months
+        if total_months_recent <= 36:
+            recent_jobs += 1
+            
+    if recent_jobs >= 4:
+        job_hopper_penalty = 0.6  # Severe penalty for 4+ jobs in 3 years
+    elif recent_jobs == 3:
+        job_hopper_penalty = 0.8  # Moderate penalty for 3 jobs in 3 years
+        
+    # 2. Overqualified Penalty (Flight Risk)
+    # If JD doesn't ask for a VP/Director, but candidate is currently a VP/Director.
+    overqualified_penalty = 1.0
+    exec_keywords = ["vp", "vice president", "director", "head of", "chief", "cto", "ceo"]
+    jd_is_exec = any(k in jd.ideal_profile_narrative.lower() for k in exec_keywords)
+    
+    if sorted_career and not jd_is_exec:
+        current_title = sorted_career[0].title.lower()
+        if any(k in current_title.split() or k in current_title for k in exec_keywords):
+            overqualified_penalty = 0.7  # Penalize for being drastically overqualified
         
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
@@ -386,5 +418,7 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         location_boost=loc_boost,
         github_activity_boost=gh_boost,
         platform_reliability_score=reliability,
-        engagement_multiplier=eng_boost
+        engagement_multiplier=eng_boost,
+        job_hopper_penalty=job_hopper_penalty,
+        overqualified_penalty=overqualified_penalty
     )

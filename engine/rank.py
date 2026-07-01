@@ -107,7 +107,9 @@ def main():
             "honeypot_suspicion_score": hp_score,
             "github_activity_boost": feats.github_activity_boost,
             "platform_reliability_score": feats.platform_reliability_score,
-            "engagement_multiplier": feats.engagement_multiplier
+            "engagement_multiplier": feats.engagement_multiplier,
+            "job_hopper_penalty": feats.job_hopper_penalty,
+            "overqualified_penalty": feats.overqualified_penalty
         }
         
         feature_rows.append(feat_dict)
@@ -118,7 +120,7 @@ def main():
     df = pd.DataFrame(feature_rows)
     
     # Model prediction - drop the new post-multipliers so the feature count matches training (17)
-    cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier"]
+    cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier", "job_hopper_penalty", "overqualified_penalty"]
     df_model = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
     
     raw_scores = bst.predict(df_model)
@@ -143,8 +145,10 @@ def main():
         gh_boost = df.loc[i, "github_activity_boost"] if "github_activity_boost" in df.columns else 1.0
         rel_score = df.loc[i, "platform_reliability_score"] if "platform_reliability_score" in df.columns else 1.0
         eng_mult = df.loc[i, "engagement_multiplier"] if "engagement_multiplier" in df.columns else 1.0
+        job_hop = df.loc[i, "job_hopper_penalty"] if "job_hopper_penalty" in df.columns else 1.0
+        overqual = df.loc[i, "overqualified_penalty"] if "overqualified_penalty" in df.columns else 1.0
         
-        final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult
+        final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult * job_hop * overqual
         unbounded_scores.append(final)
         
     print("Ranking candidates...")

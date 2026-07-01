@@ -29,7 +29,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1855,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -255,7 +257,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.24225,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -510,7 +514,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1335,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -726,7 +732,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.207,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -987,7 +995,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.145,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -1251,7 +1261,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.077,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 0,
     "expected_salary": {
@@ -1522,7 +1534,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0775,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -1768,7 +1782,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.18325,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -2004,7 +2020,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.187,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -2264,7 +2282,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17675,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -2475,7 +2495,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17975,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -2701,7 +2723,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1945000000000001,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -2899,7 +2923,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.16575,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -3139,7 +3165,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.152,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -3374,7 +3402,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20275,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -3601,7 +3631,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.05775,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -3804,7 +3836,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1245,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -4018,7 +4052,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.076,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -4232,7 +4268,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1965,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -4485,7 +4523,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.118,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -4696,7 +4736,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1585,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -4895,7 +4937,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.08675,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -5109,7 +5153,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1135,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -5320,7 +5366,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.2375,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -5558,7 +5606,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20125,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -5778,7 +5828,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20175,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -6022,7 +6074,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19675,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -6262,7 +6316,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19075,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 15,
     "expected_salary": {
@@ -6462,7 +6518,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.181,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -6690,7 +6748,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.204,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -6912,7 +6972,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1957499999999999,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -7120,7 +7182,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.237,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 15,
     "expected_salary": {
@@ -7376,7 +7440,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1995,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -7607,7 +7673,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.05925,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.1983069163168958
+      "engagement_multiplier": 1.1983069163168958,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -7808,7 +7876,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17725,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -8071,7 +8141,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.02725,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -8280,7 +8352,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -8490,7 +8564,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.03675,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -8705,7 +8781,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20975,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -8909,7 +8987,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.188,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -9133,7 +9213,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1895,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -9336,7 +9418,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19075,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -9561,7 +9645,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0565,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -9791,7 +9877,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.045,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -10046,7 +10134,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.18,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -10266,7 +10356,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1685,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -10502,7 +10594,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19475,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -10716,7 +10810,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.209,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -10925,7 +11021,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17375,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -11131,7 +11229,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.209,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -11374,7 +11474,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -11649,7 +11751,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -11899,7 +12003,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1935,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -12149,7 +12255,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17875,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -12374,7 +12482,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19475,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -12620,7 +12730,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.19725,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -12839,7 +12951,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20725,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -13070,7 +13184,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.21025,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -13303,7 +13419,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.16275,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -13513,7 +13631,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1804999999999999,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -13731,7 +13851,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.14075,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -13945,7 +14067,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -14187,7 +14311,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.16625,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -14395,7 +14521,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.06825,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -14632,7 +14760,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.236,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 15,
     "expected_salary": {
@@ -14857,7 +14987,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1332499999999999,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -15103,7 +15235,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.16825,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -15341,7 +15475,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.20625,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -15566,7 +15702,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.08975,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -15779,7 +15917,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.2269999999999999,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -16018,7 +16158,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.164,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -16261,7 +16403,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.23575,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -16482,7 +16626,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.171502603974672
+      "engagement_multiplier": 1.171502603974672,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -16712,7 +16858,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.18675,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -16924,7 +17072,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.231,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -17150,7 +17300,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.17575,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.1600739467818872
+      "engagement_multiplier": 1.1600739467818872,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -17354,7 +17506,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.154,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -17595,7 +17749,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.143,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -17823,7 +17979,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1125,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -18062,7 +18220,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.08325,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -18282,7 +18442,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.22525,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -18516,7 +18678,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.22375,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -18731,7 +18895,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0315,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -18941,7 +19107,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1615,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -19161,7 +19329,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.1865,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -19409,7 +19579,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.16175,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -19633,7 +19805,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.21925,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -19901,7 +20075,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.178,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -20125,7 +20301,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.21825,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -20325,7 +20503,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.12425,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -20555,7 +20735,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.191,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -20761,7 +20943,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.159,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -20986,7 +21170,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.2155,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -21236,7 +21422,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.216,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 90,
     "expected_salary": {
@@ -21480,7 +21668,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.133,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 120,
     "expected_salary": {
@@ -21702,7 +21892,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.11325,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
@@ -21930,7 +22122,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.126,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 45,
     "expected_salary": {
@@ -22147,7 +22341,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.0455,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -22382,7 +22578,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.2115,
       "platform_reliability_score": 1.0,
-      "engagement_multiplier": 1.2
+      "engagement_multiplier": 1.2,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 60,
     "expected_salary": {
@@ -22621,7 +22819,9 @@
       "honeypot_suspicion_score": 0.0,
       "github_activity_boost": 1.2117499999999999,
       "platform_reliability_score": 1.1,
-      "engagement_multiplier": 1.192274508790179
+      "engagement_multiplier": 1.192274508790179,
+      "job_hopper_penalty": 1.0,
+      "overqualified_penalty": 1.0
     },
     "notice_period_days": 30,
     "expected_salary": {
