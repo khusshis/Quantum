@@ -141,6 +141,37 @@ export default function CandidateConsole() {
   const [isImporting, setIsImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
   const [importStatus, setImportStatus] = useState('');
+  const [importStartTime, setImportStartTime] = useState(0);
+  const [smoothProgress, setSmoothProgress] = useState(0);
+  const [eta, setEta] = useState('Calculating...');
+
+  // Smooth progress interpolation + ETA
+  useEffect(() => {
+    if (!isImporting) {
+      setSmoothProgress(0);
+      setEta('Calculating...');
+      return;
+    }
+    const interval = setInterval(() => {
+      setSmoothProgress(prev => {
+        const diff = importProgress - prev;
+        // Ease towards target, never overshoot
+        const next = prev + diff * 0.08;
+        return Math.min(next, 99.9);
+      });
+
+      // Calculate ETA
+      if (importStartTime > 0 && importProgress > 5) {
+        const elapsed = (Date.now() - importStartTime) / 1000;
+        const rate = importProgress / elapsed;
+        const remaining = Math.max(0, (100 - importProgress) / rate);
+        if (remaining < 1) setEta('Almost done...');
+        else if (remaining < 60) setEta(`~${Math.ceil(remaining)}s remaining`);
+        else setEta(`~${Math.ceil(remaining / 60)}m ${Math.ceil(remaining % 60)}s remaining`);
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [isImporting, importProgress, importStartTime]);
 
   const [benchmark, setBenchmark] = useState<any>(null);
   const [selectedCandidate, setSelectedCandidate] = useState<any | null>(null);
@@ -182,6 +213,7 @@ export default function CandidateConsole() {
     if (!file) return;
 
     setIsImporting(true);
+    setImportStartTime(Date.now());
     setImportProgress(0);
     setImportStatus('Reading file bytes... (0%)');
 
@@ -282,6 +314,7 @@ export default function CandidateConsole() {
     
     setShowConfigModal(false);
     setIsImporting(true);
+    setImportStartTime(Date.now());
     setImportProgress(10);
     setImportStatus(`Sending ${pendingRawCandidates.length.toLocaleString()} candidates to Quantum Engine...`);
     setApiError('');
@@ -434,24 +467,43 @@ export default function CandidateConsole() {
   return (
     <div className="flex flex-col h-screen bg-[#0A0A0A] text-[#EDEDED] font-sans overflow-hidden">
       
-      {/* Sleek Loading Overlay */}
+      {/* Futuristic Loading Overlay */}
       {isImporting && (
-        <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center font-mono">
-          <div className="bg-[#0A0A0A] border border-[#27272A] rounded-xl p-8 max-w-md w-full shadow-2xl flex flex-col items-center">
-            <div className="w-12 h-12 rounded-full border-4 border-[#27272A] border-t-[#10B981] animate-spin mb-6"></div>
-            <h2 className="text-[#EDEDED] text-lg font-medium tracking-tight mb-2">Workspace Preparation</h2>
-            <p className="text-[#71717A] text-xs mb-8 text-center">{importStatus}</p>
+        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center font-mono">
+          <div className="loading-fade-in flex flex-col items-center max-w-md w-full px-8">
             
-            <div className="w-full bg-[#121212] rounded-full h-1.5 mb-2 overflow-hidden border border-[#27272A]">
+            {/* Siri-like Morphing Orb */}
+            <div className="quantum-orb mb-10 opacity-90"></div>
+            
+            {/* Status Text */}
+            <h2 className="text-[#EDEDED] text-base font-medium tracking-tight mb-1.5 text-center">
+              Quantum Engine Processing
+            </h2>
+            <p className="text-[#71717A] text-[11px] mb-1 text-center h-4">
+              {importStatus}
+            </p>
+            <p className="text-[#52525B] text-[10px] mb-8 text-center font-mono">
+              {eta}
+            </p>
+            
+            {/* Continuous Smooth Progress Bar */}
+            <div className="w-full bg-[#18181B] rounded-full h-[5px] mb-3 overflow-hidden relative border border-[#27272A]/50">
               <div 
-                className="bg-[#10B981] h-1.5 rounded-full transition-all duration-300 ease-out" 
-                style={{ width: `${importProgress}%` }}
+                className="h-full rounded-full relative overflow-hidden progress-shimmer" 
+                style={{ 
+                  width: `${smoothProgress}%`,
+                  background: 'linear-gradient(90deg, #059669, #10B981, #34D399)',
+                  transition: 'width 0.05s linear'
+                }}
               ></div>
             </div>
-            <div className="flex justify-between w-full text-[10px] text-[#A1A1AA]">
-              <span>0%</span>
-              <span className="text-[#10B981] font-bold">{importProgress}%</span>
-              <span>100%</span>
+            
+            {/* Percentage */}
+            <div className="flex justify-between w-full text-[10px] text-[#3F3F46]">
+              <span className="text-[#52525B]">PROGRESS</span>
+              <span className="text-[#10B981] font-bold tabular-nums">
+                {smoothProgress < 1 ? '0' : Math.floor(smoothProgress)}%
+              </span>
             </div>
           </div>
         </div>

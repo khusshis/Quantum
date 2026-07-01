@@ -92,6 +92,58 @@
         transform: scale(1.15);
         box-shadow: 0 0 0 1px #EDEDED;
       }
+
+      /* Siri-like Orb Animation */
+      @keyframes orbMorph {
+        0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: rotate(0deg) scale(1); }
+        25% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; transform: rotate(90deg) scale(1.05); }
+        50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(180deg) scale(0.95); }
+        75% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(270deg) scale(1.02); }
+      }
+      
+      @keyframes orbPulse {
+        0%, 100% { box-shadow: 0 0 30px rgba(16,185,129,0.3), 0 0 60px rgba(16,185,129,0.1), inset 0 0 30px rgba(16,185,129,0.15); }
+        50% { box-shadow: 0 0 50px rgba(16,185,129,0.5), 0 0 100px rgba(16,185,129,0.2), inset 0 0 50px rgba(16,185,129,0.25); }
+      }
+      
+      @keyframes orbGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      @keyframes progressShimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+      }
+
+      @keyframes fadeSlideUp {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      .quantum-orb {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #10B981, #059669, #0D9488, #10B981, #34D399);
+        background-size: 300% 300%;
+        animation: orbMorph 6s ease-in-out infinite, orbPulse 3s ease-in-out infinite, orbGradient 4s ease infinite;
+      }
+
+      .progress-shimmer::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        animation: progressShimmer 1.5s ease-in-out infinite;
+      }
+
+      .loading-fade-in {
+        animation: fadeSlideUp 0.4s ease-out forwards;
+      }
     </style>
   </head>
   <body class="dark">
