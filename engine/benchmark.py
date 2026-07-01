@@ -69,6 +69,20 @@ def main():
     
     with open(args.out, "w", encoding="utf-8") as f:
         f.write(report_text)
+        
+    # Also write canonical JSON for the UI
+    import json
+    json_data = {
+        "elapsed_seconds": elapsed,
+        "peak_memory_mb": peak_mb,
+        "time_pass": elapsed < 300,
+        "memory_pass": peak_mb < 16000,
+        "timestamp": time.time()
+    }
+    
+    os.makedirs("app/public", exist_ok=True)
+    with open("app/public/benchmark_report.json", "w", encoding="utf-8") as f:
+        json.dump(json_data, f, indent=2)
 
 if __name__ == "__main__":
     main()

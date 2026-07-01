@@ -15,13 +15,10 @@ The solution is divided into two decoupled systems to satisfy the strict compute
    - Integrates a honeypot/anomaly detector.
 
 2. **`app/` (React/Vite Web App)**
-   A beautiful React application built with Framer Motion and Tailwind. It visualizes the output of the offline engine (`ranked_candidates.json`) in a "Candidate Intelligence" dashboard.
+   A single-purpose Candidate Intelligence Console. It visualizes the output of the offline engine (`ranked_candidates.json`) in a dense, enterprise-grade dashboard meant for recruiters to analyze feature scores, compliance constraints, and contrast top candidates with runners-up.
 
 ### Methodology Note: Weak Label Generation
 Weak labels are a deterministic function of the same hand-engineered features used as model inputs. This is a documented limitation, not an oversight — the LightGBM model's contribution here is smoothing a hard-bucketed heuristic into a continuous, interaction-aware ranking function, and provides an extension point for real feedback data (recruiter clicks, hire outcomes) if this were deployed. We chose fidelity to the JD's explicit criteria over a more 'ML-native' pipeline that would have been weaker at catching keyword-stuffing and title-chasing patterns the JD specifically warns about.
-
-3. **`sandbox/` (Interactive Demo)**
-   A minimal Streamlit application to upload a small `.jsonl` sample and run the core engine functions interactively.
 
 ## Setup & Running the Engine
 

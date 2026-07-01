@@ -10,6 +10,7 @@ import time
 # Add the parent directory to sys.path to allow importing from data.validate_submission if needed.
 # Since validate_submission.py is in data/, we can import it dynamically.
 import importlib.util
+from dataclasses import asdict
 
 from engine.schema import load_candidates
 from engine.features import compute_features
@@ -103,7 +104,10 @@ def main():
             "notice_period_fit": feats.notice_period_fit,
             "verification_trust_score": feats.verification_trust_score,
             "location_boost": feats.location_boost,
-            "honeypot_suspicion_score": hp_score
+            "honeypot_suspicion_score": hp_score,
+            "github_activity_boost": feats.github_activity_boost,
+            "platform_reliability_score": feats.platform_reliability_score,
+            "engagement_multiplier": feats.engagement_multiplier
         }
         
         feature_rows.append(feat_dict)
@@ -113,32 +117,69 @@ def main():
         
     df = pd.DataFrame(feature_rows)
     
-    # Model prediction
-    raw_scores = bst.predict(df)
+    # Model prediction - drop the new post-multipliers so the feature count matches training (17)
+    cols_to_drop = ["github_activity_boost", "platform_reliability_score", "engagement_multiplier"]
+    df_model = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
     
-    # Final adjustment
-    # Applying availability multiplier and honeypot downweight
-    final_scores = []
-    for i, score in enumerate(raw_scores):
+    raw_scores = bst.predict(df_model)
+    
+    # Shift raw scores to be strictly positive so multipliers work correctly
+    min_raw = np.min(raw_scores)
+    if min_raw < 0:
+        shifted_scores = raw_scores - min_raw + 0.1
+    else:
+        shifted_scores = raw_scores + 0.1
+    
+    # Apply multipliers to get unbounded final scores
+    unbounded_scores = []
+    for i, score in enumerate(shifted_scores):
         hp_downweight = 1.0
         if hp_list[i] > 0.6:
             hp_downweight = 0.001
         
         avail = df.loc[i, "availability_score"]
-        final = score * max(0.1, avail) * hp_downweight
-        final_scores.append(round(final, 4))
+        
+        # Apply new multipliers from the data schema
+        gh_boost = df.loc[i, "github_activity_boost"] if "github_activity_boost" in df.columns else 1.0
+        rel_score = df.loc[i, "platform_reliability_score"] if "platform_reliability_score" in df.columns else 1.0
+        eng_mult = df.loc[i, "engagement_multiplier"] if "engagement_multiplier" in df.columns else 1.0
+        
+        final = score * max(0.1, avail) * hp_downweight * gh_boost * rel_score * eng_mult
+        unbounded_scores.append(final)
         
     print("Ranking candidates...")
     results = []
     for i in range(len(c_list)):
-        results.append((final_scores[i], c_list[i].candidate_id, i))
+        results.append((unbounded_scores[i], c_list[i].candidate_id, i))
         
-    # Sort by final score DESC, candidate_id ASC for ties
+    # Sort by final unbounded score DESC, candidate_id ASC for ties
     results.sort(key=lambda x: (-x[0], x[1]))
     
-    top_100 = results[:100]
+    top_100_raw = results[:100]
+    
+    # Rescale top 100 to [0.60, 0.99] to give a beautiful, readable distribution in the UI
+    top_100 = []
+    if len(top_100_raw) > 0:
+        max_top = top_100_raw[0][0]
+        min_top = top_100_raw[-1][0]
+        for val, cid, orig_idx in top_100_raw:
+            if max_top > min_top:
+                scaled = 0.60 + 0.39 * ((val - min_top) / (max_top - min_top))
+            else:
+                scaled = 0.99
+            top_100.append((round(scaled, 4), cid, orig_idx))
+            
+    # Re-sort top_100 because rounding to 4 decimals can create new ties that violate candidate_id ASC
+    top_100.sort(key=lambda x: (-x[0], x[1]))
     
     print(f"Generating reasoning for top {len(top_100)}...")
+    
+    # Calculate SHAP contributions for top 100
+    top_indices = [orig_idx for _, _, orig_idx in top_100]
+    top_df_model = df_model.iloc[top_indices]
+    contribs = bst.predict(top_df_model, pred_contrib=True)
+    feature_names = df_model.columns.tolist()
+    
     csv_rows = []
     json_export = []
     
@@ -147,34 +188,36 @@ def main():
         cand = c_list[orig_idx]
         feats = feat_obj_list[orig_idx]
         
-        reasoning = generate_reasoning(cand, feats, JD, rank)
+        # Get the specific SHAP contributions for this candidate
+        shap_vals = contribs[rank_idx].tolist()
+        
+        reasoning = generate_reasoning(cand, feats, JD, rank, shap_contribs=shap_vals, feature_names=feature_names)
         
         csv_rows.append({
             "candidate_id": cid,
             "rank": rank,
             "score": f"{score:.4f}",
-            "reasoning": reasoning
+            "reasoning": reasoning["detailed"]
         })
         
         json_export.append({
             "candidate_id": cid,
             "rank": rank,
             "score": score,
-            "reasoning": reasoning,
+            "reasoning": reasoning["detailed"],
+            "preview_reasoning": reasoning["preview"],
             "name": cand.profile.anonymized_name,
             "title": cand.profile.current_title,
             "company": cand.profile.current_company,
+            "yoe": cand.profile.years_of_experience,
             "features": feature_rows[orig_idx],
             "notice_period_days": cand.redrob_signals.notice_period_days,
+            "expected_salary": asdict(cand.redrob_signals.expected_salary_range_inr_lpa),
             "availability_score": feats.availability_score,
-            "honeypot_score": hp_list[orig_idx]
+            "honeypot_score": hp_list[orig_idx],
+            "redrob_signals": asdict(cand.redrob_signals)
         })
         
-    # Write CSV
-    out_df = pd.DataFrame(csv_rows)
-    out_df.to_csv(args.out, index=False, encoding="utf-8")
-    print(f"Wrote {len(out_df)} rows to {args.out}")
-    
     # Write JSON for UI
     if args.export_ui_json:
         export_dir = os.path.dirname(args.export_ui_json)
@@ -183,6 +226,14 @@ def main():
         with open(args.export_ui_json, "w", encoding="utf-8") as f:
             json.dump(json_export, f, indent=2)
         print(f"Wrote rich JSON to {args.export_ui_json}")
+
+    # Write CSV
+    out_df = pd.DataFrame(csv_rows)
+    try:
+        out_df.to_csv(args.out, index=False, encoding="utf-8")
+        print(f"Wrote {len(out_df)} rows to {args.out}")
+    except PermissionError:
+        print(f"Permission denied: {args.out} is open in another program. Could not update CSV.")
         
     # Validate
     validate_submission_file(args.out)

@@ -26,6 +26,10 @@ class CandidateFeatures:
     salary_alignment_flag: float
     verification_trust_score: float
     location_boost: float
+    
+    github_activity_boost: float
+    platform_reliability_score: float
+    engagement_multiplier: float
 
 def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_match: float = 0.0) -> CandidateFeatures:
     # --- CAREER-FIT FEATURES ---
@@ -225,6 +229,13 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
             total_trendy_duration += dur
             total_trendy_endorsements += end
 
+    # Add skill assessment scores from redrob_signals
+    if hasattr(candidate, "redrob_signals") and hasattr(candidate.redrob_signals, "skill_assessment_scores"):
+        assessments = candidate.redrob_signals.skill_assessment_scores or {}
+        for s_name, s_score in assessments.items():
+            # a score out of 100 boosts trust
+            skill_trust += (s_score / 100.0) * 0.5
+            
     # Normalize skill trust roughly
     skill_trust = min(1.0, skill_trust / 50.0)
     
@@ -283,6 +294,38 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
     if any(pref.lower() in cand_loc for pref in jd.location_preference) or signals.willing_to_relocate:
         loc_boost = 0.1
         
+    # github_activity_boost
+    gh_score = signals.github_activity_score if signals.github_activity_score is not None else -1
+    gh_boost = 1.0
+    if gh_score > 0:
+        # Boost up to 1.25x for 100 score
+        gh_boost = 1.0 + (gh_score / 100.0) * 0.25
+        
+    # platform_reliability_score
+    # Penalize low interview completion and offer acceptance
+    int_comp_rate = signals.interview_completion_rate if signals.interview_completion_rate is not None else 1.0
+    offer_acc_rate = signals.offer_acceptance_rate if signals.offer_acceptance_rate is not None else -1.0
+    
+    reliability = 1.0
+    if int_comp_rate < 0.5:
+        reliability *= 0.7  # heavy penalty for ghosting interviews
+    
+    if offer_acc_rate >= 0:
+        if offer_acc_rate < 0.3:
+            reliability *= 0.8
+        elif offer_acc_rate > 0.8:
+            reliability *= 1.1
+            
+    # engagement_multiplier
+    # Combine search appearances, saves, and applications to show "hot" candidates
+    searches = signals.search_appearance_30d if signals.search_appearance_30d is not None else 0
+    saves = signals.saved_by_recruiters_30d if signals.saved_by_recruiters_30d is not None else 0
+    apps = signals.applications_submitted_30d if signals.applications_submitted_30d is not None else 0
+    
+    engagement = math.log1p(searches) + math.log1p(saves) * 2.0 + math.log1p(apps) * 0.5
+    # Normalize engagement to a boost between 1.0 and 1.2
+    eng_boost = 1.0 + min(0.2, engagement / 50.0)
+        
     return CandidateFeatures(
         years_experience_fit=yoe_fit,
         title_trajectory_score=title_trajectory,
@@ -299,5 +342,8 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
         notice_period_fit=np_fit,
         salary_alignment_flag=1.0, # Not used heavily
         verification_trust_score=ver_score,
-        location_boost=loc_boost
+        location_boost=loc_boost,
+        github_activity_boost=gh_boost,
+        platform_reliability_score=reliability,
+        engagement_multiplier=eng_boost
     )
