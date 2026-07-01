@@ -4,7 +4,7 @@ export const FEATURE_KEYS = [
   'role_relevance_score', 'skill_semantic_match', 'bm25_score', 'skill_trust_score', 
   'framework_enthusiast_penalty', 'education_tier_score', 'availability_score', 
   'notice_period_fit', 'verification_trust_score', 'location_boost', 'honeypot_suspicion_score',
-  'job_hopper_penalty', 'overqualified_penalty', 'non_coder_penalty'
+  'job_hopper_penalty', 'overqualified_penalty', 'non_coder_penalty', 'loyalty_boost', 'recent_ml_focus'
 ];
 
 export const FEATURE_COLORS: Record<string, string> = {
@@ -27,7 +27,9 @@ export const FEATURE_COLORS: Record<string, string> = {
   'honeypot_suspicion_score': 'bg-[#DC2626]',
   'job_hopper_penalty': 'bg-[#B91C1C]',
   'overqualified_penalty': 'bg-[#991B1B]',
-  'non_coder_penalty': 'bg-[#7F1D1D]'
+  'non_coder_penalty': 'bg-[#7F1D1D]',
+  'loyalty_boost': 'bg-[#2DD4BF]',
+  'recent_ml_focus': 'bg-[#06B6D4]'
 };
 
 export const formatFeatureName = (key: string) => {
