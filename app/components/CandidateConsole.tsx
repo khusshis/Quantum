@@ -875,7 +875,7 @@ export default function CandidateConsole() {
                       )}
                     </td>
                     <td className="px-6 py-3">
-                      <div className="flex flex-col gap-1.5 w-full max-w-[160px] text-[9px] font-mono">
+                      <div className="flex flex-col gap-2 w-full max-w-[180px] text-xs font-mono">
                         <div className="flex items-center justify-between">
                           <span className="text-[#71717A]">Status</span>
                           <span className={c.redrob_signals?.open_to_work_flag ? 'text-[#10B981] font-bold' : 'text-[#A1A1AA]'}>
