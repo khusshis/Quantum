@@ -857,18 +857,18 @@ export default function CandidateConsole() {
                         {c.preview_reasoning || c.reasoning}
                       </div>
                     </td>
-                    <td className="px-6 py-3 font-mono text-[#A1A1AA] text-xs">
+                    <td className="px-6 py-3 font-mono text-[#A1A1AA] text-sm">
                       {c.notice_period_days !== undefined ? `${c.notice_period_days}d` : 'N/A'}
                     </td>
-                    <td className="px-6 py-3 font-mono text-[#EDEDED] text-xs">
+                    <td className="px-6 py-3 font-mono text-[#EDEDED] text-sm">
                       {c.yoe !== undefined ? `${c.yoe} yrs` : 'N/A'}
-                      <div className="text-[10px] text-[#71717A] mt-0.5">
+                      <div className="text-xs text-[#71717A] mt-0.5">
                         {c.expected_salary?.min && c.expected_salary?.max 
                           ? `₹${c.expected_salary.min}-${c.expected_salary.max}L` 
                           : 'Negotiable'}
                       </div>
                     </td>
-                    <td className="px-6 py-3 text-right font-mono text-[#EDEDED] text-xs">
+                    <td className="px-6 py-3 text-right font-mono text-[#EDEDED] text-sm">
                       {c.score !== undefined ? (c.score * 100).toFixed(2) : 'N/A'}
                       {c.features?.honeypot_suspicion_score >= 0.5 && (
                         <AlertTriangle size={12} className="inline ml-2 text-[#EF4444]" title="Honeypot Suspicion" />
@@ -878,7 +878,7 @@ export default function CandidateConsole() {
                       <div className="flex flex-col gap-2 w-full max-w-[180px] text-xs font-mono">
                         <div className="flex items-center justify-between">
                           <span className="text-[#71717A]">Status</span>
-                          <span className={c.redrob_signals?.open_to_work_flag ? 'text-[#10B981] font-bold' : 'text-[#A1A1AA]'}>
+                          <span className={c.redrob_signals?.open_to_work_flag ? 'text-[#10B981] font-bold' : 'text-[#60A5FA] font-medium'}>
                             {c.redrob_signals?.open_to_work_flag ? 'Open to Work' : 'Passive'}
                           </span>
                         </div>
