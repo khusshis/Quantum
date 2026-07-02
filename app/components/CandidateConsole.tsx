@@ -796,7 +796,7 @@ export default function CandidateConsole() {
               placeholder="Search ID, name, co..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded pl-7 pr-2 py-1 text-xs outline-none focus:border-[#52525B] w-[180px]"
+              className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded pl-7 pr-2 py-1 text-xs outline-none transition-all duration-300 ease-out focus:border-[#71717A] focus:bg-[#121212] focus:w-[220px] w-[180px] focus:ring-1 focus:ring-[#71717A]/50"
             />
           </div>
           <span className="text-[#71717A]">
