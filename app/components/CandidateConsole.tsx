@@ -810,21 +810,21 @@ export default function CandidateConsole() {
         <main className="flex-1 overflow-y-auto no-scrollbar flex flex-col">
           <div className="flex-1">
             <table className="w-full text-sm text-left border-collapse">
-              <thead className="text-[10px] uppercase text-[#71717A] bg-[#0A0A0A] sticky top-0 z-10 font-mono tracking-wider border-b border-[#27272A]">
+              <thead className="text-xs uppercase text-[#A1A1AA] bg-[#0A0A0A] sticky top-0 z-10 font-sans tracking-wide border-b border-[#27272A]">
                 <tr>
-                  <th className="px-6 py-2.5 font-medium cursor-pointer hover:text-[#EDEDED]" onClick={() => requestSort('rank')}>
+                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('rank')}>
                     Rank {getSortIcon('rank')}
                   </th>
-                  <th className="px-6 py-2.5 font-medium cursor-pointer hover:text-[#EDEDED]" onClick={() => requestSort('candidate_id')}>
+                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('candidate_id')}>
                     Candidate {getSortIcon('candidate_id')}
                   </th>
-                  <th className="px-6 py-2.5 font-medium">Profile Overview</th>
-                  <th className="px-6 py-2.5 font-medium">Notice</th>
-                  <th className="px-6 py-2.5 font-medium">Exp & Salary</th>
-                  <th className="px-6 py-2.5 font-medium text-right cursor-pointer hover:text-[#EDEDED]" onClick={() => requestSort('score')}>
+                  <th className="px-6 py-4 font-semibold">Profile Overview</th>
+                  <th className="px-6 py-4 font-semibold">Notice</th>
+                  <th className="px-6 py-4 font-semibold">Exp & Salary</th>
+                  <th className="px-6 py-4 font-semibold text-right cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('score')}>
                     Rating (/100) {getSortIcon('score')}
                   </th>
-                  <th className="px-6 py-2.5 font-medium w-48">Hiring Signals</th>
+                  <th className="px-6 py-4 font-semibold w-48">Hiring Signals</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#27272A]">
