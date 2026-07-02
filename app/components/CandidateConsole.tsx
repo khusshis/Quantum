@@ -1001,16 +1001,19 @@ export default function CandidateConsole() {
                     <h3 className="text-sm font-medium text-primary">Theme</h3>
                     <p className="text-xs text-muted mt-1">Select your preferred interface theme.</p>
                   </div>
-                  <div className="flex items-center bg-background border border-border rounded-lg p-1">
+                  <div className="relative flex items-center bg-background border border-border rounded-lg p-1 w-48">
+                    <div 
+                      className={`absolute inset-y-1 w-[calc(50%-4px)] bg-surface shadow-sm border border-border-hover rounded-md transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1) ${!isDarkMode ? 'left-1' : 'translate-x-full left-1'}`}
+                    ></div>
                     <button 
                       onClick={() => setIsDarkMode(false)} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${!isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`relative z-10 flex flex-1 items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 ${!isDarkMode ? 'text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       <Sun size={14} /> Light
                     </button>
                     <button 
                       onClick={() => setIsDarkMode(true)} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`relative z-10 flex flex-1 items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 ${isDarkMode ? 'text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       <Moon size={14} /> Dark
                     </button>
@@ -1022,16 +1025,19 @@ export default function CandidateConsole() {
                     <h3 className="text-sm font-medium text-primary">Display Density</h3>
                     <p className="text-xs text-muted mt-1">Adjust row height in the candidate table.</p>
                   </div>
-                  <div className="flex items-center bg-background border border-border rounded-lg p-1">
+                  <div className="relative flex items-center bg-background border border-border rounded-lg p-1 w-48">
+                    <div 
+                      className={`absolute inset-y-1 w-[calc(50%-4px)] bg-surface shadow-sm border border-border-hover rounded-md transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1) ${displayDensity === 'compact' ? 'left-1' : 'translate-x-full left-1'}`}
+                    ></div>
                     <button 
                       onClick={() => setDisplayDensity('compact')} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${displayDensity === 'compact' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`relative z-10 flex flex-1 items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 ${displayDensity === 'compact' ? 'text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       Compact
                     </button>
                     <button 
                       onClick={() => setDisplayDensity('comfortable')} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${displayDensity === 'comfortable' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`relative z-10 flex flex-1 items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 ${displayDensity === 'comfortable' ? 'text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       Comfortable
                     </button>
