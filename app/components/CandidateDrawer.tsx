@@ -41,7 +41,7 @@ export function CandidateDrawer({ candidate, onClose }: { candidate: any, onClos
                 {candidate.score !== undefined ? (candidate.score * 100).toFixed(2) : 'N/A'}/100
               </span>
             </div>
-            <h2 className="text-sm font-medium text-white mb-1 font-mono tracking-tight flex items-center gap-2">
+            <h2 className="text-sm font-medium text-primary mb-1 font-mono tracking-tight flex items-center gap-2">
               {candidate.name} 
               {signals.recruiter_response_rate > 0.90 && signals.interview_completion_rate > 0.90 && (
                 <div className="relative group cursor-help flex items-center justify-center">

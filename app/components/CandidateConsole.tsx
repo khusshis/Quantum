@@ -134,7 +134,10 @@ const highlightNumbers = (text: string) => {
 };
 export default function CandidateConsole() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = sessionStorage.getItem('quantum_isDarkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
   const [displayDensity, setDisplayDensity] = useState<'comfortable' | 'compact'>('comfortable');
 
   useEffect(() => {
@@ -241,10 +244,11 @@ export default function CandidateConsole() {
       sessionStorage.setItem('quantum_tabs', JSON.stringify(tabs));
       sessionStorage.setItem('quantum_activeTab', activeTabId);
       if (benchmark) sessionStorage.setItem('quantum_benchmark', JSON.stringify(benchmark));
+      sessionStorage.setItem('quantum_isDarkMode', isDarkMode.toString());
     } catch (e) {
       console.warn('Session storage quota exceeded');
     }
-  }, [tabs, activeTabId, benchmark]);
+  }, [tabs, activeTabId, benchmark, isDarkMode]);
 
   // Real-time Last Run Update
   useEffect(() => {
