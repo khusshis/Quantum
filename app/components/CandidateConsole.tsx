@@ -704,8 +704,8 @@ export default function CandidateConsole() {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors cursor-pointer">
-            <Upload size={14} />
+          <label className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-surface shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm border border-border rounded-full transition-all duration-300 ease-out cursor-pointer group">
+            <Upload size={14} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
             IMPORT JSON
             <input 
               type="file" 
@@ -714,12 +714,12 @@ export default function CandidateConsole() {
               onChange={handleFileUpload}
             />
           </label>
-          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors">
-            <Download size={14} />
+          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-surface shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm border border-border rounded-full transition-all duration-300 ease-out group">
+            <Download size={14} className="group-hover:translate-y-0.5 transition-transform duration-300" />
             EXPORT CSV
           </button>
-          <button onClick={() => setIsSettingsOpen(true)} className="flex items-center justify-center w-8 h-8 text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors ml-2">
-            <Settings size={14} />
+          <button onClick={() => setIsSettingsOpen(true)} className="flex items-center justify-center w-8 h-8 text-primary bg-surface shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm border border-border rounded-full transition-all duration-300 ease-out ml-2 group">
+            <Settings size={14} className="group-hover:rotate-45 transition-transform duration-500 ease-out" />
           </button>
         </div>
       </header>
