@@ -1005,13 +1005,13 @@ export default function CandidateConsole() {
                   <div className="flex items-center bg-background border border-border rounded-lg p-1">
                     <button 
                       onClick={() => setIsDarkMode(false)} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${!isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${!isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       <Sun size={14} /> Light
                     </button>
                     <button 
                       onClick={() => setIsDarkMode(true)} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       <Moon size={14} /> Dark
                     </button>
@@ -1026,13 +1026,13 @@ export default function CandidateConsole() {
                   <div className="flex items-center bg-background border border-border rounded-lg p-1">
                     <button 
                       onClick={() => setDisplayDensity('compact')} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${displayDensity === 'compact' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${displayDensity === 'compact' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       Compact
                     </button>
                     <button 
                       onClick={() => setDisplayDensity('comfortable')} 
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${displayDensity === 'comfortable' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out ${displayDensity === 'comfortable' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       Comfortable
                     </button>
