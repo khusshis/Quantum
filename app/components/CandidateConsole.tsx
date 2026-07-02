@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp, X, Loader2, Layers } from 'lucide-react';
+import { Download, Upload, Cpu, HardDrive, Clock, CheckCircle2, AlertTriangle, Filter, Search, ChevronDown, ChevronUp, X, Loader2, Layers, Settings, Sun, Moon } from 'lucide-react';
 import { CandidateDrawer } from './CandidateDrawer';
 import { FEATURE_KEYS, FEATURE_COLORS, formatFeatureName } from './FeatureConstants';
 
@@ -22,19 +22,19 @@ const CustomSelect = ({ value, onChange, options, widthClass = "w-full" }: any) 
   return (
     <div className={`relative ${widthClass} font-sans text-xs`} ref={selectRef}>
       <div 
-        className="flex items-center justify-between bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded pl-3 pr-2 py-1.5 cursor-pointer hover:border-[#3F3F46] focus-within:border-[#52525B] transition-colors"
+        className="flex items-center justify-between bg-background border border-border text-primary rounded pl-3 pr-2 py-1.5 cursor-pointer hover:border-border-hover focus-within:border-border-hover transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="truncate pr-2">{selectedOption?.label}</span>
-        <ChevronDown size={14} className={`text-[#71717A] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </div>
       
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-full bg-[#121212] border border-[#27272A] rounded shadow-2xl z-50 overflow-hidden max-h-60 overflow-y-auto no-scrollbar">
+        <div className="absolute top-full left-0 mt-1 w-full bg-surface border border-border rounded shadow-2xl z-50 overflow-hidden max-h-60 overflow-y-auto no-scrollbar">
           {options.map((opt: any) => (
             <div 
               key={opt.value}
-              className={`px-3 py-1.5 cursor-pointer hover:bg-[#27272A] transition-colors truncate ${value === opt.value ? 'bg-[#18181B] text-[#EDEDED] font-medium' : 'text-[#A1A1AA]'}`}
+              className={`px-3 py-1.5 cursor-pointer hover:bg-border transition-colors truncate ${value === opt.value ? 'bg-surface-hover text-primary font-medium' : 'text-secondary'}`}
               onClick={() => {
                 onChange(opt.value);
                 setIsOpen(false);
@@ -75,20 +75,20 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
   return (
     <div className="relative" ref={popoverRef}>
       <div 
-        className="flex items-center gap-2 cursor-pointer hover:bg-[#27272A] px-2 py-1.5 rounded transition-colors"
+        className="flex items-center gap-2 cursor-pointer hover:bg-border px-2 py-1.5 rounded transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="text-[#71717A]">{label}:</span>
-        <span className="text-[#EDEDED] font-medium">{value === anyValue ? 'Any' : formatValue(value)}</span>
+        <span className="text-muted">{label}:</span>
+        <span className="text-primary font-medium">{value === anyValue ? 'Any' : formatValue(value)}</span>
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-56 bg-[#121212] border border-[#27272A] rounded-lg shadow-2xl p-4 z-50">
+        <div className="absolute top-full left-0 mt-2 w-56 bg-surface border border-border rounded-lg shadow-2xl p-4 z-50">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-wider">{label}</span>
+            <span className="text-[11px] font-mono text-secondary uppercase tracking-wider">{label}</span>
             <input 
               type="text" 
-              className="bg-[#0A0A0A] border border-[#27272A] rounded px-2 py-1 text-[#EDEDED] text-[11px] font-mono w-14 text-center outline-none focus:border-[#52525B] transition-colors"
+              className="bg-background border border-border rounded px-2 py-1 text-primary text-[11px] font-mono w-14 text-center outline-none focus:border-border-hover transition-colors"
               value={tempValue === anyValue ? '' : tempValue}
               placeholder="Any"
               onChange={(e) => {
@@ -109,14 +109,14 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
                 const val = Number(e.target.value);
                 handleApply(val === max ? anyValue : val);
               }}
-              className="w-full h-1 bg-[#27272A] rounded-lg appearance-none cursor-pointer outline-none custom-slider-thumb"
+              className="w-full h-1 bg-border rounded-lg appearance-none cursor-pointer outline-none custom-slider-thumb"
               style={{
-                background: `linear-gradient(to right, #EDEDED 0%, #EDEDED ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, #27272A 100%)`
+                background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, var(--color-border) ${((tempValue === anyValue ? max : tempValue) - min) / (max - min) * 100}%, var(--color-border) 100%)`
               }}
             />
           </div>
           
-          <div className="flex justify-between text-[10px] text-[#71717A] mt-1 font-mono">
+          <div className="flex justify-between text-[10px] text-muted mt-1 font-mono">
             <span>{min}</span>
             <span>Any</span>
           </div>
@@ -129,10 +129,21 @@ const FilterPopover = ({ label, value, onChange, min, max, step, formatValue, an
 const highlightNumbers = (text: string) => {
   if (!text) return null;
   return text.split(/(\d+(?:\.\d+)?)/).map((part, i) => 
-    /^\d+(?:\.\d+)?$/.test(part) ? <span key={i} className="text-[#EDEDED] font-bold">{part}</span> : part
+    /^\d+(?:\.\d+)?$/.test(part) ? <span key={i} className="text-primary font-bold">{part}</span> : part
   );
 };
 export default function CandidateConsole() {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   interface Tab {
     id: string;
     name: string;
@@ -550,7 +561,7 @@ export default function CandidateConsole() {
   }, [candidates]);
 
   return (
-    <div className="flex flex-col h-screen bg-[#0A0A0A] text-[#EDEDED] font-sans overflow-hidden">
+    <div className="flex flex-col h-screen bg-background text-primary font-sans overflow-hidden">
       
       {/* Futuristic Loading Overlay */}
       {isImporting && (
@@ -560,7 +571,7 @@ export default function CandidateConsole() {
             {/* Cancel Button */}
             <button 
               onClick={() => setIsImporting(false)}
-              className="absolute top-6 right-6 text-[#71717A] hover:text-white transition-colors"
+              className="absolute top-6 right-6 text-muted hover:text-white transition-colors"
             >
               <X size={20} />
             </button>
@@ -572,18 +583,18 @@ export default function CandidateConsole() {
             </div>
             
             {/* Status Text */}
-            <h2 className="text-[#EDEDED] text-base font-medium tracking-tight mb-1.5 text-center">
+            <h2 className="text-primary text-base font-medium tracking-tight mb-1.5 text-center">
               Quantum Engine Processing
             </h2>
-            <p className="text-[#71717A] text-[11px] mb-1 text-center h-4">
+            <p className="text-muted text-[11px] mb-1 text-center h-4">
               {importStatus}
             </p>
-            <p className="text-[#52525B] text-[10px] mb-8 text-center font-mono">
+            <p className="text-secondary text-[10px] mb-8 text-center font-mono">
               {eta}
             </p>
             
             {/* Continuous Smooth Progress Bar */}
-            <div className="w-full bg-[#18181B] rounded-full h-[5px] mb-3 overflow-hidden relative border border-[#27272A]/50">
+            <div className="w-full bg-surface-hover rounded-full h-[5px] mb-3 overflow-hidden relative border border-border/50">
               <div 
                 className="h-full rounded-full relative overflow-hidden progress-shimmer" 
                 style={{ 
@@ -595,8 +606,8 @@ export default function CandidateConsole() {
             </div>
             
             {/* Percentage */}
-            <div className="flex justify-between w-full text-[10px] text-[#3F3F46]">
-              <span className="text-[#52525B]">PROGRESS</span>
+            <div className="flex justify-between w-full text-[10px] text-muted">
+              <span className="text-secondary">PROGRESS</span>
               <span className="text-[#10B981] font-bold tabular-nums">
                 {smoothProgress < 1 ? '0' : Math.floor(smoothProgress)}%
               </span>
@@ -608,27 +619,27 @@ export default function CandidateConsole() {
       {/* AI Ranking Configuration Modal */}
       {showConfigModal && (
         <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center font-mono">
-          <div className="bg-[#0A0A0A] border border-[#27272A] rounded-xl p-8 max-w-lg w-full shadow-2xl">
+          <div className="bg-background border border-border rounded-xl p-8 max-w-lg w-full shadow-2xl">
             <div className="flex items-center gap-3 mb-6">
               <Cpu size={20} className="text-[#10B981]" />
-              <h2 className="text-[#EDEDED] text-lg font-medium tracking-tight">AI Ranking Configuration</h2>
+              <h2 className="text-primary text-lg font-medium tracking-tight">AI Ranking Configuration</h2>
             </div>
             
-            <p className="text-[#71717A] text-xs mb-6">
-              Raw dataset detected: <span className="text-[#10B981] font-bold">{pendingRawCandidates.length.toLocaleString()}</span> candidates from <span className="text-[#A1A1AA]">{pendingFileName}</span>.
+            <p className="text-muted text-xs mb-6">
+              Raw dataset detected: <span className="text-[#10B981] font-bold">{pendingRawCandidates.length.toLocaleString()}</span> candidates from <span className="text-secondary">{pendingFileName}</span>.
               Configure how the Quantum Engine should rank them.
             </p>
 
             {apiError && (
               <div className="bg-[#7F1D1D]/30 border border-[#EF4444]/30 rounded px-3 py-2 mb-4">
                 <p className="text-[#F87171] text-xs font-mono">⚠ {apiError}</p>
-                <p className="text-[#71717A] text-[10px] mt-1">Make sure the API server is running: <span className="text-[#A1A1AA]">python api.py</span></p>
+                <p className="text-muted text-[10px] mt-1">Make sure the API server is running: <span className="text-secondary">python api.py</span></p>
               </div>
             )}
 
             <div className="space-y-5">
               <div>
-                <label className="text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold block mb-2">
+                <label className="text-[10px] uppercase tracking-wider text-secondary font-bold block mb-2">
                   Shortlist Size
                 </label>
                 <input
@@ -637,30 +648,30 @@ export default function CandidateConsole() {
                   max={5000}
                   value={configShortlist}
                   onChange={(e) => setConfigShortlist(Math.max(10, Math.min(5000, parseInt(e.target.value) || 100)))}
-                  className="w-full bg-[#121212] border border-[#27272A] rounded px-3 py-2 text-sm text-[#EDEDED] focus:outline-none focus:border-[#10B981] transition-colors"
+                  className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-primary focus:outline-none focus:border-[#10B981] transition-colors"
                 />
-                <p className="text-[9px] text-[#52525B] mt-1">How many top candidates to shortlist (10 – 5000).</p>
+                <p className="text-[9px] text-secondary mt-1">How many top candidates to shortlist (10 – 5000).</p>
               </div>
 
               <div>
-                <label className="text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold block mb-2">
-                  Custom Job Description / Requirements <span className="text-[#52525B]">(Optional)</span>
+                <label className="text-[10px] uppercase tracking-wider text-secondary font-bold block mb-2">
+                  Custom Job Description / Requirements <span className="text-secondary">(Optional)</span>
                 </label>
                 <textarea
                   rows={4}
                   value={configJdText}
                   onChange={(e) => setConfigJdText(e.target.value)}
                   placeholder="e.g. Looking for Senior ML Engineer with 5+ years experience in NLP, ranking systems, and Python. Must have production deployment experience."
-                  className="w-full bg-[#121212] border border-[#27272A] rounded px-3 py-2 text-xs text-[#EDEDED] focus:outline-none focus:border-[#10B981] transition-colors resize-none placeholder-[#3F3F46]"
+                  className="w-full bg-surface border border-border rounded px-3 py-2 text-xs text-primary focus:outline-none focus:border-[#10B981] transition-colors resize-none placeholder-muted"
                 />
-                <p className="text-[9px] text-[#52525B] mt-1">Leave empty to use the default Redrob JD. Custom text adjusts BM25 keyword matching.</p>
+                <p className="text-[9px] text-secondary mt-1">Leave empty to use the default Redrob JD. Custom text adjusts BM25 keyword matching.</p>
               </div>
             </div>
 
             <div className="flex gap-3 mt-8">
               <button
                 onClick={() => { setShowConfigModal(false); setPendingRawCandidates([]); }}
-                className="flex-1 px-4 py-2.5 bg-[#121212] border border-[#27272A] text-[#A1A1AA] rounded-full text-xs hover:bg-[#18181B] transition-colors"
+                className="flex-1 px-4 py-2.5 bg-surface border border-border text-secondary rounded-full text-xs hover:bg-surface-hover transition-colors"
               >
                 Cancel
               </button>
@@ -677,22 +688,22 @@ export default function CandidateConsole() {
       )}
 
       {/* Header Panel */}
-      <header className="flex items-center justify-between px-6 py-4 border-b border-[#27272A] bg-[#0A0A0A]">
+      <header className="flex items-center justify-between px-6 py-4 border-b border-border bg-background">
         <div>
           <h1 className="text-xl font-medium tracking-tight flex items-center gap-2">
             <Layers className="text-[#10B981]" size={22} />
-            <span className="text-[#EDEDED]">Quantum</span>
-            <span className="text-xs text-[#71717A] font-normal uppercase tracking-widest ml-1">Recruitment Console</span>
+            <span className="text-primary">Quantum</span>
+            <span className="text-xs text-muted font-normal uppercase tracking-widest ml-1">Recruitment Console</span>
           </h1>
-          <div className="flex items-center gap-4 mt-2 text-[11px] text-[#71717A] font-mono tracking-wider">
+          <div className="flex items-center gap-4 mt-2 text-[11px] text-muted font-mono tracking-wider">
             <span>POOL: 100,000</span>
-            <span className="text-[#EDEDED]">SHORTLIST: {candidates.length}</span>
+            <span className="text-primary">SHORTLIST: {candidates.length}</span>
             {benchmark && <span className="flex items-center gap-1.5"><Clock size={12}/> LAST RUN: <span className="text-[#10B981]">{timeAgoStr}</span></span>}
             <span className="flex items-center gap-1.5 text-[#10B981] ml-2"><CheckCircle2 size={12} /> 0 EXTERNAL API CALLS</span>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded-full transition-colors cursor-pointer">
+          <label className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors cursor-pointer">
             <Upload size={14} />
             IMPORT JSON
             <input 
@@ -702,20 +713,23 @@ export default function CandidateConsole() {
               onChange={handleFileUpload}
             />
           </label>
-          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-[#EDEDED] bg-[#27272A] hover:bg-[#3F3F46] border border-[#3F3F46] rounded-full transition-colors">
+          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors">
             <Download size={14} />
             EXPORT CSV
+          </button>
+          <button onClick={() => setIsSettingsOpen(true)} className="flex items-center justify-center w-8 h-8 text-primary bg-border hover:bg-border-hover border border-border-hover rounded-full transition-colors ml-2">
+            <Settings size={14} />
           </button>
         </div>
       </header>
 
       {/* Workspace Tabs */}
-      <div className="flex items-center gap-1 px-4 pt-0 bg-[#0A0A0A] border-b border-[#27272A] overflow-x-auto no-scrollbar">
+      <div className="flex items-center gap-1 px-4 pt-0 bg-background border-b border-border overflow-x-auto no-scrollbar">
         {tabs.map(tab => (
           <div 
             key={tab.id}
             onClick={() => setActiveTabId(tab.id)}
-            className={`group flex items-center gap-2 px-4 py-2 text-xs font-mono border-t border-l border-r rounded-t cursor-pointer transition-colors ${activeTabId === tab.id ? 'bg-[#121212] border-[#3F3F46] text-[#10B981]' : 'bg-[#0A0A0A] border-transparent text-[#71717A] hover:bg-[#121212] hover:text-[#A1A1AA]'}`}
+            className={`group flex items-center gap-2 px-4 py-2 text-xs font-mono border-t border-l border-r rounded-t cursor-pointer transition-colors ${activeTabId === tab.id ? 'bg-surface border-border-hover text-[#10B981]' : 'bg-background border-transparent text-muted hover:bg-surface hover:text-secondary'}`}
           >
             {tab.name}
             {tab.id !== 'default' && (
@@ -736,14 +750,14 @@ export default function CandidateConsole() {
       </div>
 
       {/* Filter Bar */}
-      <div className="flex items-center gap-6 px-6 py-2 border-b border-[#27272A] bg-[#121212] text-xs font-mono">
-        <div className="flex items-center gap-2 text-[#A1A1AA]">
+      <div className="flex items-center gap-6 px-6 py-2 border-b border-border bg-surface text-xs font-mono">
+        <div className="flex items-center gap-2 text-secondary">
           <Filter size={14} />
           <span>FILTERS</span>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="text-[#71717A]">Notice:</span>
+          <span className="text-muted">Notice:</span>
           <CustomSelect 
             value={filterNotice}
             onChange={(val: any) => setFilterNotice(val)}
@@ -758,7 +772,7 @@ export default function CandidateConsole() {
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="text-[#71717A]">Role:</span>
+          <span className="text-muted">Role:</span>
           <CustomSelect 
             value={filterTitle}
             onChange={(val: any) => setFilterTitle(val)}
@@ -790,16 +804,16 @@ export default function CandidateConsole() {
         
         <div className="ml-auto flex items-center gap-4">
           <div className="relative">
-            <Search size={14} className="absolute left-2 top-1.5 text-[#71717A]" />
+            <Search size={14} className="absolute left-2 top-1.5 text-muted" />
             <input 
               type="text" 
               placeholder="Search ID, name, co..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-[#0A0A0A] border border-[#27272A] text-[#EDEDED] rounded pl-7 pr-2 py-1 text-xs outline-none transition-all duration-300 ease-out focus:border-[#71717A] focus:bg-[#121212] focus:w-[220px] w-[180px] focus:ring-1 focus:ring-[#71717A]/50"
+              className="bg-background border border-border text-primary rounded pl-7 pr-2 py-1 text-xs outline-none transition-all duration-300 ease-out focus:border-secondary focus:bg-surface focus:w-[220px] w-[180px] focus:ring-1 focus:ring-secondary/50"
             />
           </div>
-          <span className="text-[#71717A]">
+          <span className="text-muted">
             Showing {processedCandidates.length} results
           </span>
         </div>
@@ -810,71 +824,71 @@ export default function CandidateConsole() {
         <main className="flex-1 overflow-y-auto no-scrollbar flex flex-col">
           <div className="flex-1">
             <table className="w-full text-sm text-left border-collapse">
-              <thead className="text-xs uppercase text-[#A1A1AA] bg-[#0A0A0A] sticky top-0 z-10 font-sans tracking-wide border-b border-[#27272A]">
+              <thead className="text-xs uppercase text-secondary bg-background sticky top-0 z-10 font-sans tracking-wide border-b border-border">
                 <tr>
-                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('rank')}>
+                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('rank')}>
                     Rank {getSortIcon('rank')}
                   </th>
-                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('candidate_id')}>
+                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('candidate_id')}>
                     Candidate {getSortIcon('candidate_id')}
                   </th>
                   <th className="px-6 py-4 font-semibold">Profile Overview</th>
                   <th className="px-6 py-4 font-semibold">Notice</th>
                   <th className="px-6 py-4 font-semibold">Exp & Salary</th>
-                  <th className="px-6 py-4 font-semibold text-right cursor-pointer hover:text-[#EDEDED] transition-colors" onClick={() => requestSort('score')}>
+                  <th className="px-6 py-4 font-semibold text-right cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('score')}>
                     Rating (/100) {getSortIcon('score')}
                   </th>
                   <th className="px-6 py-4 font-semibold w-48">Hiring Signals</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#27272A]">
+              <tbody className="divide-y divide-[var(--color-border)]">
                 {processedCandidates.map((c) => (
                   <tr 
                     key={c.candidate_id} 
                     onClick={() => setSelectedCandidate(c)}
-                    className={`cursor-pointer transition-colors feature-row group ${selectedCandidate?.candidate_id === c.candidate_id ? 'bg-[#18181B]' : 'hover:bg-[#121212]'}`}
+                    className={`cursor-pointer transition-colors feature-row group ${selectedCandidate?.candidate_id === c.candidate_id ? 'bg-surface-hover' : 'hover:bg-surface'}`}
                   >
-                    <td className="px-6 py-3 font-mono text-[#A1A1AA] text-xs">
+                    <td className="px-6 py-3 font-mono text-secondary text-xs">
                       {c.rank?.toString().padStart(3, '0') || '---'}
                     </td>
                     <td className="px-6 py-3 font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity">
-                      <div className="text-[#EDEDED] font-medium font-sans text-sm flex items-center gap-2">
+                      <div className="text-primary font-medium font-sans text-sm flex items-center gap-2">
                         {c.name}
                         {c.redrob_signals?.recruiter_response_rate > 0.90 && c.redrob_signals?.interview_completion_rate > 0.90 && (
                           <div className="relative group cursor-help flex items-center justify-center">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#EAB308] shadow-[0_0_6px_rgba(234,179,8,0.6)]"></div>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-[#27272A] border border-[#3F3F46] text-[#EDEDED] text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-border border border-border-hover text-primary text-[9px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl font-sans font-normal">
                               ⚡ Fast Mover: &gt;90% Response & Interview Show Rate
                             </div>
                           </div>
                         )}
                       </div>
-                      <div className="text-[#71717A] text-[10px]">{c.candidate_id}</div>
+                      <div className="text-muted text-[10px]">{c.candidate_id}</div>
                     </td>
                     <td className="px-6 py-3">
-                      <div className="font-medium text-[#EDEDED] flex items-center gap-2">
+                      <div className="font-medium text-primary flex items-center gap-2">
                         {c.title || 'Unknown Title'}
                         {c.notice_period_days !== undefined && c.notice_period_days <= 30 && (
                           <span className="px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[#10B981] text-[9px] font-mono font-bold">FAST JOIN</span>
                         )}
                       </div>
-                      <div className="text-xs text-[#71717A] mt-0.5 font-medium">{c.company || 'Unknown Company'}</div>
-                      <div className="text-[10px] text-[#A1A1AA] mt-1.5 line-clamp-1 border-l-2 border-[#3F3F46] pl-2 font-mono">
+                      <div className="text-xs text-muted mt-0.5 font-medium">{c.company || 'Unknown Company'}</div>
+                      <div className="text-[10px] text-secondary mt-1.5 line-clamp-1 border-l-2 border-border-hover pl-2 font-mono">
                         {highlightNumbers(c.preview_reasoning || c.reasoning)}
                       </div>
                     </td>
-                    <td className="px-6 py-3 font-mono text-[#A1A1AA] text-sm">
+                    <td className="px-6 py-3 font-mono text-secondary text-sm">
                       {c.notice_period_days !== undefined ? `${c.notice_period_days}d` : 'N/A'}
                     </td>
-                    <td className="px-6 py-3 font-mono text-[#EDEDED] text-sm">
+                    <td className="px-6 py-3 font-mono text-primary text-sm">
                       {c.yoe !== undefined ? `${c.yoe} yrs` : 'N/A'}
-                      <div className="text-xs text-[#71717A] mt-0.5">
+                      <div className="text-xs text-muted mt-0.5">
                         {c.expected_salary?.min && c.expected_salary?.max 
                           ? `₹${c.expected_salary.min}-${c.expected_salary.max}L` 
                           : 'Negotiable'}
                       </div>
                     </td>
-                    <td className="px-6 py-3 text-right font-mono text-[#EDEDED] text-sm">
+                    <td className="px-6 py-3 text-right font-mono text-primary text-sm">
                       {c.score !== undefined ? (c.score * 100).toFixed(2) : 'N/A'}
                       {c.features?.honeypot_suspicion_score >= 0.5 && (
                         <AlertTriangle size={12} className="inline ml-2 text-[#EF4444]" title="Honeypot Suspicion" />
@@ -883,20 +897,20 @@ export default function CandidateConsole() {
                     <td className="px-6 py-3">
                       <div className="flex flex-col gap-2 w-full max-w-[180px] text-xs font-mono">
                         <div className="flex items-center justify-between">
-                          <span className="text-[#71717A]">Status</span>
+                          <span className="text-muted">Status</span>
                           <span className={c.redrob_signals?.open_to_work_flag ? 'text-[#10B981] font-bold' : 'text-[#60A5FA] font-medium'}>
                             {c.redrob_signals?.open_to_work_flag ? 'Open to Work' : 'Passive'}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[#71717A]">Response Rate</span>
-                          <span className="text-[#EDEDED]">
+                          <span className="text-muted">Response Rate</span>
+                          <span className="text-primary">
                             {c.redrob_signals?.recruiter_response_rate ? `${(c.redrob_signals.recruiter_response_rate * 100).toFixed(0)}%` : 'N/A'}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[#71717A]">Interview Show</span>
-                          <span className="text-[#EDEDED]">
+                          <span className="text-muted">Interview Show</span>
+                          <span className="text-primary">
                             {c.redrob_signals?.interview_completion_rate ? `${(c.redrob_signals.interview_completion_rate * 100).toFixed(0)}%` : 'N/A'}
                           </span>
                         </div>
@@ -909,12 +923,12 @@ export default function CandidateConsole() {
           </div>
 
           {/* Contrastive Strip - Styled like a data diff tool */}
-          <div className="border-t border-[#27272A] bg-[#0A0A0A] flex flex-col mt-auto shrink-0 relative z-10">
-            <div className="px-6 py-2 border-b border-[#27272A] bg-[#121212] flex items-center">
-              <span className="text-[10px] text-[#A1A1AA] uppercase tracking-wider font-mono font-bold flex items-center gap-2">
+          <div className="border-t border-border bg-background flex flex-col mt-auto shrink-0 relative z-10">
+            <div className="px-6 py-2 border-b border-border bg-surface flex items-center">
+              <span className="text-[10px] text-secondary uppercase tracking-wider font-mono font-bold flex items-center gap-2">
                 <Search size={12} /> Contrastive Analysis: Runners-Up
               </span>
-              <span className="text-[10px] text-[#71717A] ml-4 font-mono">
+              <span className="text-[10px] text-muted ml-4 font-mono">
                 Baseline: Rank {selectedCandidate && (selectedCandidate.rank ?? 999) <= 10 ? `#${selectedCandidate.rank}` : '#10 (Cutoff)'}
               </span>
             </div>
@@ -937,15 +951,15 @@ export default function CandidateConsole() {
                 }
                 
                 return (
-                <div key={runner.candidate_id} className="flex-shrink-0 w-64 border-r border-[#27272A] p-3 hover:bg-[#121212] transition-colors">
+                <div key={runner.candidate_id} className="flex-shrink-0 w-64 border-r border-border p-3 hover:bg-surface transition-colors">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="font-mono text-[10px] text-[#71717A]">RANK {runner.rank?.toString().padStart(3, '0') || 'N/A'}</span>
-                    <span className="font-mono text-[10px] text-[#EDEDED]">{runner.score !== undefined ? (runner.score * 100).toFixed(2) : 'N/A'}</span>
+                    <span className="font-mono text-[10px] text-muted">RANK {runner.rank?.toString().padStart(3, '0') || 'N/A'}</span>
+                    <span className="font-mono text-[10px] text-primary">{runner.score !== undefined ? (runner.score * 100).toFixed(2) : 'N/A'}</span>
                   </div>
-                  <div className="text-xs font-medium truncate text-[#EDEDED] mb-2">{runner.title || 'Unknown Title'}</div>
+                  <div className="text-xs font-medium truncate text-primary mb-2">{runner.title || 'Unknown Title'}</div>
                   
-                  <div className="bg-[#18181B] rounded border border-[#27272A] p-2">
-                    <div className="text-[9px] text-[#71717A] font-mono uppercase mb-1">Primary Deficit</div>
+                  <div className="bg-surface-hover rounded border border-border p-2">
+                    <div className="text-[9px] text-muted font-mono uppercase mb-1">Primary Deficit</div>
                     <div className="flex justify-between items-end">
                       <span className="text-[10px] text-[#F87171] font-medium truncate pr-2">
                         {biggestGapKey ? formatFeatureName(biggestGapKey) : 'Low overall signals'}
@@ -967,6 +981,44 @@ export default function CandidateConsole() {
             candidate={selectedCandidate} 
             onClose={() => setSelectedCandidate(null)} 
           />
+        )}
+
+        {/* Settings Modal */}
+        {isSettingsOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+            <div className="bg-surface border border-border rounded-xl shadow-2xl w-[400px] overflow-hidden flex flex-col">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-background">
+                <h2 className="text-sm font-semibold text-primary font-sans flex items-center gap-2">
+                  <Settings size={16} className="text-muted" /> Settings
+                </h2>
+                <button onClick={() => setIsSettingsOpen(false)} className="text-muted hover:text-primary transition-colors">
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="p-6 flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-medium text-primary">Theme</h3>
+                    <p className="text-xs text-muted mt-1">Select your preferred interface theme.</p>
+                  </div>
+                  <div className="flex items-center bg-background border border-border rounded-lg p-1">
+                    <button 
+                      onClick={() => setIsDarkMode(false)} 
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${!isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                    >
+                      <Sun size={14} /> Light
+                    </button>
+                    <button 
+                      onClick={() => setIsDarkMode(true)} 
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                    >
+                      <Moon size={14} /> Dark
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

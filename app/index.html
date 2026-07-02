@@ -12,13 +12,15 @@
         theme: {
           extend: {
             colors: {
-              background: '#0A0A0A',
-              surface: '#121212',
-              'surface-hover': '#1A1A1A',
-              primary: '#EDEDED',
-              secondary: '#A1A1AA',
-              accent: '#3B82F6', // Blue 500
-              border: '#27272A',
+              background: 'var(--color-background)',
+              surface: 'var(--color-surface)',
+              'surface-hover': 'var(--color-surface-hover)',
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+              muted: 'var(--color-muted)',
+              border: 'var(--color-border)',
+              'border-hover': 'var(--color-border-hover)',
+              accent: 'var(--color-accent)', // Blue 500
             },
             fontFamily: {
               sans: ['Geist', 'sans-serif'],
@@ -32,10 +34,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --color-background: #ffffff;
+        --color-surface: #f4f4f5;
+        --color-surface-hover: #e4e4e7;
+        --color-primary: #09090b;
+        --color-secondary: #52525B;
+        --color-muted: #71717A;
+        --color-border: #e4e4e7;
+        --color-border-hover: #d4d4d8;
+        --color-accent: #3B82F6;
+      }
+      .dark {
+        --color-background: #0A0A0A;
+        --color-surface: #121212;
+        --color-surface-hover: #1A1A1A;
+        --color-primary: #EDEDED;
+        --color-secondary: #A1A1AA;
+        --color-muted: #71717A;
+        --color-border: #27272A;
+        --color-border-hover: #3F3F46;
+        --color-accent: #3B82F6;
+      }
       body {
         font-family: 'Geist', sans-serif;
-        background-color: #0A0A0A;
-        color: #EDEDED;
+        background-color: var(--color-background);
+        color: var(--color-primary);
         overflow-x: hidden;
       }
       
@@ -44,14 +68,14 @@
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #0A0A0A;
+        background: var(--color-background);
       }
       ::-webkit-scrollbar-thumb {
-        background: #27272A;
+        background: var(--color-border);
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #3F3F46;
+        background: var(--color-border-hover);
       }
       
       .score-bar-segment {
@@ -59,7 +83,7 @@
       }
       
       .feature-row:hover {
-        background-color: #1A1A1A;
+        background-color: var(--color-surface-hover);
       }
       
       /* Custom Slider Thumb */
@@ -67,30 +91,30 @@
         appearance: none;
         width: 16px;
         height: 16px;
-        background-color: #EDEDED;
+        background-color: var(--color-primary);
         border-radius: 50%;
         cursor: pointer;
-        border: 2px solid #0A0A0A;
-        box-shadow: 0 0 0 1px #52525B;
+        border: 2px solid var(--color-background);
+        box-shadow: 0 0 0 1px var(--color-secondary);
         transition: transform 0.1s, box-shadow 0.1s;
       }
       .custom-slider-thumb::-webkit-slider-thumb:hover {
         transform: scale(1.15);
-        box-shadow: 0 0 0 1px #EDEDED;
+        box-shadow: 0 0 0 1px var(--color-primary);
       }
       .custom-slider-thumb::-moz-range-thumb {
         width: 16px;
         height: 16px;
-        background-color: #EDEDED;
+        background-color: var(--color-primary);
         border-radius: 50%;
         cursor: pointer;
-        border: 2px solid #0A0A0A;
-        box-shadow: 0 0 0 1px #52525B;
+        border: 2px solid var(--color-background);
+        box-shadow: 0 0 0 1px var(--color-secondary);
         transition: transform 0.1s, box-shadow 0.1s;
       }
       .custom-slider-thumb::-moz-range-thumb:hover {
         transform: scale(1.15);
-        box-shadow: 0 0 0 1px #EDEDED;
+        box-shadow: 0 0 0 1px var(--color-primary);
       }
 
       @keyframes progressShimmer {
