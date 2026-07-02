@@ -92,7 +92,7 @@ def test_reasoning_generation():
         else:
             rank = i + 1
             reasoning = generate_reasoning(cand, features_low, JD, rank)
-            assert "filler" in reasoning or "Lower confidence" in reasoning
+            assert "Ranked lower" in reasoning or "Lower confidence" in reasoning
             
         reasonings.add(reasoning)
         

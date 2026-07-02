@@ -84,7 +84,7 @@ def generate_reasoning(candidate: Candidate, features: CandidateFeatures, jd: Pa
         if not concerns:
             concern_prefix = "Lower confidence match."
         else:
-            concern_prefix = "Included as filler given " + concerns[0] + "."
+            concern_prefix = "Ranked lower given " + concerns[0] + "."
         
         templates = [
             f"{concern_prefix} Profile shows {yoe} years as a {title} with {skill_str}.",
