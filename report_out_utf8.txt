@@ -1,0 +1,106 @@
+=== 1. Feature Importance ===
+role_relevance_score: 825851  (81.0%)
+consulting_only_penalty: 76420  (7.5%)
+availability_score: 69433  (6.8%)
+years_experience_fit: 17371  (1.7%)
+production_ml_evidence_score: 8458  (0.8%)
+skill_semantic_match: 8023  (0.8%)
+skill_trust_score: 7700  (0.8%)
+domain_adjacency_penalty: 2658  (0.3%)
+framework_enthusiast_penalty: 2234  (0.2%)
+bm25_score: 1532  (0.2%)
+title_trajectory_score: 232  (0.0%)
+education_tier_score: 5  (0.0%)
+notice_period_fit: 3  (0.0%)
+location_boost: 2  (0.0%)
+verification_trust_score: 1  (0.0%)
+research_only_disqualifier: 0  (0.0%)
+honeypot_suspicion_score: 0  (0.0%)
+
+
+=== 2. Feature-vs-Rank Correlation ===
+Correlation of each feature with rank:
+score                          -0.915997
+production_ml_evidence_score   -0.581501
+education_tier_score           -0.182624
+engagement_multiplier          -0.173837
+immediate_joiner_boost         -0.163449
+years_experience_fit           -0.154153
+skill_trust_score              -0.107529
+notice_period_fit              -0.100258
+github_activity_boost          -0.088001
+availability_score             -0.070293
+bm25_score                     -0.051639
+location_boost                 -0.043312
+skill_semantic_match           -0.015076
+verification_trust_score        0.006765
+platform_reliability_score      0.025925
+honeypot_suspicion_score        0.071375
+title_trajectory_score          0.130565
+salary_mismatch_penalty         0.206032
+rank                            1.000000
+domain_adjacency_penalty             NaN
+consulting_only_penalty              NaN
+research_only_disqualifier           NaN
+role_relevance_score                 NaN
+framework_enthusiast_penalty         NaN
+job_hopper_penalty                   NaN
+overqualified_penalty                NaN
+non_coder_penalty                    NaN
+Name: rank, dtype: float64
+
+
+=== 3. Spearman Correlation with Independent Heuristic ===
+Spearman correlation: 0.6003720372037203
+
+
+=== 4. Title Trap Grep (Marketing/Sales/HR/Support/Business Analyst) ===
+Found 0 title traps.
+
+
+=== 5. New Top 20 & Bottom 20 Reasoning ===
+=== TOP 20 ===
+candidate_id  rank  score                                                                                                                                                                                                                                             reasoning
+CAND_0037980     1 0.9900                                                                Top candidate based on production embeddings/retrieval experience. Brings 9.0 years of experience currently as Senior Applied Scientist, leveraging Search Infrastructure and BentoML.
+CAND_0001494     2 0.9802                           Strong fit driven by production embeddings/retrieval experience: 6.4 years of experience as a Data Scientist, with verified expertise in MLflow and Vector Search; however, notice period is 90 days (above JD preference).
+CAND_0058412     3 0.9167  Highly aligned with production embeddings/retrieval experience, featuring 6.6 years as a Senior Software Engineer (ML) and demonstrated hands-on work with Embeddings and Fine-tuning LLMs; however, notice period is 60 days (above JD preference).
+CAND_0065786     4 0.8982                         Strong fit driven by production embeddings/retrieval experience: 4.9 years of experience as a AI Specialist, with verified expertise in BentoML and Semantic Search; however, notice period is 45 days (above JD preference).
+CAND_0048166     5 0.8849                                                                                            Strong fit driven by production embeddings/retrieval experience: 5.2 years of experience as a ML Engineer, with verified expertise in Pinecone and Qdrant.
+CAND_0047521     6 0.8761                       Strong fit driven by production embeddings/retrieval experience: 4.4 years of experience as a Junior ML Engineer, with verified expertise in LlamaIndex and Pinecone; however, notice period is 120 days (above JD preference).
+CAND_0097896     7 0.8682 Top candidate based on production embeddings/retrieval experience. Brings 4.8 years of experience currently as AI Research Engineer, leveraging Information Retrieval and Fine-tuning LLMs; however, notice period is 120 days (above JD preference).
+CAND_0061479     8 0.8589                                Top candidate based on production embeddings/retrieval experience. Brings 5.0 years of experience currently as ML Engineer, leveraging LlamaIndex and MLOps; however, notice period is 120 days (above JD preference).
+CAND_0005509     9 0.8581                                                                                 Strong fit driven by production embeddings/retrieval experience: 6.0 years of experience as a Data Scientist, with verified expertise in Python and Fine-tuning LLMs.
+CAND_0002025    10 0.8503                                                                                 Highly aligned with production embeddings/retrieval experience, featuring 5.9 years as a Senior AI Engineer and demonstrated hands-on work with FAISS and OpenSearch.
+CAND_0071974    11 0.8200                                         Meets core requirements for production embeddings/retrieval experience via 7.8 years of experience as Senior AI Engineer with Weaviate and Pinecone; however, notice period is 45 days (above JD preference).
+CAND_0017648    12 0.8134                             Meets core requirements for production embeddings/retrieval experience via 4.0 years of experience as AI Specialist with Fine-tuning LLMs and Machine Learning; however, notice period is 120 days (above JD preference).
+CAND_0005538    13 0.8037                                                   A fair fit providing 5.9 years as a Senior AI Engineer and Deep Learning and Python aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference).
+CAND_0049615    14 0.8024                                                        A fair fit providing 5.1 years as a ML Engineer and Deep Learning and Pinecone aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference).
+CAND_0067643    15 0.7967                      Solid candidate with 6.0 years as a AI Research Engineer matching our need for production embeddings/retrieval experience (skills: Elasticsearch and Fine-tuning LLMs); however, notice period is 60 days (above JD preference).
+CAND_0080534    16 0.7827                                                                                                               A fair fit providing 3.8 years as a ML Engineer and Elasticsearch and OpenSearch aligned to production embeddings/retrieval experience.
+CAND_0008978    17 0.7719                           Solid candidate with 6.7 years as a Junior ML Engineer matching our need for production embeddings/retrieval experience (skills: Machine Learning and Embeddings); however, notice period is 90 days (above JD preference).
+CAND_0069638    18 0.7641                                                                             Meets core requirements for production embeddings/retrieval experience via 6.2 years of experience as Computer Vision Engineer with Semantic Search and Fine-tuning LLMs.
+CAND_0066999    19 0.7634                                                                                                           A fair fit providing 5.9 years as a Recommendation Systems Engineer and OpenSearch and FAISS aligned to ideal experience range (5-9 years).
+CAND_0078262    20 0.7612                                                 Meets core requirements for production embeddings/retrieval experience via 4.9 years of experience as ML Engineer with FAISS and Embeddings; however, notice period is 60 days (above JD preference).
+
+=== BOTTOM 20 (ranks 81-100) ===
+candidate_id  rank  score                                                                                                                                                             reasoning
+CAND_0008628    81 0.6267                        Included as filler given notice period is 60 days (above JD preference). Profile shows 3.2 years as a AI Specialist with BentoML and Weaviate.
+CAND_0053431    82 0.6240                        Included as filler given notice period is 90 days (above JD preference). Brings 6.1 years of experience as ML Engineer (LangChain and Python).
+CAND_0017147    83 0.6226                   Included as filler given notice period is 120 days (above JD preference). Profile shows 4.7 years as a AI Specialist with LangChain and LlamaIndex.
+CAND_0049771    84 0.6226                     Included as filler given notice period is 60 days (above JD preference). Profile shows 5.0 years as a AI Research Engineer with Python and MLOps.
+CAND_0060340    85 0.6207                       Included as filler given notice period is 45 days (above JD preference). Brings 6.1 years of experience as Computer Vision Engineer (Tailwind).
+CAND_0043958    86 0.6202        Included as filler given notice period is 120 days (above JD preference). Brings 6.7 years of experience as AI Research Engineer (FAISS and Fine-tuning LLMs).
+CAND_0003609    87 0.6181 Included as filler given notice period is 60 days (above JD preference). Profile shows 6.1 years as a Senior Software Engineer (ML) with Fine-tuning LLMs and Python.
+CAND_0018722    88 0.6161     Included as filler given notice period is 90 days (above JD preference). Brings 6.6 years of experience as Recommendation Systems Engineer (Weaviate and Python).
+CAND_0099269    89 0.6138                  Included as filler given notice period is 120 days (above JD preference). Profile shows 5.5 years as a Data Scientist with MLflow and Elasticsearch.
+CAND_0040677    90 0.6118              Included as filler given notice period is 120 days (above JD preference). Profile shows 4.2 years as a AI Research Engineer with LLMs and Elasticsearch.
+CAND_0058152    91 0.6117             Included as filler given notice period is 60 days (above JD preference). Brings 3.6 years of experience as Data Scientist (OpenSearch and Deep Learning).
+CAND_0010541    92 0.6105              Included as filler given notice period is 60 days (above JD preference). Brings 6.2 years of experience as AI Research Engineer (Pinecone and Weaviate).
+CAND_0095207    93 0.6081              Included as filler given notice period is 120 days (above JD preference). Brings 4.0 years of experience as Computer Vision Engineer (FAISS and MLflow).
+CAND_0045141    94 0.6055                                                                   Lower confidence match. Brings 5.3 years of experience as Data Scientist (MLOps and Deep Learning).
+CAND_0037160    95 0.6053                                                                    Lower confidence match. Brings 6.0 years of experience as Data Scientist (Deep Learning and LLMs).
+CAND_0096104    96 0.6025                                                                         Lower confidence match. Brings 7.0 years of experience as AI Specialist (MLOps and Pinecone).
+CAND_0012798    97 0.6022                                                                 Lower confidence match. Brings 5.1 years of experience as AI Research Engineer (LLMs and LlamaIndex).
+CAND_0039383    98 0.6013               Included as filler given notice period is 90 days (above JD preference). Profile shows 7.1 years as a Applied ML Engineer with FAISS and Vector Search.
+CAND_0051004    99 0.6011                                                                Lower confidence match. Profile shows 4.7 years as a Senior Data Scientist with MLflow and Embeddings.
+CAND_0028793   100 0.6000     Included as filler given notice period is 120 days (above JD preference). Profile shows 7.2 years as a Search Engineer with Embeddings and Information Retrieval.

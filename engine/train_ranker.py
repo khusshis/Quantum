@@ -83,6 +83,15 @@ def main():
     X_train, X_val, y_train, y_val = train_test_split(df, y, test_size=0.2, random_state=42)
     
     print("Training LightGBM Regressor...")
+    # Add monotonic constraints: force skill_semantic_match and production_ml_evidence_score to be strictly >= 0
+    # The order of constraints must match the columns of X_train.
+    monotone_constraints = []
+    for col in df.columns:
+        if col in ["skill_semantic_match", "production_ml_evidence_score"]:
+            monotone_constraints.append(1)
+        else:
+            monotone_constraints.append(0)
+            
     regressor = lgb.LGBMRegressor(
         objective="regression",
         metric="rmse",
@@ -91,7 +100,8 @@ def main():
         num_leaves=63,
         min_child_samples=20,
         importance_type="gain",
-        random_state=42
+        random_state=42,
+        monotone_constraints=monotone_constraints
     )
     
     regressor.fit(

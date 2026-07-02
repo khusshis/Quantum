@@ -116,15 +116,31 @@ def compute_features(candidate: Candidate, jd: ParsedJD, precomputed_semantic_ma
     # domain_adjacency_penalty
     cv_speech_keywords = ["computer vision", "cv", "speech", "robotics", "object detection", "asr"]
     nlp_ir_keywords = ["nlp", "ir", "information retrieval", "natural language", "text"]
+    aspirational_phrases = ["interested in", "hoping to", "want to move into", "transitioning to", "looking to move into", "aspiring to"]
+    
+    import re
     
     cv_speech_count = 0
     nlp_ir_count = 0
     for entry in candidate.career_history:
-        desc_lower = entry.description.lower()
-        title_lower = entry.title.lower()
+        desc = entry.description if entry.description else ""
+        title_lower = entry.title.lower() if entry.title else ""
+        
+        # Original lowercased text for CV check
+        desc_lower = desc.lower()
         if any(k in desc_lower or k in title_lower for k in cv_speech_keywords):
             cv_speech_count += 1
-        if any(k in desc_lower or k in title_lower for k in nlp_ir_keywords):
+            
+        # Strip aspirational sentences for NLP/IR check
+        sentences = re.split(r'(?<=[.!?])\s+', desc)
+        valid_sentences = []
+        for s in sentences:
+            s_lower = s.lower()
+            if not any(p in s_lower for p in aspirational_phrases):
+                valid_sentences.append(s)
+                
+        desc_clean = " ".join(valid_sentences).lower()
+        if any(k in desc_clean or k in title_lower for k in nlp_ir_keywords):
             nlp_ir_count += 1
             
     if cv_speech_count > 0 and nlp_ir_count == 0:

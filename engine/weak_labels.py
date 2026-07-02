@@ -21,16 +21,16 @@ def generate_weak_label(candidate: Candidate, features: CandidateFeatures, honey
 
     score = 0.0
     
-    # Career fit adds up to 3 points
+    # Career fit adds up to 4 points
     score += features.years_experience_fit
     score += features.title_trajectory_score
-    score += features.production_ml_evidence_score
+    score += features.production_ml_evidence_score * 2.0
     
-    # Skill match adds up to 1.5 points
+    # Skill match adds up to 3.0 points
     if retrieval_scores:
         dense = max(0.0, retrieval_scores.get("dense", 0.0))
         sparse = max(0.0, retrieval_scores.get("sparse", 0.0))
-        skill_score = (dense * 0.7 + sparse * 0.3) * 1.5
+        skill_score = (dense * 0.7 + sparse * 0.3) * 3.0
         score += skill_score
         
     score += features.skill_trust_score * 0.5

@@ -1,101 +1,101 @@
 candidate_id,rank,score,reasoning
-CAND_0037980,1,0.9900,"9.0 YOE Senior Applied Scientist with expertise in LoRA, Search Infrastructure, PyTorch. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0001494,2,0.9812,"6.4 YOE Data Scientist with expertise in MLflow, Sales, CNN. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0058412,3,0.9233,"6.6 YOE Senior Software Engineer (ML) with expertise in Embeddings, Speech Recognition, Data Science. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0065786,4,0.9057,"4.9 YOE AI Specialist with expertise in Databricks, LoRA, Learning to Rank. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0048166,5,0.8939,"5.2 YOE ML Engineer with expertise in Haystack, Image Classification, Reinforcement Learning. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0005509,6,0.8758,"6.0 YOE Data Scientist with expertise in Diffusion Models, GANs, JavaScript. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0047521,7,0.8683,"4.4 YOE Junior ML Engineer with expertise in YOLO, FastAPI, LlamaIndex. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0066999,8,0.8546,"5.9 YOE Recommendation Systems Engineer with expertise in Image Classification, OpenSearch, JavaScript. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0002025,9,0.8455,"5.9 YOE Senior AI Engineer with expertise in Diffusion Models, FAISS, TensorFlow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0097896,10,0.8429,"4.8 YOE AI Research Engineer with expertise in YOLO, Information Retrieval, Tally. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0061479,11,0.8299,"5.0 YOE ML Engineer with expertise in Speech Recognition, LlamaIndex, MLOps. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0071974,12,0.8078,"7.8 YOE Senior AI Engineer with expertise in LoRA, Learning to Rank, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0005538,13,0.7909,"5.9 YOE Senior AI Engineer with expertise in Project Management, Vector Representations, Deep Learning. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score. (Note: Minor gap in Title Trajectory Score)."
-CAND_0037566,14,0.7886,"6.9 YOE Machine Learning Engineer with expertise in Pinecone, Time Series, LlamaIndex. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0026716,15,0.7869,"5.6 YOE Computer Vision Engineer with expertise in YOLO, TensorFlow, Fine-tuning LLMs. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0011687,16,0.7803,"7.8 YOE Senior NLP Engineer with expertise in TensorFlow, OpenSearch, FAISS. Top candidate driven by exceptionally high Role Relevance Score and Skill Trust Score."
-CAND_0053695,17,0.7787,"5.8 YOE Recommendation Systems Engineer with expertise in MLOps, Apache Flink, GCP. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0018499,18,0.7771,"7.2 YOE Senior Machine Learning Engineer with expertise in Deep Learning, Weaviate, Recommendation Systems. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0017648,19,0.7717,"4.0 YOE AI Specialist with expertise in CNN, Fine-tuning LLMs, Scrum. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0067643,20,0.7656,"6.0 YOE AI Research Engineer with expertise in Elasticsearch, Object Detection, Fine-tuning LLMs. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0025882,21,0.7649,"5.6 YOE Senior Software Engineer (ML) with expertise in MLflow, scikit-learn, Kubeflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0008978,22,0.7605,"6.7 YOE Junior ML Engineer with expertise in Sales, Machine Learning, Embeddings. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0016163,23,0.7573,"6.7 YOE Applied ML Engineer with expertise in Hugging Face Transformers, Computer Vision, gRPC. Top candidate driven by exceptionally high Role Relevance Score and Availability Score."
-CAND_0049615,24,0.7390,"5.1 YOE ML Engineer with expertise in NLP, Deep Learning, Recommendation Systems. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0014063,25,0.7333,"5.4 YOE AI Specialist with expertise in Data Science, LLMs, MLOps. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0069638,26,0.7285,"6.2 YOE Computer Vision Engineer with expertise in Time Series, Hadoop, Semantic Search. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0078262,27,0.7181,"4.9 YOE ML Engineer with expertise in SQL, FAISS, Computer Vision. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0095567,28,0.7179,"5.1 YOE Data Scientist with expertise in PyTorch, Milvus, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0082489,29,0.7156,"5.3 YOE ML Engineer with expertise in Kubeflow, Haystack, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0009516,30,0.7133,"6.9 YOE AI Specialist with expertise in Pinecone, BentoML, AWS. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0041402,31,0.7124,"6.3 YOE AI Specialist with expertise in Information Retrieval, Forecasting, RAG. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0010149,32,0.7023,"6.9 YOE ML Engineer with expertise in Computer Vision, Diffusion Models, Milvus. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0001600,33,0.7022,"6.2 YOE AI Specialist with expertise in Object Detection, Kubeflow, BentoML. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0078042,34,0.6982,"4.7 YOE Applied ML Engineer with expertise in OpenSearch, Diffusion Models, PyTorch. Top candidate driven by exceptionally high Role Relevance Score and Availability Score."
-CAND_0024147,35,0.6974,"5.9 YOE ML Engineer with expertise in ASR, Qdrant, Kubeflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0023215,36,0.6968,"4.4 YOE Junior ML Engineer with expertise in Statistical Modeling, Forecasting, Haystack. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0066309,37,0.6953,"5.3 YOE Senior Software Engineer (ML) with expertise in Elasticsearch, TTS, Image Classification. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0080534,38,0.6938,"3.8 YOE ML Engineer with expertise in Elasticsearch, OpenSearch, Airflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0061175,39,0.6910,"6.7 YOE AI Research Engineer with expertise in Python, Milvus, Recommendation Systems. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0010603,40,0.6909,"5.3 YOE ML Engineer with expertise in Information Retrieval, TTS, OpenSearch. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0091890,41,0.6909,"4.7 YOE AI Research Engineer with expertise in Statistical Modeling, scikit-learn, Weights & Biases. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0035879,42,0.6897,"4.5 YOE AI Research Engineer with expertise in CI/CD, Vue.js, Statistical Modeling. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0092706,43,0.6888,"5.8 YOE AI Research Engineer with expertise in Weights & Biases, Speech Recognition, Data Science. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0088354,44,0.6832,"6.5 YOE Junior ML Engineer with expertise in OpenSearch, Hugging Face Transformers, AWS. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0051486,45,0.6816,"5.9 YOE AI Specialist with expertise in Fine-tuning LLMs, Microservices, Tally. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0073007,46,0.6754,"5.8 YOE AI Specialist with expertise in Milvus, BentoML, PyTorch. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0080344,47,0.6724,"4.9 YOE Senior Software Engineer (ML) with expertise in Sentence Transformers, scikit-learn, Photoshop. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0080766,48,0.6682,"8.8 YOE Staff Machine Learning Engineer with expertise in Search Backend, LoRA, Vue.js. Top candidate driven by exceptionally high Role Relevance Score and Skill Trust Score."
-CAND_0074621,49,0.6645,"5.2 YOE Data Scientist with expertise in Vector Search, Feature Engineering, Haystack. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0017147,50,0.6641,"4.7 YOE AI Specialist with expertise in Webpack, LangChain, pgvector. Top candidate driven by exceptionally high Role Relevance Score and Availability Score."
-CAND_0013122,51,0.6622,"4.3 YOE AI Specialist with expertise in Figma, MLOps, GANs. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0073883,52,0.6613,"5.3 YOE AI Specialist with expertise in Redux, Reinforcement Learning, PEFT. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0018722,53,0.6601,"6.6 YOE Recommendation Systems Engineer with expertise in Data Science, Weaviate, Python. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0044262,54,0.6595,"6.9 YOE Data Scientist with expertise in YOLO, Time Series, Python. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0068892,55,0.6595,"4.7 YOE Senior Software Engineer (ML) with expertise in ETL, LlamaIndex, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0073504,56,0.6581,"6.6 YOE Junior ML Engineer with expertise in Elasticsearch, Angular, LangChain. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0055139,57,0.6579,"6.9 YOE ML Engineer with expertise in Statistical Modeling, Elasticsearch, Object Detection. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0096409,58,0.6526,"4.3 YOE Computer Vision Engineer with expertise in Weights & Biases, Sentence Transformers, Semantic Search. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0072232,59,0.6517,"4.0 YOE ML Engineer with expertise in TensorFlow, Reinforcement Learning, MLflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0003609,60,0.6484,"6.1 YOE Senior Software Engineer (ML) with expertise in Fine-tuning LLMs, Object Detection, Kubeflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0020991,61,0.6472,"4.9 YOE Junior ML Engineer with expertise in QLoRA, Statistical Modeling, Six Sigma. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0060257,62,0.6446,"5.8 YOE AI Specialist with expertise in Recommendation Systems, Diffusion Models, BigQuery. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0018925,63,0.6440,"5.8 YOE AI Research Engineer with expertise in TTS, Image Classification, Sentence Transformers. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0039383,64,0.6430,"7.1 YOE Applied ML Engineer with expertise in GANs, FAISS, ASR. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0051004,65,0.6417,"4.7 YOE Senior Data Scientist with expertise in MLflow, Embeddings, Semantic Search. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0002120,66,0.6400,"6.5 YOE ML Engineer with expertise in RAG, ETL, Hugging Face Transformers. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0010541,67,0.6395,"6.2 YOE AI Research Engineer with expertise in Pinecone, GANs, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0062772,68,0.6370,"6.6 YOE Senior Software Engineer (ML) with expertise in Weights & Biases, Kubeflow, Vector Search. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0028793,69,0.6351,"7.2 YOE Search Engineer with expertise in SAP, Kubeflow, Embeddings. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0040887,70,0.6348,"4.7 YOE Machine Learning Engineer with expertise in Reinforcement Learning, Computer Vision, SEO. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0055960,71,0.6339,"4.9 YOE AI Specialist with expertise in Feature Engineering, Django, Reinforcement Learning. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0093912,72,0.6334,"5.3 YOE Senior Data Scientist with expertise in Feature Engineering, SAP, CNN. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0012798,73,0.6333,"5.1 YOE AI Research Engineer with expertise in CNN, RAG, Learning to Rank. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0097176,74,0.6313,"5.9 YOE ML Engineer with expertise in Angular, FAISS, Speech Recognition. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0049771,75,0.6286,"5.0 YOE AI Research Engineer with expertise in Python, OpenCV, PyTorch. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0061265,76,0.6272,"6.6 YOE Recommendation Systems Engineer with expertise in Qdrant, SQL, Accounting. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0057453,77,0.6246,"3.9 YOE Computer Vision Engineer with expertise in AWS, Haystack, Sentence Transformers. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0095207,78,0.6243,"4.0 YOE Computer Vision Engineer with expertise in Time Series, Recommendation Systems, FAISS. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0001151,79,0.6242,"5.0 YOE Junior ML Engineer with expertise in BM25, Statistical Modeling, MLflow. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0063328,80,0.6236,"4.6 YOE Computer Vision Engineer with expertise in YOLO, Feature Engineering, LlamaIndex. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0037944,81,0.6233,"4.9 YOE Senior Data Scientist with expertise in Next.js, Feature Engineering, Vector Search. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0040677,82,0.6186,"4.2 YOE AI Research Engineer with expertise in PostgreSQL, LoRA, LLMs. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0051593,83,0.6177,"3.7 YOE AI Specialist with expertise in TTS, PyTorch, BigQuery. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0096142,84,0.6166,"5.0 YOE Applied ML Engineer with expertise in Kubeflow, LoRA, Weaviate. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0021410,85,0.6163,"4.0 YOE Junior ML Engineer with expertise in Statistical Modeling, dbt, Time Series. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0027691,86,0.6161,"6.5 YOE NLP Engineer with expertise in SAP, LoRA, PEFT. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0005649,87,0.6151,"7.4 YOE Senior Data Scientist with expertise in Haystack, Redis, Prompt Engineering. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0030207,88,0.6148,"4.0 YOE Data Scientist with expertise in pgvector, Python, CI/CD. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0077285,89,0.6148,"5.5 YOE Recommendation Systems Engineer with expertise in OpenCV, Excel, LoRA. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0055673,90,0.6125,"3.7 YOE Data Scientist with expertise in Pinecone, gRPC, Forecasting. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0000273,91,0.6116,"5.8 YOE ML Engineer with expertise in TTS, Forecasting, Spring Boot. Top candidate driven by exceptionally high Role Relevance Score and Skill Trust Score."
-CAND_0042029,92,0.6105,"6.5 YOE Senior Data Scientist with expertise in YOLO, PyTorch, NLP. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0032955,93,0.6097,"5.2 YOE Computer Vision Engineer with expertise in Fine-tuning LLMs, Object Detection, LangChain. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0098952,94,0.6080,"5.5 YOE AI Research Engineer with expertise in Airflow, Recommendation Systems, Statistical Modeling. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0060340,95,0.6059,"6.1 YOE Computer Vision Engineer with expertise in SQL, RAG, NLP. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0052682,96,0.6048,"6.6 YOE NLP Engineer with expertise in Statistical Modeling, QLoRA, Semantic Search. Top candidate driven by exceptionally high Role Relevance Score and Skill Semantic Match."
-CAND_0053431,97,0.6041,"6.1 YOE ML Engineer with expertise in Forecasting, Computer Vision, TTS. Top candidate driven by exceptionally high Role Relevance Score and Skill Trust Score."
-CAND_0066798,98,0.6035,"5.1 YOE ML Engineer with expertise in MLflow, LLMs, Data Science. Top candidate driven by exceptionally high Role Relevance Score and Production Ml Evidence Score."
-CAND_0069248,99,0.6033,"5.4 YOE AI Research Engineer with expertise in OpenCV, Illustrator, Computer Vision. Top candidate driven by exceptionally high Role Relevance Score and Skill Trust Score."
-CAND_0086022,100,0.6000,"5.3 YOE Senior Applied Scientist with expertise in Vector Search, MLflow, Recommendation Systems. Top candidate driven by exceptionally high Role Relevance Score and Availability Score. (Note: Minor gap in Production Ml Evidence Score)."
+CAND_0001494,1,0.9900,"Strong fit driven by production embeddings/retrieval experience: 6.4 years of experience as a Data Scientist, with verified expertise in MLflow and Vector Search; however, notice period is 90 days (above JD preference)."
+CAND_0037980,2,0.9825,"Top candidate based on production embeddings/retrieval experience. Brings 9.0 years of experience currently as Senior Applied Scientist, leveraging Search Infrastructure and BentoML."
+CAND_0048166,3,0.8997,"Strong fit driven by production embeddings/retrieval experience: 5.2 years of experience as a ML Engineer, with verified expertise in Pinecone and Qdrant."
+CAND_0047521,4,0.8792,"Strong fit driven by production embeddings/retrieval experience: 4.4 years of experience as a Junior ML Engineer, with verified expertise in LlamaIndex and Pinecone; however, notice period is 120 days (above JD preference)."
+CAND_0002025,5,0.8679,"Highly aligned with production embeddings/retrieval experience, featuring 5.9 years as a Senior AI Engineer and demonstrated hands-on work with FAISS and OpenSearch."
+CAND_0071974,6,0.8347,"Top candidate based on production embeddings/retrieval experience. Brings 7.8 years of experience currently as Senior AI Engineer, leveraging Weaviate and Pinecone; however, notice period is 45 days (above JD preference)."
+CAND_0017648,7,0.8284,"Top candidate based on production embeddings/retrieval experience. Brings 4.0 years of experience currently as AI Specialist, leveraging Fine-tuning LLMs and Machine Learning; however, notice period is 120 days (above JD preference)."
+CAND_0049615,8,0.8127,"Highly aligned with production embeddings/retrieval experience, featuring 5.1 years as a ML Engineer and demonstrated hands-on work with Deep Learning and Pinecone; however, notice period is 60 days (above JD preference)."
+CAND_0005538,9,0.8122,"Highly aligned with production embeddings/retrieval experience, featuring 5.9 years as a Senior AI Engineer and demonstrated hands-on work with Deep Learning and Python; however, notice period is 90 days (above JD preference)."
+CAND_0066999,10,0.7859,"Highly aligned with ideal experience range (5-9 years), featuring 5.9 years as a Recommendation Systems Engineer and demonstrated hands-on work with OpenSearch and FAISS."
+CAND_0069638,11,0.7804,Meets core requirements for production embeddings/retrieval experience via 6.2 years of experience as Computer Vision Engineer with Semantic Search and Fine-tuning LLMs.
+CAND_0080534,12,0.7777,A fair fit providing 3.8 years as a ML Engineer and Elasticsearch and OpenSearch aligned to production embeddings/retrieval experience.
+CAND_0008978,13,0.7752,"Solid candidate with 6.7 years as a Junior ML Engineer matching our need for production embeddings/retrieval experience (skills: Machine Learning and Embeddings); however, notice period is 90 days (above JD preference)."
+CAND_0078262,14,0.7709,"Meets core requirements for production embeddings/retrieval experience via 4.9 years of experience as ML Engineer with FAISS and Embeddings; however, notice period is 60 days (above JD preference)."
+CAND_0011687,15,0.7702,A fair fit providing 7.8 years as a Senior NLP Engineer and OpenSearch and FAISS aligned to ideal experience range (5-9 years).
+CAND_0018499,16,0.7664,Solid candidate with 7.2 years as a Senior Machine Learning Engineer matching our need for ideal experience range (5-9 years) (skills: Deep Learning and Weaviate).
+CAND_0061175,17,0.7636,"Meets core requirements for production embeddings/retrieval experience via 6.7 years of experience as AI Research Engineer with Python and Vector Search; however, notice period is 120 days (above JD preference)."
+CAND_0051486,18,0.7513,"A fair fit providing 5.9 years as a AI Specialist and Fine-tuning LLMs and Pinecone aligned to production embeddings/retrieval experience; however, notice period is 120 days (above JD preference)."
+CAND_0072232,19,0.7466,"A fair fit providing 4.0 years as a ML Engineer and MLflow and Fine-tuning LLMs aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0014063,20,0.7429,"Solid candidate with 5.4 years as a AI Specialist matching our need for ideal experience range (5-9 years) (skills: LLMs and MLOps); however, notice period is 45 days (above JD preference)."
+CAND_0095567,21,0.7388,"A fair fit providing 5.1 years as a Data Scientist and Weaviate and Fine-tuning LLMs aligned to ideal experience range (5-9 years); however, notice period is 120 days (above JD preference)."
+CAND_0023215,22,0.7362,"Meets core requirements for strong python and ML toolset via 4.4 years of experience as Junior ML Engineer with Information Retrieval and MLflow; however, notice period is 60 days (above JD preference)."
+CAND_0044262,23,0.7357,"A fair fit providing 6.9 years as a Data Scientist and Python and OpenSearch aligned to production embeddings/retrieval experience; however, notice period is 90 days (above JD preference)."
+CAND_0053695,24,0.7316,A fair fit providing 5.8 years as a Recommendation Systems Engineer and MLOps and Pinecone aligned to ideal experience range (5-9 years).
+CAND_0037566,25,0.7311,A fair fit providing 6.9 years as a Machine Learning Engineer and Pinecone and LlamaIndex aligned to ideal experience range (5-9 years).
+CAND_0035879,26,0.7273,"Meets core requirements for strong python and ML toolset via 4.5 years of experience as AI Research Engineer with Pinecone and MLflow; however, notice period is 120 days (above JD preference)."
+CAND_0082489,27,0.7231,"Meets core requirements for ideal experience range (5-9 years) via 5.3 years of experience as ML Engineer with Weaviate and MLflow; however, notice period is 90 days (above JD preference)."
+CAND_0074621,28,0.7220,"Meets core requirements for production embeddings/retrieval experience via 5.2 years of experience as Data Scientist with Vector Search and Python; however, notice period is 90 days (above JD preference)."
+CAND_0091890,29,0.7213,"Solid candidate with 4.7 years as a AI Research Engineer matching our need for strong python and ML toolset (skills: Elasticsearch and Pinecone); however, notice period is 60 days (above JD preference)."
+CAND_0013122,30,0.7208,Meets core requirements for strong python and ML toolset via 4.3 years of experience as AI Specialist with MLOps and MLflow.
+CAND_0016163,31,0.7203,"Solid candidate with 6.7 years as a Applied ML Engineer matching our need for ideal experience range (5-9 years) (skills: Weaviate and Deep Learning); however, notice period is 120 days (above JD preference)."
+CAND_0021410,32,0.7152,"Meets core requirements for production embeddings/retrieval experience via 4.0 years of experience as Junior ML Engineer with LlamaIndex and LLMs; however, notice period is 60 days (above JD preference)."
+CAND_0080766,33,0.7115,Solid candidate with 8.8 years as a Staff Machine Learning Engineer matching our need for ideal experience range (5-9 years) (skills: Search Backend and Search & Discovery).
+CAND_0066309,34,0.7091,"Solid candidate with 5.3 years as a Senior Software Engineer (ML) matching our need for ideal experience range (5-9 years) (skills: Elasticsearch and Deep Learning); however, notice period is 90 days (above JD preference)."
+CAND_0092706,35,0.7085,"Solid candidate with 5.8 years as a AI Research Engineer matching our need for ideal experience range (5-9 years) (skills: MLOps and Fine-tuning LLMs); however, notice period is 120 days (above JD preference)."
+CAND_0010603,36,0.7040,"A fair fit providing 5.3 years as a ML Engineer and Information Retrieval and OpenSearch aligned to ideal experience range (5-9 years); however, notice period is 90 days (above JD preference)."
+CAND_0062772,37,0.7031,"Meets core requirements for production embeddings/retrieval experience via 6.6 years of experience as Senior Software Engineer (ML) with Vector Search and Elasticsearch; however, notice period is 90 days (above JD preference)."
+CAND_0041402,38,0.6972,"A fair fit providing 6.3 years as a AI Specialist and Information Retrieval and Vector Search aligned to ideal experience range (5-9 years); however, notice period is 60 days (above JD preference)."
+CAND_0018925,39,0.6885,"A fair fit providing 5.8 years as a AI Research Engineer and Deep Learning and BentoML aligned to ideal experience range (5-9 years); however, notice period is 90 days (above JD preference)."
+CAND_0051593,40,0.6877,Solid candidate with 3.7 years as a AI Specialist matching our need for strong python and ML toolset (skills: FAISS and BentoML).
+CAND_0055673,41,0.6863,"A fair fit providing 3.7 years as a Data Scientist and Pinecone and LLMs aligned to strong python and ML toolset; however, notice period is 120 days (above JD preference)."
+CAND_0030207,42,0.6847,"Solid candidate with 4.0 years as a Data Scientist matching our need for strong python and ML toolset (skills: Python and Elasticsearch); however, notice period is 90 days (above JD preference)."
+CAND_0057453,43,0.6838,"A fair fit providing 3.9 years as a Computer Vision Engineer and AWS and REST APIs aligned to strong python and ML toolset; however, notice period is 45 days (above JD preference)."
+CAND_0055960,44,0.6818,"Meets core requirements for strong python and ML toolset via 4.9 years of experience as AI Specialist with BentoML and Machine Learning; however, notice period is 90 days (above JD preference)."
+CAND_0073504,45,0.6809,"Solid candidate with 6.6 years as a Junior ML Engineer matching our need for ideal experience range (5-9 years) (skills: Elasticsearch and LangChain); however, notice period is 60 days (above JD preference)."
+CAND_0001600,46,0.6807,"Solid candidate with 6.2 years as a AI Specialist matching our need for ideal experience range (5-9 years) (skills: BentoML and Semantic Search); however, notice period is 120 days (above JD preference)."
+CAND_0060257,47,0.6796,"Solid candidate with 5.8 years as a AI Specialist matching our need for ideal experience range (5-9 years) (skills: Vector Search and LangChain); however, notice period is 60 days (above JD preference)."
+CAND_0082913,48,0.6791,"Meets core requirements for production embeddings/retrieval experience via 5.5 years of experience as Senior Software Engineer (ML) with FAISS and BentoML; however, notice period is 45 days (above JD preference)."
+CAND_0002120,49,0.6788,"A fair fit providing 6.5 years as a ML Engineer and Information Retrieval and Pinecone aligned to ideal experience range (5-9 years); however, notice period is 45 days (above JD preference)."
+CAND_0078042,50,0.6754,Solid candidate with 4.7 years as a Applied ML Engineer matching our need for strong python and ML toolset (skills: OpenSearch and Semantic Search).
+CAND_0077552,51,0.6752,Solid candidate with 3.4 years as a Senior Software Engineer (ML) matching our need for production embeddings/retrieval experience (skills: MLOps and LangChain).
+CAND_0097176,52,0.6742,Meets core requirements for ideal experience range (5-9 years) via 5.9 years of experience as ML Engineer with FAISS and LlamaIndex.
+CAND_0088354,53,0.6721,"Solid candidate with 6.5 years as a Junior ML Engineer matching our need for ideal experience range (5-9 years) (skills: OpenSearch and MLOps); however, notice period is 120 days (above JD preference)."
+CAND_0093185,54,0.6711,"Meets core requirements for production embeddings/retrieval experience via 4.1 years of experience as AI Research Engineer with MLOps and Deep Learning; however, notice period is 120 days (above JD preference)."
+CAND_0020991,55,0.6694,"Meets core requirements for strong python and ML toolset via 4.9 years of experience as Junior ML Engineer with Python and Weaviate; however, notice period is 120 days (above JD preference)."
+CAND_0073883,56,0.6647,"Meets core requirements for ideal experience range (5-9 years) via 5.3 years of experience as AI Specialist with Vector Search and Deep Learning; however, notice period is 90 days (above JD preference)."
+CAND_0001151,57,0.6637,"Solid candidate with 5.0 years as a Junior ML Engineer matching our need for ideal experience range (5-9 years) (skills: MLflow and LlamaIndex); however, notice period is 45 days (above JD preference)."
+CAND_0093547,58,0.6611,"A fair fit providing 2.9 years as a Senior Machine Learning Engineer and LLMs and Python aligned to production embeddings/retrieval experience; however, notice period is 60 days (above JD preference)."
+CAND_0066798,59,0.6603,"A fair fit providing 5.1 years as a ML Engineer and MLflow and LLMs aligned to ideal experience range (5-9 years); however, notice period is 45 days (above JD preference)."
+CAND_0096409,60,0.6560,"A fair fit providing 4.3 years as a Computer Vision Engineer and Semantic Search and Embeddings aligned to strong python and ML toolset; however, notice period is 120 days (above JD preference)."
+CAND_0001218,61,0.6558,Included as filler given notice period is 90 days (above JD preference). Profile shows 6.4 years as a AI Specialist with Tailwind and OpenSearch.
+CAND_0003609,62,0.6523,Included as filler given notice period is 60 days (above JD preference). Profile shows 6.1 years as a Senior Software Engineer (ML) with Fine-tuning LLMs and Python.
+CAND_0096104,63,0.6513,Lower confidence match. Brings 7.0 years of experience as AI Specialist (MLOps and Pinecone).
+CAND_0048469,64,0.6511,Included as filler given notice period is 120 days (above JD preference). Profile shows 4.7 years as a Computer Vision Engineer with Embeddings and Qdrant.
+CAND_0094685,65,0.6506,Included as filler given notice period is 45 days (above JD preference). Profile shows 3.5 years as a AI Research Engineer with Weaviate and MLflow.
+CAND_0000273,66,0.6495,Included as filler given notice period is 60 days (above JD preference). Profile shows 5.8 years as a ML Engineer with Fine-tuning LLMs and Qdrant.
+CAND_0069248,67,0.6465,Included as filler given notice period is 120 days (above JD preference). Profile shows 5.4 years as a AI Research Engineer with BentoML and FAISS.
+CAND_0053431,68,0.6457,Included as filler given notice period is 90 days (above JD preference). Brings 6.1 years of experience as ML Engineer (LangChain and Python).
+CAND_0010541,69,0.6441,Included as filler given notice period is 60 days (above JD preference). Brings 6.2 years of experience as AI Research Engineer (Pinecone and Weaviate).
+CAND_0099269,70,0.6441,Included as filler given notice period is 120 days (above JD preference). Profile shows 5.5 years as a Data Scientist with MLflow and Elasticsearch.
+CAND_0017147,71,0.6416,Included as filler given notice period is 120 days (above JD preference). Profile shows 4.7 years as a AI Specialist with LangChain and LlamaIndex.
+CAND_0040677,72,0.6401,Included as filler given notice period is 120 days (above JD preference). Profile shows 4.2 years as a AI Research Engineer with LLMs and Elasticsearch.
+CAND_0049771,73,0.6399,Included as filler given notice period is 60 days (above JD preference). Profile shows 5.0 years as a AI Research Engineer with Python and MLOps.
+CAND_0018722,74,0.6392,Included as filler given notice period is 90 days (above JD preference). Brings 6.6 years of experience as Recommendation Systems Engineer (Weaviate and Python).
+CAND_0095207,75,0.6391,Included as filler given notice period is 120 days (above JD preference). Brings 4.0 years of experience as Computer Vision Engineer (FAISS and MLflow).
+CAND_0060340,76,0.6366,Included as filler given notice period is 45 days (above JD preference). Brings 6.1 years of experience as Computer Vision Engineer (Tailwind).
+CAND_0058152,77,0.6347,Included as filler given notice period is 60 days (above JD preference). Brings 3.6 years of experience as Data Scientist (OpenSearch and Deep Learning).
+CAND_0039383,78,0.6267,Included as filler given notice period is 90 days (above JD preference). Profile shows 7.1 years as a Applied ML Engineer with FAISS and Vector Search.
+CAND_0051004,79,0.6264,Lower confidence match. Profile shows 4.7 years as a Senior Data Scientist with MLflow and Embeddings.
+CAND_0045141,80,0.6262,Lower confidence match. Brings 5.3 years of experience as Data Scientist (MLOps and Deep Learning).
+CAND_0074325,81,0.6251,Included as filler given notice period is 45 days (above JD preference). Brings 3.9 years of experience as AI Research Engineer (BentoML and OpenSearch).
+CAND_0028793,82,0.6248,Included as filler given notice period is 120 days (above JD preference). Profile shows 7.2 years as a Search Engineer with Embeddings and Information Retrieval.
+CAND_0087494,83,0.6229,Included as filler given notice period is 60 days (above JD preference). Profile shows 3.4 years as a ML Engineer with Fine-tuning LLMs.
+CAND_0077337,84,0.6222,Included as filler given notice period is 60 days (above JD preference). Profile shows 7.0 years as a Staff Machine Learning Engineer with Semantic Search and Pinecone.
+CAND_0093912,85,0.6217,Lower confidence match. Profile shows 5.3 years as a Senior Data Scientist with Embeddings and Vector Search.
+CAND_0098952,86,0.6214,Included as filler given notice period is 45 days (above JD preference). Brings 5.5 years of experience as AI Research Engineer (Airflow and OpenSearch).
+CAND_0068351,87,0.6203,Lower confidence match. Profile shows 6.4 years as a Lead AI Engineer with Deep Learning and Qdrant.
+CAND_0037944,88,0.6161,Lower confidence match. Profile shows 4.9 years as a Senior Data Scientist with Vector Search and Machine Learning.
+CAND_0061265,89,0.6153,Included as filler given notice period is 120 days (above JD preference). Brings 6.6 years of experience as Recommendation Systems Engineer (Qdrant and LangChain).
+CAND_0040887,90,0.6137,Lower confidence match. Brings 4.7 years of experience as Machine Learning Engineer (FAISS and MLflow).
+CAND_0027723,91,0.6132,Lower confidence match. Profile shows 4.2 years as a ML Engineer with Vector Search and Airflow.
+CAND_0068892,92,0.6128,Included as filler given notice period is 90 days (above JD preference). Profile shows 4.7 years as a Senior Software Engineer (ML) with LlamaIndex and Weaviate.
+CAND_0027691,93,0.6096,Lower confidence match. Brings 6.5 years of experience as NLP Engineer (Weaviate and Embeddings).
+CAND_0096142,94,0.6082,Included as filler given notice period is 120 days (above JD preference). Profile shows 5.0 years as a Applied ML Engineer with Weaviate and Pinecone.
+CAND_0052682,95,0.6081,Lower confidence match. Profile shows 6.6 years as a NLP Engineer with Semantic Search and FAISS.
+CAND_0077285,96,0.6075,Included as filler given notice period is 60 days (above JD preference). Profile shows 5.5 years as a Recommendation Systems Engineer with Pinecone and Embeddings.
+CAND_0005649,97,0.6050,Included as filler given notice period is 90 days (above JD preference). Brings 7.4 years of experience as Senior Data Scientist (Deep Learning and Fine-tuning LLMs).
+CAND_0030468,98,0.6043,Included as filler given notice period is 45 days (above JD preference). Brings 5.4 years of experience as Senior Applied Scientist (Information Retrieval Systems and Search & Discovery).
+CAND_0042029,99,0.6042,Included as filler given notice period is 45 days (above JD preference). Brings 6.5 years of experience as Senior Data Scientist (Elasticsearch and Embeddings).
+CAND_0094023,100,0.6000,Included as filler given notice period is 45 days (above JD preference). Profile shows 3.5 years as a Data Scientist with Weaviate and Vector Search.

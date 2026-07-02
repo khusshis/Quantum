@@ -1,6 +1,6 @@
 === Benchmark Report ===
-Wall-clock time: 47.80 seconds
-Peak memory: 2824.67 MB
+Wall-clock time: 39.49 seconds
+Peak memory: 2849.28 MB
 Time constraint (5 min): PASS
 Memory constraint (16 GB): PASS
 
