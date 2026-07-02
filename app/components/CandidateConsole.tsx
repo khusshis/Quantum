@@ -985,9 +985,8 @@ export default function CandidateConsole() {
         )}
 
         {/* Settings Modal */}
-        {isSettingsOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-            <div className="bg-surface border border-border rounded-xl shadow-2xl w-[400px] overflow-hidden flex flex-col">
+        <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-all duration-300 ${isSettingsOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <div className={`bg-surface border border-border rounded-xl shadow-2xl w-[400px] overflow-hidden flex flex-col transition-all duration-300 ease-out transform ${isSettingsOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'}`}>
               <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-background">
                 <h2 className="text-sm font-semibold text-primary font-sans flex items-center gap-2">
                   <Settings size={16} className="text-muted" /> Settings
@@ -1041,7 +1040,6 @@ export default function CandidateConsole() {
               </div>
             </div>
           </div>
-        )}
       </div>
     </div>
   );
