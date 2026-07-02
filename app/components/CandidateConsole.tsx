@@ -135,6 +135,7 @@ const highlightNumbers = (text: string) => {
 export default function CandidateConsole() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [displayDensity, setDisplayDensity] = useState<'comfortable' | 'compact'>('comfortable');
 
   useEffect(() => {
     if (isDarkMode) {
@@ -826,19 +827,19 @@ export default function CandidateConsole() {
             <table className="w-full text-sm text-left border-collapse">
               <thead className="text-xs uppercase text-secondary bg-background sticky top-0 z-10 font-sans tracking-wide border-b border-border">
                 <tr>
-                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('rank')}>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold cursor-pointer hover:text-primary transition-colors`} onClick={() => requestSort('rank')}>
                     Rank {getSortIcon('rank')}
                   </th>
-                  <th className="px-6 py-4 font-semibold cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('candidate_id')}>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold cursor-pointer hover:text-primary transition-colors`} onClick={() => requestSort('candidate_id')}>
                     Candidate {getSortIcon('candidate_id')}
                   </th>
-                  <th className="px-6 py-4 font-semibold">Profile Overview</th>
-                  <th className="px-6 py-4 font-semibold">Notice</th>
-                  <th className="px-6 py-4 font-semibold">Exp & Salary</th>
-                  <th className="px-6 py-4 font-semibold text-right cursor-pointer hover:text-primary transition-colors" onClick={() => requestSort('score')}>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold`}>Profile Overview</th>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold`}>Notice</th>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold`}>Exp & Salary</th>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold text-right cursor-pointer hover:text-primary transition-colors`} onClick={() => requestSort('score')}>
                     Rating (/100) {getSortIcon('score')}
                   </th>
-                  <th className="px-6 py-4 font-semibold w-48">Hiring Signals</th>
+                  <th className={`px-6 ${displayDensity === \'compact\' ? \'py-2\' : \'py-4\'} font-semibold w-48`}>Hiring Signals</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--color-border)]">
@@ -848,10 +849,10 @@ export default function CandidateConsole() {
                     onClick={() => setSelectedCandidate(c)}
                     className={`cursor-pointer transition-colors feature-row group ${selectedCandidate?.candidate_id === c.candidate_id ? 'bg-surface-hover' : 'hover:bg-surface'}`}
                   >
-                    <td className="px-6 py-3 font-mono text-secondary text-xs">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'} font-mono text-secondary text-xs`}>
                       {c.rank?.toString().padStart(3, '0') || '---'}
                     </td>
-                    <td className="px-6 py-3 font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'} font-mono text-xs opacity-80 group-hover:opacity-100 transition-opacity`}>
                       <div className="text-primary font-medium font-sans text-sm flex items-center gap-2">
                         {c.name}
                         {c.redrob_signals?.recruiter_response_rate > 0.90 && c.redrob_signals?.interview_completion_rate > 0.90 && (
@@ -865,7 +866,7 @@ export default function CandidateConsole() {
                       </div>
                       <div className="text-muted text-[10px]">{c.candidate_id}</div>
                     </td>
-                    <td className="px-6 py-3">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'}`}>
                       <div className="font-medium text-primary flex items-center gap-2">
                         {c.title || 'Unknown Title'}
                         {c.notice_period_days !== undefined && c.notice_period_days <= 30 && (
@@ -877,10 +878,10 @@ export default function CandidateConsole() {
                         {highlightNumbers(c.preview_reasoning || c.reasoning)}
                       </div>
                     </td>
-                    <td className="px-6 py-3 font-mono text-secondary text-sm">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'} font-mono text-secondary text-sm`}>
                       {c.notice_period_days !== undefined ? `${c.notice_period_days}d` : 'N/A'}
                     </td>
-                    <td className="px-6 py-3 font-mono text-primary text-sm">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'} font-mono text-primary text-sm`}>
                       {c.yoe !== undefined ? `${c.yoe} yrs` : 'N/A'}
                       <div className="text-xs text-muted mt-0.5">
                         {c.expected_salary?.min && c.expected_salary?.max 
@@ -888,13 +889,13 @@ export default function CandidateConsole() {
                           : 'Negotiable'}
                       </div>
                     </td>
-                    <td className="px-6 py-3 text-right font-mono text-primary text-sm">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'} text-right font-mono text-primary text-sm`}>
                       {c.score !== undefined ? (c.score * 100).toFixed(2) : 'N/A'}
                       {c.features?.honeypot_suspicion_score >= 0.5 && (
                         <AlertTriangle size={12} className="inline ml-2 text-[#EF4444]" title="Honeypot Suspicion" />
                       )}
                     </td>
-                    <td className="px-6 py-3">
+                    <td className={`px-6 ${displayDensity === \'compact\' ? \'py-1.5\' : \'py-3\'}`}>
                       <div className="flex flex-col gap-2 w-full max-w-[180px] text-xs font-mono">
                         <div className="flex items-center justify-between">
                           <span className="text-muted">Status</span>
@@ -1013,6 +1014,27 @@ export default function CandidateConsole() {
                       className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${isDarkMode ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
                     >
                       <Moon size={14} /> Dark
+                    </button>
+                  </div>
+                </div>
+                <hr className="border-border" />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-medium text-primary">Display Density</h3>
+                    <p className="text-xs text-muted mt-1">Adjust row height in the candidate table.</p>
+                  </div>
+                  <div className="flex items-center bg-background border border-border rounded-lg p-1">
+                    <button 
+                      onClick={() => setDisplayDensity('compact')} 
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${displayDensity === 'compact' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                    >
+                      Compact
+                    </button>
+                    <button 
+                      onClick={() => setDisplayDensity('comfortable')} 
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${displayDensity === 'comfortable' ? 'bg-surface shadow-sm text-primary' : 'text-muted hover:text-primary'}`}
+                    >
+                      Comfortable
                     </button>
                   </div>
                 </div>
